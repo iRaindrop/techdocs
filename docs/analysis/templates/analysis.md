@@ -23,6 +23,9 @@ TO USE THIS TEMPLATE, search and replace the named IDs:
 - `_PROJECT-DOC-REPO_`: repository where the project technical documentation is
   stored; this might be its own repo or a directory in the project main repo
 
+Replace link placeholders in brackets, such as [_PROJECT_][project-website],
+with the actual link surrounded by parenthesis.
+
 For the analysis procedure, see [Analysis how-to](../howto.md).
 
 > Note: delete this "About this template" section after you have customized this
