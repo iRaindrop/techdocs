@@ -141,7 +141,7 @@ We evaluate on the following:
   quickly understand a site's purpose, key content, and where to find reliable
   information.
 
-  For more informatino see https://llmstxt.org/
+  For more information, see https://llmstxt.org/
 
   Task can be accomplished manually or by tools.
 
