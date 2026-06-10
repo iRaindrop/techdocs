@@ -126,7 +126,7 @@ We evaluate on the following:
   [Inclusive Naming Initiative](https://inclusivenaming.org) website?
 - Does the project use language like "simple", "easy", etc.?
 
-### AI Optimizaiton and Discoverability
+### AI Optimization and Discoverability
 
 Configurations for AI agents to optimizie the understanding of content are
 emerging and should be utilized.
