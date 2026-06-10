@@ -128,7 +128,7 @@ We evaluate on the following:
 
 ### AI Optimization and Discoverability
 
-Configurations for AI agents to optimizie the understanding of content are
+Configurations for AI agents to optimize the understanding of content are
 emerging and should be utilized.
 
 We evaluate on the following:
@@ -139,9 +139,7 @@ We evaluate on the following:
   llms.txt is a proposed open standard for a Markdown file that websites can
   host at the root. It helps large language models (LLMs) and AI agents quickly
   understand a site's purpose, key content, and where to find reliable
-  information—similar to how robots.txt guides crawlers or sitemap.xml lists
-  pages, but optimized for AI inference (usage at query time) rather than broad
-  indexing.
+  information.
 
   See https://llmstxt.org/
 
