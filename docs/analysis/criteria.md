@@ -133,13 +133,13 @@ emerging and should be utilized.
 
 We evaluate on the following:
 
-- Is there an "llms.txt" file in the root of the website or documentation
+- Is there an _AGENT_ file in the root of the website or documentation
   repository?
 
-  The "llms.txt" file is a proposed open standard for a Markdown file that
-  websites can host at the root. It helps large language models (LLMs) and AI
-  agents quickly understand a site's purpose, key content, and where to find
-  reliable information.
+  The _AGENT_ file is a proposed open standard for a Markdown file that websites
+  can host at the root. It helps large language models (LLMs) and AI agents
+  quickly understand a site's purpose, key content, and where to find reliable
+  information.
 
   For more informatino see https://llmstxt.org/
 
