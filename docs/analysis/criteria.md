@@ -133,17 +133,17 @@ emerging and should be utilized.
 
 We evaluate on the following:
 
-- Is there an `llms.txt` file in the root of the website or documentation
+- Is there an "llms.txt" file in the root of the website or documentation
   repository?
 
-  `llms.txt` is a proposed open standard for a Markdown file that websites can
-  host at the root. It helps large language models (LLMs) and AI agents quickly
-  understand a site's purpose, key content, and where to find reliable
-  information.
+  The "llms.txt" file is a proposed open standard for a Markdown file that
+  websites can host at the root. It helps large language models (LLMs) and AI
+  agents quickly understand a site's purpose, key content, and where to find
+  reliable information.
 
-  See https://llmstxt.org/
+  For more informatino see https://llmstxt.org/
 
-  Task can be accomplished manually or by various tools and plugins.
+  Task can be accomplished manually or by tools.
 
 ## Contributor documentation
 
