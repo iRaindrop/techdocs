@@ -126,6 +126,27 @@ We evaluate on the following:
   [Inclusive Naming Initiative](https://inclusivenaming.org) website?
 - Does the project use language like "simple", "easy", etc.?
 
+### AI Optimizaiton and Discoverability
+
+Configurations for AI agents to optimizie the understanding of content are
+emerging and should be utilized.
+
+We evaluate on the following:
+
+- Is there an llms.txt file in the root of the website or documentation
+  repository?
+
+  llms.txt is a proposed open standard for a Markdown file that websites can
+  host at the root (e.g., https://example.com/llms.txt). It helps large language
+  models (LLMs) and AI agents quickly understand a site's purpose, key content,
+  and where to find reliable information—similar to how robots.txt guides
+  crawlers or sitemap.xml lists pages, but optimized for AI inference (usage at
+  query time) rather than broad indexing.
+
+  See https://llmstxt.org/
+
+  Task can be accomplished manually or by various tools and plugins.
+
 ## Contributor documentation
 
 ### Communication methods documented
