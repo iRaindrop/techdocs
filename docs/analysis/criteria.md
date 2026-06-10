@@ -137,11 +137,11 @@ We evaluate on the following:
   repository?
 
   llms.txt is a proposed open standard for a Markdown file that websites can
-  host at the root (e.g., https://example.com/llms.txt). It helps large language
-  models (LLMs) and AI agents quickly understand a site's purpose, key content,
-  and where to find reliable information—similar to how robots.txt guides
-  crawlers or sitemap.xml lists pages, but optimized for AI inference (usage at
-  query time) rather than broad indexing.
+  host at the root. It helps large language models (LLMs) and AI agents quickly
+  understand a site's purpose, key content, and where to find reliable
+  information—similar to how robots.txt guides crawlers or sitemap.xml lists
+  pages, but optimized for AI inference (usage at query time) rather than broad
+  indexing.
 
   See https://llmstxt.org/
 
