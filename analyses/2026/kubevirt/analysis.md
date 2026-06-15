@@ -22,7 +22,7 @@ efforts.
 
 ### Purpose
 
-This document was written to analyze the current state of _PROJECT_
+This document was written to analyze the current state of KubeVirt
 documentation. It aims to provide project leaders with an informed understanding
 of potential problems in current project documentation. A second
 **implementation** document outlines an actionable plan for improvement. A third
