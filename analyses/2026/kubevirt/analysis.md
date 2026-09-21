@@ -455,7 +455,7 @@ the existing reference content, in the spirit of the Prometheus documentation's
 separation of concepts, guides, and reference, would make the guide considerably
 more useful without disturbing what already works.
 
-**Strengths**
+Strengths
 
 - Coverage is nearly complete, with pages for new v1.8 features already present
   and release notes current.
@@ -469,7 +469,7 @@ more useful without disturbing what already works.
 - Recent reorganization was handled carefully, with a comprehensive redirect map
   preserving old links.
 
-**Weaknesses**
+Weaknesses
 
 - Page titles are feature names rather than user goals (Clone API, Export API,
   Pool, VSOCK), so users must already know the feature to find the task.
