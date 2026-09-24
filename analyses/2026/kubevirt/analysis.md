@@ -330,10 +330,9 @@ documentation. We evaluate on the following:
 
   Yes, for most features. Feature pages consistently follow a pattern of
   prerequisites, a feature-gate enablement pointer, YAML examples, and
-  verification commands. Pages such as
-  `user_workloads/accessing_virtual_machines.md`, `storage/hotplug_volumes.md`,
-  `compute/live_migration.md`, and `network/istio_service_mesh.md` include full
-  working manifests and the exact commands to run.
+  verification commands. Pages such as `accessing_virtual_machines.md`,
+  `hotplug_volumes.md`, `live_migration.md`, and `istio_service_mesh.md` include
+  full working manifests and the exact commands to run.
 
   The instructions are closer to annotated reference examples than to numbered
   task procedures. Few pages use ordered steps, and most pages mix conceptual
