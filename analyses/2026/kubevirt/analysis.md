@@ -309,10 +309,10 @@ documentation. We evaluate on the following:
 
 - Is the documentation feature complete?
 
-  Largely yes. The guide has 97 pages covering installation, feature gates,
-  RBAC, VM creation, instancetypes and preferences, live migration, CPU and
-  memory hotplug, NUMA, hugepages, host device and GPU passthrough, network
-  binding plugins, hotplug interfaces, CDI, snapshots, cloning, export, volume
+  Mostly yes. The guide has 97 pages covering installation, feature gates, RBAC,
+  VM creation, instancetypes and preferences, live migration, CPU and memory
+  hotplug, NUMA, hugepages, host device and GPU passthrough, network binding
+  plugins, hotplug interfaces, CDI, snapshots, cloning, export, volume
   migration, and a debugging section. Features shipped in v1.9, such as
   VirtualMachineTemplate v1beta1, decentralized live migration, and the Plugins
   framework, already have pages.
