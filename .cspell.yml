@@ -83,3 +83,4 @@ words:
   - istio
   - addvolume
   - linux
+  - kubelet

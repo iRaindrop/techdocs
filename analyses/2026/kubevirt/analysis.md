@@ -120,11 +120,11 @@ code.
 
 | Criterion                  | Rating (1-5)                   |
 | -------------------------- | ------------------------------ |
-| Information architecture   | 4 - Meets or exceeds standards |
+| Information architecture   | 3 - Meets standards            |
 | New user content           | 3 - Meets standards            |
 | Content maintainability    | 3 - Meets standards            |
-| Content creation processes | 4 - Meets or exceeds standards |
-| Inclusive language         | 3 - Meets standards            |
+| Content creation processes | 3 - Meets standards            |
+| Inclusive language         | 4 - Meets or exceeds standards |
 
 ### Comments
 
@@ -133,54 +133,57 @@ Documentation rubric.
 
 #### Overall
 
-The KubeVirt user guide's project documentation is in good shape, rating between
-"meets standards" and "meets or exceeds standards" across the five criteria. Its
-structural foundations are strong: content is organized into clear
-domains—cluster administration, user workloads, compute, network, and
-storage—with explicit navigation ordering, and it layers conceptual, task, and
-reference material effectively. The site is built on a maintainable MkDocs and
-`mkdocs-material` stack with all content in Markdown, working search, and a
-redirects map that prevents link rot. Contribution is well signposted through
-`docs/contributing.md` and Kubernetes-style OWNERS files enforced by Prow, and
-the guide is already clean on inclusive naming, with no non-recommended terms
-coined by the project. No reorganization is required; the recommended
-improvements are additive.
+# Project Documentation - Overall Comment
 
-The most significant cross-cutting gap is that documentation is decoupled from
-KubeVirt's release cadence. The site publishes a single "latest" build from
-`main` with no versioning tooling (such as `mike`) or version selector, so
-readers running an older release cannot find documentation that matches their
-deployment. This is compounded on the process side, where nothing requires
-user-facing feature changes in `kubevirt/kubevirt` to ship with corresponding
-user-guide updates, which risks content drift over time. Adopting MkDocs
-versioning and establishing an expectation—such as a release checklist item or a
-cross-repository issue link—that features land together with their documentation
-would be the highest-impact investment for this section. Kubernetes is a good
-model of versioned CNCF documentation.
+The KubeVirt user guide meets CNCF standards for project documentation. Its
+foundations are sound: content is organized by audience and layer with
+deliberate ordering and preserved URLs, feature coverage is broad and kept
+current by the developers who ship the features, the toolchain is simple and
+searchable, documentation is a required checklist item in both the
+kubevirt/kubevirt pull request template and the VEP release process, and
+KubeVirt-controlled names avoid non-recommended terminology. Where pages have
+been written or revised recently they follow a consistent, pasteable pattern.
+The guide is a reliable reference for someone who already knows what they are
+looking for.
 
-A second theme is that users lack clear guided paths into and through the
-content. New-user material is fragmented across differently named locations—a
-top-level "Quickstarts" entry, an "Installation" page buried under "Cluster
-Administration," and "Try it out" and "KubeVirt Labs" sections on the
-homepage—none of which is labeled "Getting Started," and the guide leans on
-external labs rather than a self-contained, first-VM walkthrough. Similarly,
-when a task page falls short, help is scattered across individual feature pages
-with no consolidated troubleshooting or FAQ entry point. Consolidating a single
-"Getting Started" section, adding an in-guide end-to-end tutorial with an
-explicit "Next steps" pointer from installation to first use, and creating a
-symptom-based troubleshooting hub would give users a predictable path from setup
-through to problem resolution.
+The most important cross-cutting gap is the absence of a guided path for new
+users. Information architecture and new user content both find that the happy
+path from install to a running, reachable VM is spread across five pages in two
+sections and delegated to external Killercoda scenarios and kubevirt.io labs.
+Installation buries its four-command procedure under advanced and legacy content
+and ends without a next step, the foundational Basic Use and Lifecycle pages are
+dated, VMI-centric, and reference a manifest that is never shown, and `virtctl`
+install covers only Linux amd64. A single "Getting started" page that strings
+the existing content together, plus a restructured Installation page with a
+"Next steps" section, would address findings in two of the five areas at once.
 
-Finally, the guide would benefit from light language and consistency polish
-backed by automation. Although naming is inclusive, minimizing words such as
-"simple" and "easy" appear roughly 80 times and can discourage readers who find
-a task harder than described; replacing them with concrete, factual descriptions
-would improve tone without losing information. Normalizing the minority of
-noun-based task headings into goal-oriented verb phrases would further improve
-scanning and consistency. Extending the existing spell checks—or adding a
-dedicated inclusive-language linter or a Vale style rule in CI—would keep both
-language and future contributions consistent, building on the solid foundation
-this section already demonstrates.
+The second theme is that the project's processes are real but undocumented,
+which puts maintainability at risk as the project grows. Release branches exist
+for v1.7 through v1.9, yet the site publishes `main` only, has no version
+selector, and no document explains the branching or cherry-pick workflow.
+Ownership is clear from `OWNERS` files but there is no MAINTAINERS file, no
+named documentation lead, and no record of who runs the Netlify deployment or
+the release-notes script. The per-SIG reviewer aliases are defined but never
+routed to directories, and a backlog of twelve open pull requests suggests
+review capacity is limited to core maintainers. A documentation contributor
+guide covering review flow, versioning, and ownership would close most of these
+gaps in one document.
+
+The third theme is inconsistency between older and newer content, which surfaces
+in every area. Older pages use `$`-prefixed code blocks mixed with output while
+newer ones use clean fenced blocks; feature-state banners appear on a minority
+of pages; minimizing words such as "simply" and "easily" appear on 40 percent of
+pages; and legacy content (OKD Service Catalog, k3OS, a duplicate Windows
+drivers page, an orphaned Plugins page, 14 links to the legacy
+`/api-reference/master/` path) remains alongside current material. A short style
+guide, a standard feature-state admonition, enabling the theme's copy button,
+and a lint check for minimizing language are low-effort changes that would raise
+consistency across the whole guide and prevent regression.
+
+Inclusive language is the section's strongest area and can serve as an example:
+the project's own APIs, CLI, and feature gates are clean, "allowlist" is used
+consistently, and the remaining issues are mechanical link updates and prose
+tightening rather than naming changes.
 
 #### Overall (Author)
 
@@ -699,78 +702,126 @@ the following:
 - Is there a clearly documented (ongoing) contribution process for
   documentation?
 
-  Yes. `docs/contributing.md` explains the ongoing GitHub workflow (fork,
-  branch, commit, open pull request, review, merge), explicitly lists the
-  user-guide repository as a low-barrier target for first contributions, and
-  links to community resources such as the Code of Conduct, membership policy,
-  and governance. The repository README complements this with the local
-  authoring workflow: where content lives (`./docs`), how to sign commits, and
-  how to validate changes with `make` targets for spelling and link checking
-  (HTMLProofer) before opening a PR.
+  Partially. The repository README documents the mechanics: fork, edit Markdown
+  under `docs/`, keep `.nav.yml` ordering current, sign commits with `-s`, run
+  `make build_img`, `make check_spelling`, `make check_links`, and `make run` in
+  a container, then open a pull request. The root CONTRIBUTING.md is a two-line
+  pointer to the Contributing page on the published site, and that page covers
+  community-wide onboarding (prerequisites, where to find good-first-issues, the
+  Code of Conduct, membership policy, governance, and the AI contribution
+  policy) with the user guide listed as a low-barrier repository.
+
+  The process stops at "open a PR". Nothing in the repository describes what
+  happens next: which labels are applied, who is expected to review, what the
+  approval flow is, how long a contributor should expect to wait, or when to use
+  the release branches. There is no documentation style guide, page template, or
+  guidance on when a change needs a redirect entry in `mkdocs.yml`. The
+  repository has no pull request or issue templates under `.github/`. Twelve
+  pull requests are open, the oldest from March 2026.
 
 - Does the code release process account for documentation creation & updates?
 
-  Not explicitly. The user guide lives in a separate repository
-  (`kubevirt/user-guide`) and is published continuously from the `main` branch
-  to kubevirt.io/user-guide rather than being cut alongside KubeVirt code
-  releases. While a `release_notes.md` page tracks product releases, there is no
-  documented mechanism in this repository that requires documentation to be
-  created or updated as part of the core code release process, so docs updates
-  are decoupled from the release cadence.
+  Yes. The kubevirt/kubevirt pull request template includes a checklist item
+  that a user-guide update "was considered and is present (link) or not
+  required" for any user-facing feature or API change, and approvers are asked
+  to review the list. The Virtualization Enhancement Proposal (VEP) process in
+  kubevirt/enhancements requires SIGs, after code freeze, to confirm that the
+  "Docs PR is merged (plan review ahead of release if only placeholder is
+  opened)" as part of the release tracking checklist.
+
+  The process is visible in practice. Recent merged pull requests include VEP
+  190 plugins documentation, GPU DRA, Migration Stall Detector alpha docs,
+  PersistentReservation GA graduation, Template Beta graduation, and the v1.9.0
+  release notes, most authored by the feature developers themselves. Release
+  notes are regenerated from kubevirt/kubevirt tags with `update_changelog.sh`.
+  Neither the PR checklist item nor the VEP requirement is enforced by tooling,
+  and the user guide repository itself does not document how its
+  `release-vX.Y-*` branches relate to the KubeVirt release cycle.
 
 - Who reviews and approves documentation pull requests?
 
-  Reviews and approvals are governed by Kubernetes-style OWNERS files enforced
-  through Prow. The root `OWNERS` delegates to `reviewers` and `approvers`
-  aliases defined in `OWNERS_ALIASES`. Subdirectories under `docs/` delegate to
-  the relevant SIG teams—for example `docs/storage/OWNERS` routes to sig-storage
-  reviewers and approvers. Documentation PRs are automatically labeled
-  `kind/documentation`, and merges require an approver's `/approve` plus
-  reviewer `/lgtm`.
+  Prow, using the `OWNERS` and `OWNERS_ALIASES` files. The root `OWNERS` file
+  assigns every path to the `reviewers` alias (seven people) and the `approvers`
+  alias (ten people), and automatically labels changes under `docs/` with
+  `kind/documentation`. `OWNERS_ALIASES` also defines per-SIG reviewer and
+  approver groups for network, storage, compute, observability, release, test,
+  scale, and buildsystem, but the `OWNERS` file does not route any directory to
+  them, so SIG experts are not auto-assigned to pages in their area. Pre-submit
+  and post-submit Prow jobs for the repository are defined in
+  kubevirt/project-infra.
+
+  The reviewer and approver lists are made up of KubeVirt core maintainers
+  rather than documentation specialists, and one contributor is the most
+  frequent committer over the last six months and authored the v1.9.0 release
+  notes and site fixes. The process is discoverable only by reading the `OWNERS`
+  files; no human-readable page names the documentation approvers or explains
+  the Prow `/lgtm` and `/approve` flow to a first-time contributor.
 
 - Does the website have a clear owner/maintainer?
 
-  Yes. Ownership is clearly defined through the repository's `OWNERS` and
-  `OWNERS_ALIASES` files, which name active reviewers and approvers (and list
-  emeritus approvers for historical context). Per-section `OWNERS` files under
-  `docs/` further assign responsibility to the appropriate KubeVirt SIGs, giving
-  the site both overall and area-specific maintainers.
+  Partially. The user guide is owned collectively by the `approvers` alias in
+  `OWNERS_ALIASES`, the site builds on Netlify from `main` (badge in the README,
+  configuration in `netlify.toml`), and the `OWNERS` file labels changes under
+  `site/` with `kind/website`. Seven emeritus approvers are listed, showing the
+  list is curated over time. The main website, kubevirt.io, is a separate
+  repository (kubevirt/kubevirt.github.io) with its own ownership.
+
+  There is no MAINTAINERS file, no named documentation lead or SIG Docs, and no
+  statement on the Contributing page or README of who is responsible for the
+  user guide's infrastructure, the Netlify account, or the release-notes
+  process. Ownership is inferable from Git history and OWNERS files but is not
+  documented.
 
 ##### Comment
 
-The KubeVirt User Guide has a clear and welcoming content creation process. The
-`docs/contributing.md` page lays out the standard GitHub workflow (fork, branch,
-commit, pull request, review, merge), explicitly flags the user guide as a good
-target for first-time contributors, and links to essential community documents
-such as the Code of Conduct, membership policy, and governance. The README
-reinforces this with practical authoring guidance: where content lives, how to
-sign commits, and how to validate changes locally with `make` targets that run
-spelling and link (HTMLProofer) checks. Together these give new and returning
-contributors a well-signposted, repeatable path to landing changes.
+KubeVirt's strongest asset in this area is that documentation is wired into the
+engineering process rather than left to chance. The kubevirt/kubevirt pull
+request checklist asks every author whether a user-guide update is needed, and
+the VEP process requires SIGs to confirm the docs PR is merged before release.
+Recent history shows this works: feature developers routinely land the user
+guide page for their VEP in the same release cycle, and the release notes are
+regenerated on each release. Reviews and approvals are automated through Prow
+OWNERS files with a curated approver list. Compared with the Thanos "How to
+contribute to docs" page and the NATS MAINTAINERS file that the CNCF criteria
+cite as good examples, KubeVirt has stronger release-process coupling but weaker
+documentation of the process itself.
 
-Ownership and review are handled robustly through Kubernetes-style OWNERS files
-enforced by Prow. The root `OWNERS` and `OWNERS_ALIASES` define active reviewers
-and approvers, while per-section `OWNERS` files under `docs/` delegate to the
-appropriate KubeVirt SIGs (for example, `docs/storage` routes to the storage
-SIG). This gives the site both overall and area-specific maintainers, and
-automatic `kind/documentation` labeling keeps documentation PRs easy to triage.
-The one caveat worth surfacing to contributors is that this OWNERS/Prow approval
-model is not described in the user guide's own contribution docs; a short note
-in `contributing.md` explaining how `/lgtm` and `/approve` work, and who to
-expect review from, would make the approval path more transparent to newcomers.
+The weakness is that the process is implicit. A new contributor reading README
+and CONTRIBUTING learns how to build the site and sign a commit but not who will
+review, how approval works, how long to expect, what a good page looks like, or
+when a change needs a redirect or a cherry-pick to a release branch. Ownership
+is real but undocumented: no MAINTAINERS file, no named docs lead or SIG, and no
+statement of who runs the Netlify deployment or the release-notes script. The
+per-SIG aliases in `OWNERS_ALIASES` are defined but never used to route reviews,
+so a storage or network expert is not automatically assigned to pages in their
+area. Twelve open pull requests, the oldest six months old, suggest review
+capacity depends on a small group of core maintainers who also carry the code.
 
-The most actionable gap is the relationship between the code release process and
-documentation. Because the user guide is a separate repository published
-continuously from `main`, documentation updates are decoupled from KubeVirt's
-release cadence, and nothing in the process requires feature changes to ship
-with corresponding docs. This risks documentation drift as the API and features
-evolve. The project should consider documenting an expectation that user-facing
-changes in `kubevirt/kubevirt` include or track a companion user-guide
-update—for example, a release checklist item or a cross-repository issue link—so
-that documentation creation is an accountable part of shipping features rather
-than an afterthought.
+Strengths:
 
-Rating: 4 - Meets or exceeds standards
+- The kubevirt/kubevirt PR template and the VEP release checklist both require a
+  user-guide update to be considered and merged.
+- Feature developers author the documentation for their features in the same
+  release cycle.
+- Prow OWNERS automation with a curated approver list, emeritus tracking, and
+  automatic `kind/documentation` labeling.
+- README documents local build, spell check, link check, and DCO sign-off.
+- Release notes are generated by a script from upstream tags.
+
+Weaknesses:
+
+- No documented review and approval flow, expected turnaround, or explanation of
+  Prow commands for documentation contributors.
+- No documentation style guide, page template, or guidance on redirects and
+  release branches.
+- No MAINTAINERS file or named documentation owner; infrastructure ownership
+  (Netlify, release-notes script) is undocumented.
+- Per-SIG reviewer aliases exist but are not mapped to directories in `OWNERS`.
+- Root CONTRIBUTING.md is a pointer; the repository has no PR or issue
+  templates.
+- Backlog of twelve open pull requests, some six months old.
+
+Rating: 3 - Meets standards
 
 #### Inclusive language
 
@@ -778,69 +829,90 @@ Creating inclusive project communities is a key goal for all CNCF projects. We
 evaluate on the following:
 
 - Are there any customer-facing utilities, endpoints, class names, or feature
-  names that use non-recommended words as documented by the
-  [Inclusive Naming Initiative](https://inclusivenaming.org) website?
+  names that use non-recommended words as documented by the Inclusive Naming
+  Initiative website?
 
-  No. A search of the documentation found no KubeVirt-defined utilities,
-  endpoints, class names, or feature names that use non-recommended terms, and
-  no occurrences of words such as "slave", "whitelist", "blacklist", "sanity
-  check", "grandfathered", or "man-in-the-middle". The word "master" does
-  appear, but only in contexts KubeVirt does not own: external URLs and Git
-  branch names (for example `.../blob/master/...`), version path segments in the
-  API reference (`api-reference/master/...`), a third-party CNI/bonding
-  configuration field (`"master": "eth1"`), a Kubernetes node-label example
-  (`kubevirt.io/nodeName: master`), and verbatim QEMU/libvirt command output
-  (`masterKey0`, `master-key.aes`). None of these are customer-facing names
-  coined by the project, so no renaming action is required within the guide.
+  No, within KubeVirt's own naming. The KubeVirt API, CRDs, components
+  (`virt-api`, `virt-controller`, `virt-handler`, `virt-launcher`), `virtctl`
+  subcommands, and feature gates documented in the user guide do not use
+  "master", "slave", "whitelist", "blacklist", or other Inclusive Naming
+  Initiative tier-1 terms. The kubevirt/kubevirt default branch is `main`, and
+  the guide already uses the recommended replacement "allowlist" when describing
+  `permittedHostDevices`. The kubevirt.io home page is also free of these terms.
+
+  The word "master" does appear 28 times in the guide, but almost entirely in
+  URLs and third-party content rather than in KubeVirt-controlled names.
+  Fourteen occurrences are links to the KubeVirt API reference at
+  `kubevirt.io/api-reference/master/...`; the API reference site now publishes
+  under `main` and per-version paths, so these links point at a legacy path. The
+  rest are links into upstream repositories (libvirt, Kubernetes enhancements,
+  cri-tools, vhost-md, QEMU, kubevirt-ansible) that still use a `master` branch,
+  a CNI configuration field named `master` in a live migration example, a QEMU
+  process listing, and a `kubevirt.io/nodeName: master` node label in an example
+  on the deprecated Presets page. "Abort" appears in the Live Migration page,
+  both as prose and as the `Abort Requested` and `Abort Status` field names from
+  the VirtualMachineInstanceMigration status. "Kill" appears once in prose on
+  Interfaces and Networks describing kubelet behavior.
 
 - Does the project use language like "simple", "easy", etc.?
 
-  Yes. Minimizing language is common throughout the documentation, with roughly
-  80 occurrences of "simple", "simply", "easy", or "easily" across dozens of
-  pages (in addition to frequent use of "just"). Many are in explanatory prose
-  that judges difficulty on the reader's behalf—for example "allows easy
-  creation of", "which can be simply mounted", "switching the cloud-init data
-  source to ConfigDrive is as easy as", "it is easily fixed", and "updating ...
-  is as simple as". A smaller number are legitimate proper nouns or identifiers
-  that should not be changed, such as the passt project's "Plug A Simple Socket
-  Transport", the "PCI Simple" Windows device, and example resource names like
-  `simple-vm` and `simple-dv`. Replacing the subjective prose usages with
-  concrete descriptions (for example, stating the number of steps) would make
-  the documentation more inclusive of readers with varying experience levels.
+  Yes, frequently. Excluding the release notes, the guide contains 32 uses of
+  "simple", 28 of "simply", 12 each of "easy" and "easily", 19 of "just", four
+  of "of course", and one each of "obviously" and "trivial", across 39 of the 97
+  pages. Typical examples are "Live migration can also be canceled by simply
+  deleting the migration object", "Attaching the virtio-win package can be done
+  simply by adding", "it can be easily cancelled", and "This is just a matter of
+  adding the name of the".
+
+  These words are concentrated in older, longer pages such as Live Migration,
+  Windows Virtio Drivers, Node Assignment, and vsock. In most cases they add no
+  information and can be deleted without changing meaning. The guide has no
+  gendered pronouns, no "guys", and no other ableist or exclusionary terms in
+  prose. The repository's spelling check does not include an inclusive-language
+  or minimizing-language rule, so nothing prevents new occurrences.
 
 ##### Comment
 
-The KubeVirt User Guide scores well on naming inclusivity. A review of the
-documentation found no KubeVirt-defined utilities, endpoints, class names, or
-feature names that use non-recommended terms from the Inclusive Naming
-Initiative, and no occurrences of words such as "slave", "whitelist",
-"blacklist", or "sanity check". The term "master" does appear, but exclusively
-in contexts the project does not control—external URLs and Git branch names,
-version path segments in the API reference, a third-party CNI bonding field
-(`"master": "eth1"`), a Kubernetes node-label example, and verbatim QEMU/libvirt
-command output. Because none of these are names coined by KubeVirt, no renaming
-is warranted; the guide is already clean on this dimension.
+# KubeVirt inclusive language: comment
 
-The clearer opportunity is the pervasive use of minimizing language. Words like
-"simple", "simply", "easy", and "easily" appear roughly 80 times across dozens
-of pages, often in explanatory prose that judges difficulty on the reader's
-behalf—for example "allows easy creation of", "which can be simply mounted", "as
-easy as", and "is as simple as". This phrasing can unintentionally discourage
-readers who find a task harder than described, and it rarely adds information.
-The most actionable improvement is to replace these subjective qualifiers with
-concrete, factual descriptions: state the number of steps, name the single
-command involved, or simply remove the adjective. Care should be taken to
-preserve legitimate proper nouns and identifiers, such as the passt project's
-"Plug A Simple Socket Transport", the "PCI Simple" Windows device, and example
-resource names like `simple-vm`.
+The KubeVirt user guide is in good shape on inclusive naming. KubeVirt's own API
+objects, components, CLI, and feature gates avoid all Inclusive Naming
+Initiative tier-1 terms, the project's default branch is `main`, and the guide
+already uses "allowlist" where the older term might have appeared. The remaining
+occurrences of "master" are in URLs and third-party content, and the only one
+under the project's control, the 14 links to the API reference at the legacy
+`/master/` path, is a mechanical fix now that the API reference publishes under
+`/main/` and per-version paths. Field names such as `Abort Requested` are part
+of the KubeVirt API and are a question for the API maintainers rather than the
+documentation.
 
-To make this sustainable, the project could add the flagged minimizing terms to
-its existing spelling check checks or adopt a dedicated inclusive-language
-linter in CI. Automating detection would keep new contributions consistent and
-reduce the manual review burden, building on the strong naming foundation the
-guide already demonstrates.
+The one systemic concern is minimizing language. Words such as "simply",
+"simple", "easy", "easily", and "just" appear over a hundred times across 40
+percent of pages. This language tells a reader who is struggling with a step
+that the step should have been easy, and in almost every case it can be deleted
+with no loss of meaning. Because the repository's spelling check has no rule for
+these words, the pattern will continue in new pages unless a style rule or lint
+check is added.
 
-Rating: 3 - Meets standards
+Strengths:
+
+- No Inclusive Naming Initiative tier-1 terms in KubeVirt-controlled names,
+  commands, or feature gates.
+- "Allowlist" is used consistently for `permittedHostDevices`.
+- No gendered pronouns or other exclusionary terms in prose.
+- kubevirt.io home page is free of non-recommended terms.
+
+Weaknesses:
+
+- Over a hundred uses of "simple", "simply", "easy", "easily", and "just" across
+  39 pages.
+- Fourteen API reference links still use the legacy `/api-reference/master/`
+  path.
+- A `kubevirt.io/nodeName: master` example remains on the Presets page.
+- No style rule or automated check discourages minimizing language in new
+  content.
+
+Rating: 4 - Meets or exceeds standards
 
 ### Recommendations
 
@@ -1029,46 +1101,74 @@ KubeVirt user guide.
 The following recommendations address the content creation process of the
 KubeVirt user guide.
 
-- Document the OWNERS/Prow approval model directly in `contributing.md`,
-  including how `/lgtm` and `/approve` work and who contributors should expect
-  review from, so the approval path is transparent to newcomers.
-- Establish and document an expectation that user-facing changes in
-  `kubevirt/kubevirt` ship with a companion user-guide update, for example
-  through a release checklist item or a cross-repository issue link, to reduce
-  documentation drift.
-- Add documentation creation and updates as an accountable step in the code
-  release process so docs are no longer decoupled from KubeVirt's release
-  cadence.
-- Preserve and continue to signpost the existing strengths—the clear
-  `docs/contributing.md` GitHub workflow, the README's local authoring and
-  validation guidance (spell check and HTMLProofer `make` targets), and the
-  per-section `OWNERS` delegation to KubeVirt SIGs.
-- Keep the automatic `kind/documentation` labeling and per-section `OWNERS`
-  files current as new topic areas are added under `docs/`, so review
-  responsibility remains clearly assigned.
+- Expand CONTRIBUTING.md from a pointer into a documentation contributor guide
+  that covers the full lifecycle: how to propose a change, how to build and test
+  locally (move the README build steps here), what happens after opening a PR
+  (labels, `/lgtm`, `/approve`, expected turnaround), when to add a redirect to
+  `mkdocs.yml`, and when a change needs a cherry-pick to a `release-vX.Y-stable`
+  branch. Model it on the Thanos "How to contribute to docs" page.
+- Add a MAINTAINERS.md (or a "Maintainers" section on the Contributing page)
+  that names the user guide approvers, the person or group responsible for the
+  Netlify deployment and the release-notes script, and how to reach them. Model
+  it on the NATS site MAINTAINERS file.
+- Add a short documentation style guide covering page structure (title, short
+  concept, feature-state banner, procedure, related links), the standard
+  feature-state admonition, code block conventions (fenced blocks, no `$`
+  prompts), Kubernetes object capitalization, and file naming. Link it from
+  CONTRIBUTING.md and the Contributing page.
+- Add a pull request template to `.github/` with a checklist: `.nav.yml` updated
+  for new pages, redirect added for moved pages, spelling and link checks run,
+  feature-state banner present, and the related kubevirt/kubevirt PR or VEP
+  linked.
+- Route reviews to subject-matter experts by adding per-directory `OWNERS` files
+  (for example `docs/network/OWNERS`, `docs/storage/OWNERS`,
+  `docs/compute/OWNERS`) that reference the existing `sig-network-*`,
+  `sig-storage-*`, and `sig-compute-*` aliases, while keeping the root approvers
+  for site-wide changes.
+- Ask the maintainers to consider a documentation-focused reviewer role or SIG
+  Docs alias, so that writers who are not core code approvers can share the
+  review load and reduce the open PR backlog.
+- Document the release-cycle touch points for the user guide on the Contributing
+  page: when a release branch is cut, that the VEP checklist requires the docs
+  PR to be merged by code freeze, and how the release notes page is regenerated
+  with `update_changelog.sh`.
+- Triage the twelve open pull requests, closing or merging the oldest, and add a
+  stale-PR policy to CONTRIBUTING.md so contributors know what to expect.
 
 #### Inclusive language
 
 The following recommendations address the inclusive language of the KubeVirt
 user guide.
 
-- Replace subjective minimizing qualifiers such as "simple", "simply", "easy",
-  "easily", and "just" with concrete, factual descriptions—for example, state
-  the number of steps, name the single command involved, or remove the adjective
-  entirely.
-- Preserve legitimate proper nouns and identifiers when revising, such as the
-  passt project's "Plug A Simple Socket Transport", the "PCI Simple" Windows
-  device, and example resource names like `simple-vm` and `simple-dv`.
-- Add the flagged minimizing terms to the existing spell check checks, or adopt
-  a dedicated inclusive-language linter or Vale style rule in CI, to automate
-  detection and keep new contributions consistent.
-- Leave the "master" occurrences unchanged, since they appear only in contexts
-  the project does not own—external URLs and Git branch names, API reference
-  version paths, a third-party CNI bonding field, a Kubernetes node-label
-  example, and verbatim QEMU/libvirt command output.
-- Maintain the strong naming foundation by continuing to avoid non-recommended
-  terms from the Inclusive Naming Initiative in any new KubeVirt-defined
-  utilities, endpoints, class names, or feature names.
+- Remove or reword minimizing language across the guide. Delete "simply",
+  "just", "of course", and "obviously" where they add nothing, and replace
+  "easy" or "easily" with a concrete statement of what the step requires (for
+  example, change "can be easily cancelled" to "can be cancelled by deleting the
+  migration object"). Start with the pages that have the most occurrences: Live
+  Migration, Windows Virtio Drivers, Node Assignment, vsock, and Disks and
+  Volumes.
+- Add a rule to the documentation style guide (see the content creation process
+  recommendations) that discourages "simple", "simply", "easy", "easily",
+  "just", and "obviously", with a one-line explanation of why.
+- Add an automated check for minimizing and non-recommended language to the
+  Makefile and the Prow pre-submit, using a tool such as Vale with the
+  `write-good` style, or a grep-based check alongside `make check_spelling`, so
+  new occurrences are flagged in pull requests.
+- Update the 14 links to `kubevirt.io/api-reference/master/...` to the `/main/`
+  path, or to a specific version path such as `/v1.9.0/`, so the guide no longer
+  points at a legacy branch name.
+- Replace the `kubevirt.io/nodeName: master` example on the Presets page with a
+  neutral node name such as `node01`, or remove the example, since the page
+  documents a deprecated feature.
+- Ask the KubeVirt API maintainers whether the `Abort Requested` and
+  `Abort Status` fields in the VirtualMachineInstanceMigration status are
+  candidates for a "cancel" alias in a future API version; until then, prefer
+  "cancel" in the prose of the Live Migration page while continuing to show the
+  field names as they appear in `kubectl` output.
+- When upstream projects linked from the guide (libvirt, cri-tools, vhost-md,
+  kubevirt-ansible) rename their default branch, update the links; in the
+  meantime prefer tagged or permalink URLs so the branch name is not repeated in
+  the guide.
 
 ## Contributor documentation
 
