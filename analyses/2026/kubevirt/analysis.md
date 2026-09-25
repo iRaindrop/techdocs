@@ -292,217 +292,80 @@ documentation. We evaluate on the following:
 
 - Is there high level conceptual content?
 
-  Yes. The `architecture.md` page explains the stack, the controller and daemon
-  model, and the relationship between VirtualMachine, VirtualMachineInstance,
-  and VirtualMachineInstanceReplicaSet resources. The landing page (`index.md`)
-  describes each top-level section in one line, and pages such as
-  `user_workloads/lifecycle.md`, `network/interfaces_and_networks.md`, and
-  `storage/disks_and_volumes.md` open with short conceptual introductions before
-  describing configuration.
+  Yes. The Architecture page gives a conceptual overview of the KubeVirt stack, explains how CRDs, controllers, and node daemons extend Kubernetes, and describes each component (`virt-api`, `virt-controller`, `virt-handler`, `virt-launcher`). Several feature pages open with a short overview before the procedure, for example Live Migration, Run Strategies, and VirtualMachine Templates.
 
-  Conceptual content is concentrated in the architecture page and is thin
-  elsewhere. The `architecture.md` page relies on an ASCII stack diagram and two
-  images, and it does not explain the virt-launcher Pod, the virt-api component,
-  or how a VMI maps onto a Pod, which are concepts that most later pages assume.
-  The `user_workloads/basic_use.md` page is a twenty-line stub with four
-  `kubectl` commands and a note that KubeVirt has no UI.
+  Conceptual content is thin at the section level. The Welcome page describes each top-level section in one line, but the Compute, Network, and Storage sections have no landing or overview page that explains how their pages relate or which one a reader needs first. The User Workloads section relies on the two-paragraph Basic Use page and the Lifecycle page for its conceptual framing.
 
 - Is the documentation feature complete?
 
-  Mostly yes. The guide has 97 pages covering installation, feature gates, RBAC,
-  VM creation, instancetypes and preferences, live migration, CPU and memory
-  hotplug, NUMA, hugepages, host device and GPU passthrough, network binding
-  plugins, hotplug interfaces, CDI, snapshots, cloning, export, volume
-  migration, and a debugging section. Features shipped in v1.9, such as
-  VirtualMachineTemplate v1beta1, decentralized live migration, and the Plugins
-  framework, already have pages.
+  Mostly. The guide covers the core VirtualMachine and VirtualMachineInstance lifecycle, instance types and preferences, pools, replica sets, templates, live migration, hotplug of CPU, memory, volumes, and interfaces, snapshots and restore, clone, export, network binding plugins, feature gates, node maintenance, confidential computing, and debugging. The Arm64 pages document per-architecture device and feature-gate status.
 
-  There are gaps in the coverage. The `cluster_admin/plugins.md` page exists but
-  is absent from `cluster_admin/.nav.yml` and is not linked from any other page,
-  so it does not appear in the site navigation. VirtualMachineBackup, referenced
-  several times in the v1.9 release notes, has no page. There is no section that
-  describes the KubeVirt custom resource (`kubevirt.io/v1 KubeVirt`)
-  configuration fields as a whole; configuration knobs are scattered across
-  feature pages.
+  Some recently released features have no page. The v1.9.0 release notes describe the `VirtualMachineBackup` API, the `CrossArchitectureVirtualization` feature gate, masquerade `PortRanges`, and MigrationPolicy compression, but none of these terms appears outside the release notes. The new Plugins page exists in `cluster_admin/` but is absent from the section `.nav.yml`, so it is reachable only from a link on the deprecated Hook Sidecar page.
 
-- Are there step-by-step instructions documented for features in tasks and
-  tutorials?
+- Are there step-by-step instructions documented for features in tasks and tutorials?
 
-  Yes, for most features. Feature pages consistently follow a pattern of
-  prerequisites, a feature-gate enablement pointer, YAML examples, and
-  verification commands. Pages such as `accessing_virtual_machines.md`,
-  `hotplug_volumes.md`, `live_migration.md`, and `istio_service_mesh.md` include
-  full working manifests and the exact commands to run.
+  Yes, for most features. Pages such as Accessing Virtual Machines, Creating VirtualMachines by using virtctl, Live Migration, Hotplug Volumes, and Snapshot and Restore API pair a short explanation with manifests and commands the reader can run. The Debug page and the Virtualization Debugging section walk through log verbosity, privileged node debugging, and launching QEMU under `strace` and `gdb`.
 
-  The instructions are closer to annotated reference examples than to numbered
-  task procedures. Few pages use ordered steps, and most pages mix conceptual
-  explanation, configuration options, and procedure in the same section.
-  Interactive tutorials are delegated to external sites: Killercoda scenarios
-  and the quickstart and lab pages on `kubevirt.io`.
+  The guide does not contain a tutorial of its own. The Quickstarts page and Welcome page link out to Killercoda scenarios, kubevirt.io quickstarts, and kubevirt.io labs for the guided "install, create a VM, connect to it" experience.
 
 - Are there any key features that are documented but missing task documentation?
 
-  Yes. The `architecture.md` page describes VirtualMachineInstanceReplicaSet as
-  a primary high-level resource, but `user_workloads/replica_set.md` and
-  `user_workloads/pool.md` are reference-style pages. The
-  `user_workloads/virtctl_client_tool.md` page covers only downloading and
-  installing `virtctl`, while the individual subcommands are documented, if at
-  all, inside the pages of the features they support.
-
-  The guide also has no end-to-end procedure that takes a user from a freshly
-  installed cluster to a running, reachable VM. `user_workloads/lifecycle.md`
-  assumes a `vmi.yaml` exists without showing one;
-  `user_workloads/creating_vms.md` is a 488-line page dedicated to
-  `virtctl create vm`; and `user_workloads/accessing_virtual_machines.md` is a
-  separate 400-line page. The Welcome page links to `kubevirt.io/labs` for the
-  connected walkthrough.
+  Yes. Basic Use lists four `kubectl` commands and states that the following pages describe how to use the API, but it does not include a sample `vmi.yaml` or link to a page that does. Lifecycle shows `kubectl create -f vmi.yaml` without a manifest. The Architecture page describes components without linking to the operational pages that configure them. The Plugins page describes domain hooks and node hooks at Alpha but is not integrated into the navigation.
 
 - Is the "happy path" (most common use case) documented?
 
-  Partly. The pieces of the happy path exist: install KubeVirt
-  (`cluster_admin/installation.md`), install `virtctl`, create a VM, start it,
-  and connect to it. Each page is individually solid.
-
-  The pieces are not arranged as a path. The "User Workloads" section opens with
-  `lifecycle.md`, which is a VMI-centric page using
-  `kubectl create -f vmi.yaml`, followed by `basic_use.md`, and then
-  `creating_vms.md`, which is `virtctl`-centric. A new user encounters three
-  different entry points to the same task before reaching
-  `accessing_virtual_machines.md`. The Quickstarts page in the top-level nav is
-  a link list to external pages rather than a walkthrough in the guide.
+  Partially. Installation, `virtctl` installation, creating a VirtualMachine with `virtctl create vm`, starting and stopping it, and connecting over console, VNC, or SSH are all documented. However, these steps sit on five different pages across two sections, and no single page strings them together for a first-time reader. The Welcome page delegates that path to external labs.
 
 - Are tasks clearly named according to user goals?
 
-  Mostly. Many titles state a user goal: "Accessing Virtual Machines", "Creating
-  VirtualMachines by using virtctl", "Boot from external source", "Activating
-  and deactivating feature gates", "Hotplug Volumes".
+  Mixed. User Workloads pages use goal-oriented names such as "Creating VirtualMachines by using virtctl", "Accessing Virtual Machines", and "Boot from external source". Many Compute, Network, and Storage pages are named for the feature or API rather than the task, for example "Clone API", "Export API", "Snapshot Restore API", "Migration Controller", "CSI Overlay", and "Virtual Hardware". Cluster Administration mixes both styles ("Activating and deactivating feature gates" next to "KSM" and "Scheduler").
 
-  Other titles are feature or component names that do not communicate the task:
-  "Lifecycle", "Basic use", "Virtual hardware", "Run strategies", "Client
-  passthrough", "CSI overlay", "Container_path volumes", "Guest_fs", "Migration
-  controller". Two nav labels are ambiguous side by side: "VirtualMachine
-  Templates" (`vm_templates.md`) and "Templates" (`templates.md`). The
-  `.nav.yml` files use filenames rather than titles, so ordering choices are
-  intentional but the labels are whatever the page H1 provides.
+- If the documentation doesn't suffice, is there a clear escalation path for users needing more help? (FAQ, Troubleshooting)
 
-- If the documentation doesn't suffice, is there a clear escalation path for
-  users needing more help? (FAQ, Troubleshooting)
+  Partially. The Welcome page has a Getting Help section that links to the GitHub issue tracker, the kubevirt-dev mailing list, and the Kubernetes Slack channel. The Virtualization Debugging section is the closest thing to troubleshooting content and is aimed at developers and advanced users.
 
-  An escalation path to people exists: the Welcome page lists the issue tracker,
-  the kubevirt-dev mailing list, and the `#virtualization` Kubernetes Slack
-  channel. The "Virtualization Debugging" section provides deep-dive pages on
-  log verbosity, privileged node debugging, `virsh`, and attaching `strace` or
-  `gdb` to QEMU.
+  There is no FAQ and no user-facing troubleshooting page that lists common symptoms (VMI stuck in `Scheduling`, migration failures, console access errors) with causes and fixes. Troubleshooting notes exist but are scattered inside individual feature pages such as Accessing Virtual Machines ("Debugging console access") and Memory Dump.
 
-  There is no FAQ and no troubleshooting hub. A search for "Troubleshooting"
-  finds only sub-sections on three pages (`storage/container_path_volumes.md`,
-  `network/istio_service_mesh.md`, and `debug_virt_stack/launch-qemu-gdb.md`).
-  The debugging section is aimed at developers and cluster administrators
-  debugging the virtualization stack; it does not cover the common user-level
-  questions such as a VMI stuck in `Scheduling` or `ErrImagePull`, a
-  `DataVolume` import that never completes, or a migration that is `Pending`.
+- If the product exposes an API, is there a complete reference that includes documented CLIs as applicable?
 
-- If the product exposes an API, is there a complete reference that includes
-  documented CLIs as applicable?
-
-  Yes for the API. The Welcome page links to the generated API reference at
-  `kubevirt.io/api-reference/`, and pages such as
-  `cluster_admin/annotations_and_labels.md`, `cluster_admin/authorization.md`,
-  and `network/hotplug/nad_reference.md` supply reference-style tables. The
-  release notes carry a per-release "API change" list.
-
-  No for the CLI. `virtctl` is mentioned on 28 pages, but there is no page that
-  lists its subcommands and flags. `user_workloads/virtctl_client_tool.md` stops
-  after installation. The `virtctl create vm` page is thorough for that one
-  subcommand, but a user looking for `virtctl vm_export` or `virtctl guest_fs`
-  must know which feature page to search.
+  Partially. The Welcome page links to the generated API reference at kubevirt.io/api-reference, and individual pages deep-link into it where relevant. There is no `virtctl` command reference in the guide. The `virtctl` page covers only download and installation, and command usage is distributed across feature pages (`create vm`, `start`, `stop`, `pause`, `migrate`, `addvolume`, `vnc`, `ssh`, `port-forward`). Feature gates are documented by procedure but the guide does not maintain a list of gates and their stages; the release notes are the only place that records graduations.
 
 - Is content up to date and accurate?
 
-  The guide is actively maintained. Release notes for v1.9.0 (July 2026) are
-  present, and pages for v1.9 features already carry FEATURE STATE banners with
-  version references. Feature gate pages point to the current activation
-  procedure.
+  Largely, with visible legacy pockets. Recently updated pages carry version-stamped feature-state banners (VirtualMachine Templates, Hook Sidecar, Hotplug Volumes), and deprecated mechanisms such as presets, the OpenShift-based Templates page, and the Hook Sidecar are labeled and point to replacements. Release notes extend to v1.9.0.
 
-  Stale content remains in the older pages. `cluster_admin/installation.md`
-  still documents installing from the OKD Service Catalog as an Ansible Playbook
-  Bundle, a mechanism that has been retired from OKD for several releases, and
-  links throughout the guide point to OpenShift 4.10 documentation.
-  `cluster_admin/api_validation.md` notes that a flag "was deprecated in 1.10",
-  referring to Kubernetes 1.10. `compute/windows_virtio_drivers.md` is a
-  byte-for-byte duplicate of `user_workloads/windows_virtio_drivers.md` and is
-  reachable only through the redirect map in `mkdocs.yml`.
-  `user_workloads/templates.md` and `user_workloads/hook-sidecar.md` describe
-  superseded mechanisms; both carry notes pointing to their replacements, which
-  is good practice.
+  Older content shows its age. Installation still documents installing from the OKD Service Catalog as an Ansible Playbook Bundle and installing on k3OS, and links to OpenShift 4.10 documentation. Basic Use and Lifecycle were last touched in May 2024 and still frame VirtualMachineInstance as the primary object, while the rest of the guide and `virtctl create vm` center on VirtualMachine. `compute/windows_virtio_drivers.md` is a byte-identical, unlisted duplicate of `user_workloads/windows_virtio_drivers.md`.
 
 - Does the documentation need restructuring?
 
-  A moderate restructuring, not a rewrite. The six top-level sections (Cluster
-  Administration, User Workloads, Compute, Network, Storage, Virtualization
-  Debugging) map well to how users think about the product and to the KubeVirt
-  SIG structure. Explicit `.nav.yml` ordering shows care in sequencing pages
-  within sections.
-
-  The weak points are the entry sequence in User Workloads, the lack of a
-  distinct "Reference" or "Troubleshooting" grouping, and a Compute section that
-  mixes user-facing tasks (CPU hotplug, run strategies) with
-  cluster-administrator tuning (KSM, node over-commit, NUMA, mediated devices).
-  The distinction between what a cluster administrator does once and what a VM
-  owner does per workload is not reflected consistently in the section
-  boundaries.
+  Not a full restructure. The 2024 move from a flat `operations/` and `virtual_machines/` layout into audience- and layer-based sections (Cluster Administration, User Workloads, Compute, Network, Storage) with explicit `.nav.yml` ordering and redirects is sound. The remaining problems are within sections rather than between them: the User Workloads section mixes lifecycle basics, Windows guidance, monitoring, and a "Workloads" sub-group of nine pages that includes deprecated presets and both template mechanisms; long Compute and Storage lists have no internal grouping or landing page; and five pages exist outside the navigation. Release Notes, a 3,000-line page, sits in the main navigation between Storage and Contributing.
 
 ##### Comment
 
-The KubeVirt user guide is a mature, feature-complete reference organized into
-sensible top-level sections that mirror the product's compute, network, and
-storage layers. Coverage keeps pace with releases: v1.9 features have pages,
-feature-state banners cite versions, and deprecated mechanisms point to their
-replacements. Explicit navigation ordering in every directory shows deliberate
-curation rather than alphabetical defaults.
+The KubeVirt user guide has a sound top-level information architecture. Content is grouped by audience and layer (Cluster Administration, User Workloads, Compute, Network, Storage, Virtualization Debugging), ordering is controlled deliberately through `.nav.yml` files, and the redirects map shows the project maintained old URLs when it reorganized. Most feature pages follow a consistent pattern of a short concept, a feature-state banner where relevant, and runnable manifests or `virtctl` commands. Deprecated mechanisms are labeled and point to their replacements. Compared with the Prometheus documentation, which the CNCF criteria cite as a good example, the KubeVirt guide has comparable feature coverage but lacks Prometheus's clear "Getting started" spine and its consolidated reference material.
 
-The guide's main weakness is that it reads as an encyclopedia of features rather
-than as a set of paths through them. The new-user entry sequence is fragmented
-across three pages with different tooling, there is no in-guide end-to-end
-walkthrough from install to a reachable VM, and troubleshooting is limited to a
-developer-oriented debugging section with no user-facing FAQ or symptom-based
-guide. Reference material is uneven: the Kubernetes API is covered by a
-generated reference, but the `virtctl` CLI, which appears on more than a quarter
-of the pages, has no consolidated command reference.
+The main weakness is that the guide is a well-organized encyclopedia rather than a guided path. A new user must assemble the happy path from Installation, the `virtctl` install page, Creating VirtualMachines, Lifecycle, and Accessing Virtual Machines, and the guide points to external Killercoda and kubevirt.io labs to fill that gap. The oldest foundational pages (Basic Use, Lifecycle) still present VirtualMachineInstance as the primary object, which is out of step with the VirtualMachine-centric approach used everywhere else. Reference material for `virtctl` and for feature gates is not consolidated, and there is no user-facing troubleshooting or FAQ page, so the escalation path jumps straight from feature pages to Slack and GitHub issues.
 
-Compared with the Prometheus documentation, which separates Introduction,
-Concepts, Guides, and Reference at the top level, the KubeVirt guide blends
-these content types within each feature page. The underlying material is good
-enough that the improvements are largely a matter of adding connective pages and
-a small number of reorganizations rather than writing new feature content.
+Currency is uneven. New v1.9 features are documented where a page exists (VirtualMachine Templates, Plugins), but the Plugins page is not in the navigation, several v1.9 APIs and feature gates appear only in release notes, and Installation still carries legacy OKD Service Catalog and k3OS content. Section-internal organization is the other systemic issue: Compute and Storage are long flat lists named after APIs rather than user goals, and the User Workloads "Workloads" sub-group mixes current, legacy, and deprecated mechanisms without signaling which one a reader wants.
 
 Strengths:
 
-- Broad and current feature coverage, including v1.9 features, with consistent
-  FEATURE STATE banners.
-- Feature pages follow a recognizable pattern: prerequisites, feature-gate
-  pointer, working manifests, verification commands.
-- Top-level sections and explicit `.nav.yml` ordering give the guide a clear,
-  intentional shape.
-- Superseded pages (OpenShift Templates, hook sidecars) carry notes redirecting
-  readers to replacements.
-- Escalation to humans is easy to find: issue tracker, mailing list, and Slack
-  are on the landing page.
+- Audience- and layer-based top-level sections with explicit, intentional page ordering.
+- Redirects preserve old `operations/` and `virtual_machines/` URLs after the reorganization.
+- Consistent feature-page pattern: concept, feature-state banner, then manifests and commands.
+- Deprecated features (presets, OpenShift templates, Hook Sidecar) are labeled and link to replacements.
+- Per-architecture (Arm64) device and feature-gate status pages.
+- Deep, multi-level debugging content for advanced users.
 
 Weaknesses:
 
-- No end-to-end happy-path tutorial inside the guide; the User Workloads section
-  opens with three overlapping entry pages.
-- No troubleshooting hub or FAQ; the debugging section targets stack developers
-  rather than VM owners.
-- No `virtctl` command reference; subcommands are documented only inside the
-  feature pages that use them.
-- Some pages are orphaned or duplicated (`cluster_admin/plugins.md` missing from
-  nav; two identical `windows_virtio_drivers.md` files).
-- Stale content in older administration pages, including OKD Service Catalog
-  installation and Kubernetes 1.10 references.
-- Several page titles name components rather than user goals, and the Compute
-  section mixes per-VM tasks with cluster tuning.
+- No end-to-end getting-started path inside the guide; the happy path is spread across five pages and external labs.
+- Basic Use and Lifecycle are dated and VMI-centric, contradicting the VirtualMachine-first guidance elsewhere.
+- No consolidated `virtctl` command reference or feature-gate table.
+- No FAQ or user-facing troubleshooting page.
+- Several v1.9 features (VirtualMachineBackup, CrossArchitectureVirtualization, PortRanges, migration compression) appear only in release notes; the Plugins page is orphaned from navigation.
+- Compute and Storage sections are flat lists with API-style names and no landing page.
+- Legacy installation content (OKD Service Catalog APB, k3OS, OpenShift 4.10 links) and a duplicate Windows virtio drivers page remain.
 
 Rating: 3 - Meets standards
 
@@ -863,55 +726,23 @@ needs I see as a novice user:
 The following recommendations for improving the information architecture of the
 KubVirt User Guide:
 
-- Add a "Getting started" tutorial to the User Workloads section that walks a
-  new user from a working KubeVirt installation through installing `virtctl`,
-  creating a VM, starting it, and connecting over console and SSH. Make it the
-  first page in `user_workloads/.nav.yml` and link to it from the Welcome and
-  Quickstarts pages.
-- Consolidate `user_workloads/lifecycle.md` and `user_workloads/basic_use.md`
-  into a single page that explains the VirtualMachine and VirtualMachineInstance
-  relationship and the start, stop, pause, and delete operations with both
-  `kubectl` and `virtctl`. Move the remaining `basic_use.md` note about the
-  absence of a UI to the architecture page.
-- Create a `virtctl` command reference page that lists every subcommand with a
-  one-line purpose, its most-used flags, and a link to the feature page that
-  covers it in depth. Rename `user_workloads/virtctl_client_tool.md` to reflect
-  that it covers installation only, or fold installation into the new reference
-  page.
-- Add a "Troubleshooting" page, placed either at the top of the Virtualization
-  Debugging section or as a new top-level entry, organized by symptom: VMI stuck
-  in `Scheduling` or `Pending`, `ErrImagePull` on the virt-launcher Pod,
-  `DataVolume` import not progressing, live migration stuck, and console or VNC
-  connection failures. Link each symptom to the relevant deep-dive page.
-- Add `plugins.md` to `cluster_admin/.nav.yml` so the Plugins page appears in
-  the navigation, and link to it from `user_workloads/hook-sidecar.md` where the
-  legacy mechanism is described.
-- Delete `docs/compute/windows_virtio_drivers.md` and update the `mkdocs.yml`
-  redirect map so `virtual_machines/windows_virtio_drivers.md` points only at
-  the `user_workloads/` copy.
-- Remove the "From Service Catalog as an APB" subsection from
-  `cluster_admin/installation.md`, and audit the guide for links to OpenShift
-  4.10 documentation and for version references such as "deprecated in 1.10" in
-  `cluster_admin/api_validation.md`, updating or removing each.
-- Add a page for VirtualMachineBackup, which is referenced in the v1.9 release
-  notes but has no page in the Storage section.
-- Retitle pages whose names describe a component rather than a task or concept,
-  for example "Run strategies" to "Controlling when a VM runs", "Guest_fs" to
-  "Inspecting and modifying VM disks with lib_guest_fs", and "Migration
-  controller" to a title that states what the user accomplishes. Rename the nav
-  label for `templates.md` to "OpenShift Templates (legacy)" to distinguish it
-  from "VirtualMachine Templates".
-- Split the Compute section into user-facing VM configuration (CPU and memory
-  hotplug, dedicated CPUs, virtual hardware, run strategies, memory dump) and
-  cluster-level tuning (KSM, node over-commit, NUMA, hugepages, mediated
-  devices, host devices), either as two sub-groups in `compute/.nav.yml` or by
-  moving the tuning pages to Cluster Administration.
-- Expand `architecture.md` with short descriptions of virt-api, virt-controller,
-  virt-handler, and virt-launcher, and a diagram or paragraph showing how a VMI
-  maps to a virt-launcher Pod, so later pages can assume these concepts.
-- Add a "KubeVirt configuration" reference page in Cluster Administration that
-  lists the `spec.configuration` fields of the KubeVirt custom resource and
-  links each field to the feature page that explains it.
+# KubeVirt information architecture: recommendations
+
+The following recommendations address the information architecture of the KubeVirt user guide.
+
+- Add a "Getting started" page to the User Workloads section (or expand Basic Use into one) that walks through the happy path on a single page: install KubeVirt, install `virtctl`, create a VirtualMachine with `virtctl create vm` or a sample manifest, start it, connect over console or SSH, and stop it. Link to the existing detailed pages at each step rather than duplicating them.
+- Rewrite Basic Use and Lifecycle to present VirtualMachine as the primary object and VirtualMachineInstance as the running instance it manages. Include a complete minimal `vm.yaml`, since both pages currently reference `vmi.yaml` without providing it.
+- Add `cluster_admin/plugins.md` to `docs/cluster_admin/.nav.yml` so the Plugins page is discoverable from somewhere other than the deprecated Hook Sidecar page.
+- Write pages, or add sections to existing pages, for v1.9 features that currently appear only in the release notes: the `VirtualMachineBackup` API (Storage), the `CrossArchitectureVirtualization` feature gate (Compute or Cluster Administration), masquerade `PortRanges` (Network, in Interfaces and Networks), and MigrationPolicy compression (Cluster Administration, in Migration Policies).
+- Create a `virtctl` command reference page, or expand the existing `virtctl` page beyond installation, that lists each subcommand with a one-line description and a link to the feature page that explains it in context.
+- Add a feature-gate table to the Activating and Deactivating Feature Gates page that lists each gate, its stage (Alpha, Beta, GA, Deprecated), the version it was introduced or graduated, and a link to its documentation. Ask the maintainers whether this table can be generated from the kubevirt/kubevirt source to avoid drift.
+- Add a user-facing Troubleshooting page (separate from the developer-oriented Virtualization Debugging section) that lists common symptoms such as a VMI stuck in `Scheduling` or `Pending`, failed live migration, console or VNC connection errors, and missing `qemu-guest-agent` data, each with likely causes and links to the relevant fix. Consolidate the troubleshooting notes now embedded in Accessing Virtual Machines and Memory Dump there or link to them.
+- Add a brief landing page to each of the Compute, Network, and Storage sections that explains what the section covers and groups its pages by task (for example, Storage: provisioning disks, importing images, snapshots and backup, moving data between clusters).
+- Rename API-centric page titles to user goals where practical, for example "Clone API" to "Cloning VirtualMachines", "Export API" to "Exporting VirtualMachines and volumes", "Snapshot Restore API" to "Snapshotting and restoring VirtualMachines", and "Migration Controller" to a title that states what the reader accomplishes with it. Add redirects in `mkdocs.yml` if file names change.
+- Reorganize the User Workloads "Workloads" sub-group so current mechanisms (instance types, VirtualMachine Templates, pools) come first and legacy or deprecated pages (presets, OpenShift Templates, Hook Sidecar) are grouped under a clearly labeled "Legacy" heading or moved to the end.
+- Remove or archive legacy installation content: verify with the maintainers whether the OKD Service Catalog APB and k3OS paths are still supported, and update the OpenShift 4.10 documentation links to a current version or a version-independent URL.
+- Delete `docs/compute/windows_virtio_drivers.md`, which is a byte-identical unlisted duplicate of `docs/user_workloads/windows_virtio_drivers.md`, and add a redirect if the old URL was ever published.
+- Move Release Notes out of the middle of the main navigation, either to the end of the list or into a top-bar link, so the section list reads as a progression from concepts through administration, workloads, and infrastructure layers.
 
 #### New user content
 
