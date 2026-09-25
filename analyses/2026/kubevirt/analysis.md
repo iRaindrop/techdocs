@@ -1,7 +1,7 @@
 ---
 title: KubeVirt Documentation Analysis
 created: 2026-05-24
-modified: 2026-07-19
+modified: 2026-09-24
 author: Bruce Hamilton
 ---
 
@@ -132,8 +132,6 @@ The following sections contain assessments of each element of the Project
 Documentation rubric.
 
 #### Overall
-
-# Project Documentation - Overall Comment
 
 The KubeVirt user guide meets CNCF standards for project documentation. Its
 foundations are sound: content is organized by audience and layer with
@@ -872,8 +870,6 @@ evaluate on the following:
   or minimizing-language rule, so nothing prevents new occurrences.
 
 ##### Comment
-
-# KubeVirt inclusive language: comment
 
 The KubeVirt user guide is in good shape on inclusive naming. KubeVirt's own API
 objects, components, CLI, and feature gates avoid all Inclusive Naming
