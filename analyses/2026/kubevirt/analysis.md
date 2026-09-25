@@ -584,80 +584,117 @@ Rating: 3 - Meets standards
 #### Content maintainability & site mechanics
 
 As a project scales, concerns like localized (translated) content and versioning
-become large maintenance burdens, particularly if you don’t plan for them.
-
-We evaluate on the following:
+become large maintenance burdens, particularly if you don’t plan for them. We
+evaluate on the following:
 
 - Is the documentation searchable?
 
-  Yes. The `search` plugin is enabled in `mkdocs.yml` (with a custom tokenizer
-  separator), and the `mkdocs-material` theme provides a built-in client-side
-  search box across the site. Users can search all pages from the header search
-  field.
+  Yes. The site uses the built-in MkDocs search plugin with the mkdocs-material
+  theme, so a search box appears in the header on every page and results are
+  served from a client-side index built at deploy time. `mkdocs.yml` sets a
+  custom separator that splits on punctuation such as hyphens, colons, and
+  slashes while preserving version numbers like `v1.9.0`, which helps with
+  Kubernetes-style identifiers such as `kubevirt.io/libvirt-log-filters` and
+  `virt-handler`.
+
+  Search is confined to the user guide. The API reference at
+  kubevirt.io/api-reference, the quickstarts and labs on kubevirt.io, and the
+  release notes in the kubevirt/kubevirt repository are separate sites with
+  their own or no search, so a user cannot search across the KubeVirt
+  documentation set from one box. The theme's search enhancements
+  (`search.suggest`, `search.highlight`, `search.share`) are not enabled.
 
 - Are there plans for localization/internationalization with regards to site
   directory structure? Is a localization framework present?
 
-  No. There is no localization framework configured. The `docs/` tree is
-  organized by topic (for example `cluster_admin`, `compute`, `network`,
-  `storage`) with no per-language subdirectories such as `en/` or `zh/`, and no
-  i18n plugin (for example `mkdocs-static-i18n`) is present in `mkdocs.yml` or
-  installed by the Netlify build. The theme does not set a language/locale
-  switcher, and no localization plans are documented in the README or
-  CONTRIBUTING files.
+  No. All content is English and lives directly under `docs/`, with no
+  language-code directory such as `docs/en/`. `mkdocs.yml` does not configure
+  the mkdocs-material `alternate` language selector or the `i18n` plugin, and
+  neither README nor CONTRIBUTING mentions translation. No open plans for
+  localization are documented in the repository.
+
+  The directory layout does not block a future effort. Content is plain Markdown
+  organized by section, ordering is controlled by `.nav.yml` files, and
+  redirects are centralized in `mkdocs.yml`, so a language-prefixed tree could
+  be introduced later. The absence of a root language directory means that step
+  would require moving every file and updating every redirect.
 
 - Is there a clearly documented method for versioning of content?
 
-  No. The documentation site publishes a single "latest" version built from the
-  `main` branch to kubevirt.io/user-guide, and there is no content-versioning
-  tooling configured. The standard MkDocs Material versioning tool (`mike`) is
-  not enabled, the theme defines no version provider or version selector, and
-  neither the README nor CONTRIBUTING describes a method for versioning
-  documentation. The `release_notes.md` page tracks the KubeVirt product's
-  release notes rather than versioned snapshots of the docs.
+  No. The published site at kubevirt.io/user-guide is built from the `main`
+  branch by Netlify and has no version selector; the only version indicators are
+  a v1.9.0 release notes page and in-text "as of vX.Y" feature-state banners on
+  about ten pages. `mkdocs.yml` has no `extra.version` configuration and the
+  `mike` versioning tool is not used.
+
+  The repository does contain release branches (`release-v1.7-stable`,
+  `release-v1.8-stable`, `release-v1.9-stable`, and matching `-devel` branches
+  for 1.7 and 1.8), and they have received commits, so a branching convention
+  exists in practice. However, no document in the repository explains what those
+  branches are for, whether they are published anywhere, how or when they are
+  cut, or how contributors should decide whether a change needs a cherry-pick.
+  README, CONTRIBUTING, and the Contributing page all describe the fork-and-PR
+  flow against `main` only. Release notes are maintained by a script
+  (`update_changelog.sh`) that regenerates the page from kubevirt/kubevirt tags,
+  but that process is also undocumented outside the script itself.
 
 ##### Comment
 
-The KubeVirt User Guide is built on a maintainable foundation. It uses MkDocs
-with the `mkdocs-material` theme, keeps all content as Markdown under `docs/`,
-and enforces ordering explicitly through per-directory `.nav.yml` files rather
-than relying on alphabetical sorting. Search is enabled out of the box via the
-`search` plugin, and the contribution workflow is well documented: the README
-describes forking, signing commits, and local validation through `make` targets
-that check spelling and links (HTMLProofer). Page moves are handled gracefully
-through an extensive `redirects` map in `mkdocs.yml`, which preserves old URLs
-and reduces link rot. These are strong maintainability practices.
+The KubeVirt user guide is maintainable as a single-version, single-language
+site. Its toolchain is simple and well suited to a documentation-only
+repository: plain Markdown under `docs/`, mkdocs-material with built-in search,
+explicit `.nav.yml` ordering, centralized redirects, and a Makefile that runs
+spelling and link checks in a container. The redirects map shows the maintainers
+preserved URLs through a major reorganization, which is the kind of discipline
+that keeps a site maintainable over time.
 
-The most significant gap is content versioning. The site publishes a single
-"latest" build from the `main` branch, with no versioning tooling such as `mike`
-and no version selector in the theme. Because KubeVirt's API and features evolve
-across releases, readers on an older KubeVirt version have no way to view
-documentation matching their deployment, and maintainers cannot preserve
-historical snapshots. Adopting `mike` (the standard versioning tool for MkDocs
-Material) and surfacing a version dropdown would let the project align
-documentation with product releases and is the highest-impact maintainability
-improvement to pursue. Kubernetes (https://kubernetes.io/docs/) is a good model
-of versioned CNCF documentation.
+The gap is that the project has outgrown the single-version model without
+documenting the alternative. KubeVirt ships minor releases with feature-gate
+graduations and API changes, and the repository already has per-release
+branches, yet the published site tracks only `main`, offers no version selector,
+and no document explains what the release branches are for or how contributors
+should use them. Users of an older KubeVirt cannot tell which features on a page
+apply to them except where an individual author added an "as of vX.Y" banner.
+Compared with the Kubernetes documentation that the CNCF criteria cite as a good
+example, which publishes each supported minor version with a selector and
+documents its branching and localization processes, KubeVirt's approach is
+informal and depends on maintainer memory.
 
-Localization is a secondary consideration. There is currently no
-internationalization framework, no per-language directory structure (for example
-`en/` or `zh/`), and no documented plans for translation. While localization may
-not be an immediate priority, the current flat, topic-based layout would require
-restructuring to support it later. If translation is a future goal, the project
-should decide early on a directory convention and evaluate an i18n plugin (such
-as `mkdocs-static-i18n`) so the structure can accommodate multiple languages
-without a disruptive reorganization. In the near term, documenting the intended
-approach—even if implementation is deferred—would help contributors plan content
-accordingly.
+Localization is absent but not blocked. There is no demand documented, no
+framework configured, and no language directory, so this is a low priority; the
+main cost of the current layout is that adding a first translation later would
+require moving every file.
+
+Strengths:
+
+- Simple, low-dependency MkDocs toolchain with search enabled on every page.
+- Custom search separator tuned for hyphenated and dotted Kubernetes
+  identifiers.
+- Explicit `.nav.yml` ordering and a centralized redirects map preserve URLs
+  across reorganizations.
+- Makefile targets for local build, spell check, and link check.
+- Release branches exist for recent minors, providing a foundation for versioned
+  publishing.
+
+Weaknesses:
+
+- No published version selector; the live site tracks `main` only.
+- No document describes the purpose, lifecycle, or publication status of the
+  `release-vX.Y-*` branches, or when to cherry-pick.
+- Version applicability is signaled inconsistently through ad hoc "as of vX.Y"
+  banners on a minority of pages.
+- No localization framework, language directory, or stated position on
+  translation.
+- Search does not span the API reference, quickstarts, or labs hosted elsewhere
+  on kubevirt.io.
 
 Rating: 3 - Meets standards
 
 #### Content creation processes
 
 Documentation is only as useful as it is accurate and well-maintained, and
-requires the same kind of review and approval processes as code.
-
-We evaluate on the following:
+requires the same kind of review and approval processes as code. We evaluate on
+the following:
 
 - Is there a clearly documented (ongoing) contribution process for
   documentation?
@@ -737,9 +774,8 @@ Rating: 4 - Meets or exceeds standards
 
 #### Inclusive language
 
-Creating inclusive project communities is a key goal for all CNCF projects.
-
-We evaluate on the following:
+Creating inclusive project communities is a key goal for all CNCF projects. We
+evaluate on the following:
 
 - Are there any customer-facing utilities, endpoints, class names, or feature
   names that use non-recommended words as documented by the
@@ -840,11 +876,6 @@ needs I see as a novice user:
 
 #### Information architecture
 
-The following recommendations for improving the information architecture of the
-KubVirt User Guide:
-
-# KubeVirt information architecture: recommendations
-
 The following recommendations address the information architecture of the
 KubeVirt user guide.
 
@@ -908,28 +939,90 @@ KubeVirt user guide.
 
 #### New user content
 
+The following recommendations address the new user content of the KubeVirt user
+guide.
+
+- Add a "Getting started" page, placed immediately after Architecture in the
+  top-level navigation, that walks a new user from a working cluster to a
+  running VM on one page: install KubeVirt, install `virtctl`, create a
+  VirtualMachine from a provided manifest or `virtctl create vm`, start it,
+  connect with `virtctl console`, and stop it. Link to the detailed pages at
+  each step. Consider folding the current Quickstarts page into it as a "Try it
+  in a sandbox" section.
+- Restructure the Installation page so the core procedure comes first:
+  Requirements, the four-command operator install, verification, and the
+  emulation fallback. Move AppArmor, kernel and user-land compatibility,
+  SELinux, OKD, k3OS, daily developer builds, deploying from source, network
+  plugins, and node placement below a "Platform-specific and advanced
+  installation" heading or onto separate pages.
+- End the Installation page with a "Next steps" section linking to `virtctl`
+  installation, Creating VirtualMachines by using virtctl, and Accessing Virtual
+  Machines.
+- Remove or move to a footnote the historical notes about behavior before
+  v0.20.0 and v0.34.2 on the Installation page; ask the maintainers whether any
+  supported upgrade path still requires them.
+- Expand the `virtctl` page to cover all published client binaries. Use
+  mkdocs-material content tabs for Linux, macOS, and Windows on both amd64 and
+  arm64, and include the `chmod +x` and `PATH` steps. Rename the page to
+  "Installing virtctl" and move it to sit next to Installation, or link to it
+  from Installation's Next steps.
+- Rewrite Basic Use into a short "Your first VirtualMachine" page that includes
+  a complete minimal `vm.yaml` using a public containerDisk image, the
+  `kubectl apply`, `virtctl start`, `virtctl console`, and `virtctl stop`
+  commands, and explicit links to the next pages. Update Lifecycle to reference
+  that manifest instead of the undefined `vmi.yaml`.
+- Enable `content.code.copy` under `theme.features` in `mkdocs.yml` to add a
+  copy button to every code block.
+- Convert `$`-prefixed indented code blocks on the new-user path (Installation,
+  `virtctl`, Basic Use, Lifecycle) to fenced `shell` blocks without prompt
+  characters, and place example output in a separate block or a `title="Output"`
+  annotation so commands paste cleanly. Extend the same treatment to Disks and
+  Volumes and Export API over time.
+- Give the Quickstarts page a one-paragraph introduction that states
+  prerequisites (a laptop with virtualization enabled, or a browser for
+  Killercoda), the expected time, and what the reader will have at the end, and
+  add a closing link to the in-guide Getting started page.
+- On the Welcome page, add a one-line "New to KubeVirt? Start here" link at the
+  top that points to the Getting started page, so the first-run path is
+  discoverable without reading the section list.
+
 #### Content maintainability & site mechanics
 
 The following recommendations address the content maintainability of the
 KubeVirt user guide.
 
-- Adopt `mike`, the standard versioning tool for MkDocs Material, to publish
-  documentation versions that align with KubeVirt product releases so readers
-  can view docs matching their deployment.
-- Add a version selector (dropdown) to the theme configuration so users can
-  switch between the latest and historical documentation snapshots.
-- Document the content-versioning method in the README or CONTRIBUTING files,
-  including how and when new versions are cut relative to KubeVirt releases.
-- Decide early on a localization directory convention (for example, per-language
-  subdirectories such as `en/` or `zh/`) so the current flat, topic-based layout
-  can accommodate translations without a disruptive future reorganization.
-- Evaluate an internationalization plugin such as `mkdocs-static-i18n` and
-  document the intended localization approach, even if implementation is
-  deferred, so contributors can plan content accordingly.
-- Preserve the existing maintainability strengths—client-side search, explicit
-  `.nav.yml` ordering, and the `redirects` map in `mkdocs.yml`—and continue
-  adding redirect entries whenever pages are moved or renamed to prevent link
-  rot.
+- Document the content versioning model in CONTRIBUTING.md (and summarize it on
+  the Contributing page). State what the `release-vX.Y-stable` and
+  `release-vX.Y-devel` branches are for, when they are cut relative to a
+  KubeVirt release, which one Netlify publishes, and how a contributor decides
+  whether a change on `main` needs a cherry-pick. Ask the maintainers to confirm
+  the intended workflow first, since the `-devel` branches exist for 1.7 and 1.8
+  but not 1.9.
+- Publish versioned documentation with a version selector, using either `mike`
+  with mkdocs-material's `extra.version.provider: mike` or a Netlify build per
+  release branch under a `/vX.Y/` path. Publish at least the supported N, N-1,
+  and N-2 minors alongside `latest`.
+- Until versioned publishing exists, adopt a standard feature-state admonition
+  and apply it consistently to every feature page, stating the version
+  introduced and the current stage (Alpha, Beta, GA, Deprecated). Nine pages use
+  a `FEATURE STATE:` block today; formalize its format in CONTRIBUTING.md so new
+  pages follow it.
+- Document the release-notes update process: when `update_changelog.sh` is run,
+  by whom, and how the result is reviewed, so the page continues to be
+  regenerated after maintainer turnover.
+- Enable the mkdocs-material search features `search.suggest`,
+  `search.highlight`, and `search.share` under `theme.features` in `mkdocs.yml`;
+  this is a one-line change that improves search usability.
+- Add a short "Localization" statement to CONTRIBUTING.md that records the
+  project's current position (English only, translations not currently accepted,
+  or translations welcome via a stated process). If translations are anticipated
+  within the next few releases, move content to `docs/en/` now and configure the
+  `mkdocs-static-i18n` plugin, so the redirects and `.nav.yml` files only need
+  to change once.
+- Ask the KubeVirt website maintainers whether the API reference and quickstarts
+  can be indexed by the same search as the user guide, for example by moving the
+  user guide search to a site-wide index, so users can search the full
+  documentation set from one place.
 
 #### Content creation processes
 
@@ -1044,9 +1137,7 @@ Contributor Documentation rubric.
 #### Communication methods documented
 
 One of the easiest ways to attract new contributors is making sure they know how
-to reach you.
-
-We evaluate on the following:
+to reach you. We evaluate on the following:
 
 - Is there a Slack/Discord/Discourse/etc. community and is it prominently linked
   from your website?
@@ -1218,9 +1309,7 @@ Rating: 3 - Meets standards
 
 Open source is complex and projects have many processes to manage that. Are
 processes easy to understand and written down so that new contributors can jump
-in easily?
-
-We evaluate on the following:
+in easily? We evaluate on the following:
 
 - Do you have a community repository or section on your website?
 
@@ -1296,9 +1385,8 @@ Rating: 4 - Meets or exceeds standards
 
 #### Project governance documentation
 
-One of the CNCF’s core project values is open governance.
-
-We evaluate on the following:
+One of the CNCF’s core project values is open governance. We evaluate on the
+following:
 
 - Is project governance clearly documented?
 
@@ -1695,9 +1783,7 @@ Rating: 4 - Meets or exceeds standards
 #### Branding and design
 
 CNCF seeks to support enterprise-ready open source software. A key aspect of
-this is branding and marketing.
-
-We evaluate on the following:
+this is branding and marketing. We evaluate on the following:
 
 - Is there an easily recognizable brand for the project (logo + color scheme)
   clearly identifiable?
@@ -1773,9 +1859,7 @@ Rating: 4 - Meets or exceeds standards
 #### Case studies/social proof
 
 One of the best ways to advertise an open source project is to show other
-organizations using it.
-
-We evaluate on the following:
+organizations using it. We evaluate on the following:
 
 - Are there case studies available for the project and are they documented on
   the website?
@@ -1854,9 +1938,8 @@ Rating: 3 - Meets standards
 
 SEO helps users find your project and it's documentation, and analytics helps
 you monitor site traffic and diagnose issues like page 404s. Intra-site search,
-while optional, can offer your readers a site-focused search results.
-
-We evaluate on the following:
+while optional, can offer your readers a site-focused search results. We
+evaluate on the following:
 
 - Is analytics enabled for the production server?
 
@@ -1949,9 +2032,7 @@ Rating: 2 - Needs improvement
 #### Maintenance planning
 
 Website maintenance is an important part of project success, especially when
-project maintainers aren’t web developers.
-
-We evaluate on the following:
+project maintainers aren’t web developers. We evaluate on the following:
 
 - Is the website tooling well supported by the community (i.e., Hugo with the
   Docsy theme) or commonly used by CNCF projects?
