@@ -801,7 +801,7 @@ Weaknesses:
 
 Rating: 4 - Meets or exceeds standards
 
-## Project documentation - Recommendations
+## Recommendations
 
 ### Information architecture
 
@@ -1520,7 +1520,7 @@ Weaknesses:
 
 Rating: 4 - Meets or exceeds standards
 
-## Contributor documentation - Recommendations
+## Recommendations
 
 ### Communication methods documented
 
@@ -1634,7 +1634,7 @@ Rating: 4 - Meets or exceeds standards
   meeting cadence and Slack channel, so the generated SIG list can serve as the
   single place to find how to participate in each group.
 
-## Website and infrastructure
+## Website & infrastructure
 
 KubeVirt is an **incubating** project of CNCF. This means that the project
 should be developing professional-quality documentation alongside the project
@@ -2449,7 +2449,7 @@ Weaknesses:
 
 Rating: 3 - Meets standards
 
-## Website & Infrastructure - Recommendations
+## Recommendations
 
 ### Single-source requirement
 
