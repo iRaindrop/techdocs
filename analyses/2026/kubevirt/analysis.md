@@ -1,7 +1,7 @@
 ---
 title: KubeVirt Documentation Analysis
 created: 2026-05-24
-modified: 2026-09-24
+modified: 2026-09-28
 author: Bruce Hamilton
 ---
 
@@ -112,8 +112,6 @@ to legal requirements such as copyright and licensing issues.
 
 ## Project documentation
 
-Section analysis by author unless otherwise indicated
-
 KubeVirt is an **incubating** project of CNCF. This means that the project
 should be developing professional-quality documentation alongside the project
 code.
@@ -125,13 +123,6 @@ code.
 | Content maintainability    | 3 - Meets standards            |
 | Content creation processes | 3 - Meets standards            |
 | Inclusive language         | 4 - Meets or exceeds standards |
-
-### Comments
-
-The following sections contain assessments of each element of the Project
-Documentation rubric.
-
-#### Overall
 
 The KubeVirt user guide meets CNCF standards for project documentation. Its
 foundations are sound: content is organized by audience and layer with
@@ -183,110 +174,10 @@ the project's own APIs, CLI, and feature gates are clean, "allowlist" is used
 consistently, and the remaining issues are mechanical link updates and prose
 tightening rather than naming changes.
 
-#### Overall (Author)
+The following sections contain assessments of each element of the Project
+Documentation rubric.
 
-The KubeVirt has a well-thought out structure that can accommodate improvements
-without having to restructure sections on a wide basis.
-
-The Welcome page has long lines in bullets could be better formatted for
-readability and scanning. See the rest of overall comments by the Author in the
-next section, "Comments of KubeVirt documentation sections."
-
-The following observations are author observations on the KubeVirt documentation
-(https://kubevirt.io/user-guide) by its sections as shown on the top navigation
-bar.
-
-AI comments for these sections are tasks defined in the KubeVirt-Analysis.csv
-file, described later in Recommendations.
-
-Docs welcome page:
-
-- From the home page, selecting **Docs** from the top navigation tabs opens the
-  **KubeVirt User Guide** page - with the main sections of the documentation as
-  options on the top navigation tabs. This differs from having the navigation
-  tabs the choices of all of the web site. This is unusual, but not a negative
-  experience.
-- Selecting the KubeVirt icon on the upper-left should return to home page but
-  stays on the same page. To return to the home page, you must use the browser.
-- On the Welcome page, the bulleted list of selection descriptions needed
-  consistent editing would read better as a two-column table (table head not
-  needed).
-- The **Try it out** heading should include "QuickStarts" (besides the URL) so
-  that the reader doesn't wonder if its something different.
-
-Architecture:
-
-- This page describes essentials and core concepts as expected for an
-  Architecture page but could be organized better to coordinate with the
-  graphics. The Application Layout subsection would be better closer to the top.
-
-- The diagram labeled "simplified version" would be better with its own
-  description.
-
-- The How to and When to use a virtual machine sections would be better placed
-  in getting started or as administration tasks.
-
-QuickStarts:
-
-- The Labs, which are used in conjunction with the Quickstarts, are not shown
-  until select a QuickStart. Labs should in the navigation bar.
-
-- Creating a VM for KubeVirt would be an obvious paramount QuickStart. But there
-  are currently two topics to do this. The user starts with either start with
-  "KubeVirt QuickStart with Kind" or "KubeVirt QuickStart with Minikube",
-  followed by "Use KubeVirt" to create the VM. Perhaps the could be one main
-  topic with references to Kind and MiniKube. Such thoughts may have been
-  considered before.
-
-Cluster Administration:
-
-- The top (first) page in the section, Installation, has guidance what would be
-  helpful in getting started content.
-- A majority topics are reference and also how-to's.
-- The "Confidential computing" topic might be better titled as "Encrypted
-  Virtualization".
-- The "KubeVirt Tekton" topic might be better titled as "Tekton pipelines."
-
-User Workloads:
-
-- The top overview for this section should describe the concept of User
-  Workloads and how it's pertinent to KubeVirt, such as to use workload
-  partitioning to accommodate resources spikes.
-- The "Lifecycle" topic contains useful How-to guidance on VMs with Kubectl.
-- The "Basic Use" topic has useful KubeVirt intro content.
-- Helpful `virtctl` summary guidance could be aggregated from `virtctl in the
-  title.split computing
-- The "Templates" and "Virtual Machine Templates" share the same content.
-
-Compute:
-
-- The topics comprise a variety of tasks that read well and have needs for
-  mostly tasks such as defining terms and providing examples. Adding subsections
-  to the left-side navigation bar could be helpful for discovery.
-
-Network and Storage:
-
-- Essentially reference content. Task-based titles could help discovery.
-
-Release notes:
-
-- A unusual prominent location for release notes, but clearly convenient.
-  Improvements suggests could be formatting, consistency edits, and perhaps data
-  aggregation.
-
-Contributing:
-
-- Provide an engaging page about ways to contribute. A large part of the content
-  could be in a more discoverable two-column table of links and descriptions.
-
-Virtualization Debugging:
-
-- Specifies the page is about KubeVirt debugging, so having "Virtualization" in
-  the title makes it seem like it might be subset of KubeVirt debugging.
-
-- Overview needs examples of debugging scenarios.
-
-#### Information architecture
+### Information architecture
 
 The overall structure (pages/subpages/sections/subsections) of your project
 documentation. We evaluate on the following:
@@ -422,7 +313,7 @@ documentation. We evaluate on the following:
   pages exist outside the navigation. Release Notes, a 3,000-line page, sits in
   the main navigation between Storage and Contributing.
 
-##### Comment
+#### Comment
 
 The KubeVirt user guide has a sound top-level information architecture. Content
 is grouped by audience and layer (Cluster Administration, User Workloads,
@@ -487,7 +378,7 @@ Weaknesses:
 
 Rating: 3 - Meets standards
 
-#### New user content
+### New user content
 
 New users are the most avid users of documentation, and need content
 specifically for them. We evaluate on the following:
@@ -547,7 +438,7 @@ specifically for them. We evaluate on the following:
   `virtctl create vm` invocations, `kubectl` lifecycle commands, and YAML
   manifests. These are formatted for direct copy-paste.
 
-##### Comment
+#### Comment
 
 The KubeVirt user guide gives new users a solid technical starting point, but
 its on-ramp is fragmented across several differently named locations. New-user
@@ -582,7 +473,7 @@ machine, would give new users an unbroken path from setup to a working workload.
 
 Rating: 3 - Meets standards
 
-#### Content maintainability & site mechanics
+### Content maintainability & site mechanics
 
 As a project scales, concerns like localized (translated) content and versioning
 become large maintenance burdens, particularly if you don’t plan for them. We
@@ -639,7 +530,7 @@ evaluate on the following:
   (`update_changelog.sh`) that regenerates the page from kubevirt/kubevirt tags,
   but that process is also undocumented outside the script itself.
 
-##### Comment
+#### Comment
 
 The KubeVirt user guide is maintainable as a single-version, single-language
 site. Its toolchain is simple and well suited to a documentation-only
@@ -691,7 +582,7 @@ Weaknesses:
 
 Rating: 3 - Meets standards
 
-#### Content creation processes
+### Content creation processes
 
 Documentation is only as useful as it is accurate and well-maintained, and
 requires the same kind of review and approval processes as code. We evaluate on
@@ -770,7 +661,7 @@ the following:
   process. Ownership is inferable from Git history and OWNERS files but is not
   documented.
 
-##### Comment
+#### Comment
 
 KubeVirt's strongest asset in this area is that documentation is wired into the
 engineering process rather than left to chance. The kubevirt/kubevirt pull
@@ -821,7 +712,7 @@ Weaknesses:
 
 Rating: 3 - Meets standards
 
-#### Inclusive language
+### Inclusive language
 
 Creating inclusive project communities is a key goal for all CNCF projects. We
 evaluate on the following:
@@ -869,7 +760,7 @@ evaluate on the following:
   prose. The repository's spelling check does not include an inclusive-language
   or minimizing-language rule, so nothing prevents new occurrences.
 
-##### Comment
+#### Comment
 
 The KubeVirt user guide is in good shape on inclusive naming. KubeVirt's own API
 objects, components, CLI, and feature gates avoid all Inclusive Naming
@@ -910,42 +801,9 @@ Weaknesses:
 
 Rating: 4 - Meets or exceeds standards
 
-### Recommendations
+## Project documentation - Recommendations
 
-#### Overall (Author)
-
-The AI results capture my recommendations except for the following pressing
-needs I see as a novice user:
-
-- Risks of embedded virtualization
-
-  Guidance and frank advice about using a virtual machine on a Windows or MacOS
-  to then use a virtual machine in KubeVirt. This VM within a VM is nested
-  virtualization and is a key concept for getting to understand KubeVirt. Users
-  who have a Linux machine don't need to worry about nested virtualization. In
-  addition, VMs on Windows and MacOS are usually transitory, requiring the
-  reinstall of clusters, tools, and KubeVirt. This guidance should be in the top
-  overview or getting started section.
-
-- Add a Roadmap topic
-
-  The AI results include having a common prerequisites topic, but at a higher
-  level a Roadmap topic or subsection of Getting Started should provide guidance
-  for different user scenarios to decide whether to use a VM in Windows or
-  invest in a Linux computer. While this isn't pertinent to develops, it will
-  save a lot of time for other users to get on the right path as soon as
-  possible.
-
-- Add architectural diagrams
-
-  Diagrams should be updated in the Architecture topic and added to Quickstarts
-  and Getting Started content and ideally for each major section. Mermaid code
-  is recommended and be created initially by AI.
-
-#### Information architecture
-
-The following recommendations address the information architecture of the
-KubeVirt user guide.
+### Information architecture
 
 - Add a "Getting started" page to the User Workloads section (or expand Basic
   Use into one) that walks through the happy path on a single page: install
@@ -1005,10 +863,7 @@ KubeVirt user guide.
   of the list or into a top-bar link, so the section list reads as a progression
   from concepts through administration, workloads, and infrastructure layers.
 
-#### New user content
-
-The following recommendations address the new user content of the KubeVirt user
-guide.
+### New user content
 
 - Add a "Getting started" page, placed immediately after Architecture in the
   top-level navigation, that walks a new user from a working cluster to a
@@ -1054,10 +909,7 @@ guide.
   top that points to the Getting started page, so the first-run path is
   discoverable without reading the section list.
 
-#### Content maintainability & site mechanics
-
-The following recommendations address the content maintainability of the
-KubeVirt user guide.
+### Content maintainability & site mechanics
 
 - Document the content versioning model in CONTRIBUTING.md (and summarize it on
   the Contributing page). State what the `release-vX.Y-stable` and
@@ -1092,10 +944,7 @@ KubeVirt user guide.
   user guide search to a site-wide index, so users can search the full
   documentation set from one place.
 
-#### Content creation processes
-
-The following recommendations address the content creation process of the
-KubeVirt user guide.
+### Content creation processes
 
 - Expand CONTRIBUTING.md from a pointer into a documentation contributor guide
   that covers the full lifecycle: how to propose a change, how to build and test
@@ -1131,10 +980,7 @@ KubeVirt user guide.
 - Triage the twelve open pull requests, closing or merging the oldest, and add a
   stale-PR policy to CONTRIBUTING.md so contributors know what to expect.
 
-#### Inclusive language
-
-The following recommendations address the inclusive language of the KubeVirt
-user guide.
+### Inclusive language
 
 - Remove or reword minimizing language across the guide. Delete "simply",
   "just", "of course", and "obviously" where they add nothing, and replace
@@ -1174,63 +1020,66 @@ code.
 
 | Criterion                                 | Rating (1-5)                   |
 | ----------------------------------------- | ------------------------------ |
-| Communication methods documented          | 3 - Meets standards            |
-| Beginner friendly issue backlog           | 3 - Meets standards            |
-| "New contributor" getting started content | 4 - Meets or exceeds standards |
+| Communication methods documented          | 4 - Meets or exceeds standards |
+| Beginner friendly issue backlog           | 2 - Needs improvement          |
+| "New contributor" getting started content | 3 - Meets standards            |
 | Project governance documentation          | 4 - Meets or exceeds standards |
 
-### Comments
+KubeVirt's contributor documentation is strong at the community level and uneven
+at the point where a newcomer actually tries to contribute. The
+kubevirt/community repository is a model of its kind: governance with concrete
+voting thresholds and maintainer selection rules, a full contributor ladder with
+an inactivity policy, generated SIG lists, a detailed weekly meeting document,
+and a help-wanted label guide. Communication channels are established and
+active, with two purpose-specific Slack channels, a mailing list, a public
+calendar, and recorded meetings, all gathered on the kubevirt.io Community page.
+The user guide's Contributing page is a genuine, welcoming first-contribution
+document and is the canonical entry point that both the repository and the
+community repo point to.
 
-KubeVirt's contributor documentation is in good overall shape, rating between
-"meets standards" and "meets or exceeds standards" across the four criteria. Its
-strongest assets are a well-organized onboarding path and mature governance: the
-user guide's Contributing page acts as a single, canonical entry point covering
-prerequisites, a clear "Your first contribution" section, and separate tracks
-for documentation and code, while the `kubevirt/community` repository provides
-comprehensive, CNCF-aligned governance through `GOVERNANCE.md`, a maintained
-`MAINTAINERS.md`, and a well-defined contributor ladder. The essential
-communication channels—Slack, the kubevirt-dev mailing list, and the issue
-tracker—are documented and correctly linked. No structural overhaul is needed;
-the recommended improvements are additive.
+The highest-impact gap is that the path the Contributing page describes leads
+nowhere. It tells newcomers to look for `good-first-issue`, but the label has
+zero open items in kubevirt/user-guide and zero documentation-related items in
+kubevirt/kubevirt, because every beginner issue closed in the past year was
+auto-closed by the stale bot rather than fixed, including a well-written batch
+of eight feature-lifecycle documentation tasks. Half of the small open backlog
+is unlabeled and nothing is assigned or marked `triage/accepted`, so lifecycle
+automation runs without a human deciding what should survive it. Reopening and
+freezing that batch, seeding a standing set of single-page starter tasks, and
+exempting beginner-labeled issues from auto-close would move this area from
+needs-improvement to meets-standards quickly.
 
-The highest-impact gap is that the beginner-friendly issue backlog is
-effectively empty, and this weakness undermines the otherwise excellent
-onboarding content. Both the beginner-backlog and new-contributor analyses found
-that the Contributing page tells newcomers to look for `good-first-issue` items,
-yet at review time there were no open beginner issues in either the user-guide
-or core repository, so a motivated first-timer who follows the documentation
-reaches a dead end. This is compounded by a fixable labeling inconsistency—the
-team applies the hyphenated `good-first-issue` label while GitHub's native
-"Contribute" experience and discovery tooling key off the standard spaced
-`good first issue`, hiding the project's real beginner issues. Curating a small
-pool of triaged beginner issues and consolidating on the standard label would
-let the strong onboarding path deliver on its promise.
+The second cross-cutting theme is that excellent material in kubevirt/community
+is not surfaced where users and contributors look. Three of the four areas note
+the same pattern: governance, the maintainers list, and the SIG list are not
+linked from the kubevirt.io Community page; the community meeting's day, time,
+and join link appear only in the community repository; the help-wanted guide and
+MAINTAINERS file are not linked from the guide; and the user guide's own
+"Getting help" section is three bare URLs on the Welcome page with no guidance
+on which channel suits which question and no mention of `#kubevirt-dev`. The
+mkdocs-material header and footer carry no repository or social icons because
+`repo_url` and `extra.social` are unset. Fixing these is largely a matter of
+adding links and one-sentence descriptions.
 
-A second cross-cutting theme is discoverability from within the user guide
-itself. Governance is reachable only through a single "Important community
-resources" list on the Contributing page, with no dedicated community or
-governance entry in the site navigation; project meetings are absent from the
-guide entirely and documented only on the external community page; and the
-"Getting help" section is a thin, inconsistent list that omits the community
-page and the `#kubevirt-dev` Slack channel that appear elsewhere. Because so
-much contributor-facing information lives outside the guide or is scattered
-within it, a reader who stays on the documentation site can miss where to ask
-questions, when meetings happen, or how the project is governed.
+The third theme is the missing hand-off from motivation to mechanics. The
+Contributing page ends before explaining how to claim an issue, fork, sign off,
+open a pull request, or interpret Prow labels, and it names no channel, person,
+or meeting where a stuck contributor can ask for help. Those mechanics exist in
+the repository README and in kubevirt/kubevirt's CONTRIBUTING.md and
+getting-started guide but are not presented as the next step. A "Making your
+first documentation change" section and a "Where to ask for help" section on the
+Contributing page, drawing on content that already exists, would close this gap
+and reinforce the beginner backlog and communication fixes above.
 
-Addressing these two themes together would move the section from good to strong.
-Consolidating the communication channels, meeting cadence and calendar, and
-governance pointers into a single, clearly labeled community landing area—each
-channel given a one-line description of its purpose—would resolve the
-discoverability gaps across three of the four areas at once. Pairing that with a
-light triage pass that keeps a curated set of beginner issues open would close
-the backlog gap. The underlying content is comprehensive and current; the
-remaining work is largely about surfacing and maintaining it where contributors
-are already reading.
+Project governance is the section's strongest area and, alongside the
+communication infrastructure, shows that the project has done the hard
+organizational work. The remaining effort is editorial and operational: link
+what exists, keep the beginner backlog alive, and finish the Contributing page.
 
 The following sections contain brief assessments of each element of the
 Contributor Documentation rubric.
 
-#### Communication methods documented
+### Communication methods documented
 
 One of the easiest ways to attract new contributors is making sure they know how
 to reach you. We evaluate on the following:
@@ -1238,170 +1087,240 @@ to reach you. We evaluate on the following:
 - Is there a Slack/Discord/Discourse/etc. community and is it prominently linked
   from your website?
 
-  Yes. The user guide's home page links directly to the KubeVirt Slack channel
-  (`https://kubernetes.slack.com/messages/virtualization`) in its "Getting help"
-  section, and the Contributing page invites readers to "participate on Slack"
-  through the KubeVirt community page. The broader project website
-  (`https://kubevirt.io/community/`) also surfaces the Slack workspace and
-  channels alongside a forum. Within the user guide, the Slack link is
-  reasonably visible on the landing page, but it appears only in a short
-  "Getting help" list rather than in the persistent site navigation, so its
-  prominence is limited.
+  Yes. KubeVirt uses two channels in the Kubernetes Slack workspace,
+  `#virtualization` for users and `#kubevirt-dev` for contributors. The
+  kubevirt.io home page links to Slack in its footer, and the kubevirt.io
+  Community page has a "Talk to Us!" section that names both channels, links to
+  each, and links to the Kubernetes Slack invitation page so a newcomer can get
+  an account. The kubevirt/community README repeats both channel links.
+
+  In the user guide the link is less prominent. The Welcome page has a "Getting
+  help" section that links to `#virtualization` (as a raw URL rather than a
+  channel name), the GitHub issue tracker, and the mailing list; the
+  Contributing page mentions Slack in passing and points to the Community page.
+  The `#kubevirt-dev` channel is not mentioned in the guide. No other page in
+  the guide links to Slack, and the mkdocs-material header and footer do not
+  carry social or chat icons because `extra.social` and `repo_url` are not
+  configured in `mkdocs.yml`.
 
 - Is there a direct link to your GitHub organization/repository?
 
-  Yes. The Contributing page links to the KubeVirt GitHub organization
-  (`https://github.com/kubevirt`) and to individual repositories such as
-  `user-guide`, `kubevirt`, `containerized-data-importer`, and `community`. The
-  home page's "Getting help" section links directly to the issue tracker
-  (`https://github.com/kubevirt/kubevirt/issues`). Direct GitHub links appear
-  consistently throughout the guide.
+  Yes. The kubevirt.io home page and Community page link to the GitHub
+  organization (github.com/kubevirt) and to the main kubevirt/kubevirt
+  repository. The user guide's Welcome page links to the kubevirt/kubevirt issue
+  tracker under "Getting help" and to the API reference under "Developer", and
+  every page has "Edit this page" and "View source" actions that resolve to the
+  kubevirt/user-guide repository. The Contributing page links to the
+  organization, to the user-guide, kubevirt.github.io, community, kubevirt, and
+  containerized-data-importer repositories, and to their issue lists.
+
+  The user guide does not display a repository link in its header, which
+  mkdocs-material provides when `repo_url` is set. A reader must reach the
+  Welcome or Contributing page, or use the edit icon, to find the source
+  repository.
 
 - Are weekly/monthly project meetings documented? Is it clear how someone can
   join those meetings?
 
-  Not within the user guide itself. The guide does not state the cadence of
-  community meetings or provide direct joining instructions; instead, the
-  Contributing page defers to the community page to "learn about local meetups
-  and events." The linked community page (`https://kubevirt.io/community/`) does
-  document recurring community meetings and embeds a public Google Calendar
-  (`kubevirt@cncf.io`) that readers can use to join. However, someone reading
-  only the user guide would not find meeting times, cadence, or a join link
-  without following that external link.
+  Yes, in the community repository; only indirectly on the websites. The
+  kubevirt/community repository's `community_meeting.md` documents the weekly
+  community meeting in detail: Zoom meeting ID and join link, time (Wednesdays
+  16:00 CET/CEST), hosts, the running meeting-notes document, how recordings are
+  produced and posted to the YouTube "Community Meetings" playlist, and that
+  minutes are mailed to kubevirt-dev. The kubevirt.io Community page embeds the
+  KubeVirt community calendar (`kubevirt@cncf.io`) and states that anyone may
+  "join any of our community meetings - no registration required."
+
+  The user guide itself does not mention the community meeting, the calendar, or
+  SIG meetings; its Contributing page links to the Community page and to a New
+  Contributor session recording on YouTube. SIG charters in kubevirt/community
+  (for example `sig-network/charter.md`) do not list meeting times or channels,
+  so SIG meeting cadence is discoverable only through the shared calendar.
 
 - Are mailing lists documented?
 
-  Yes. The home page's "Getting help" section links to the kubevirt-dev mailing
-  list (`https://groups.google.com/forum/#!forum/kubevirt-dev`), which is also
-  reachable from the community page. The mailing list is documented, though it
-  is presented as a bare link without describing its purpose or how it differs
-  from Slack or the forum.
+  Yes. The kubevirt-dev Google Group is linked from the kubevirt.io home page
+  footer, the Community page, the kubevirt/community README, and the user
+  guide's Welcome page under "Getting help". The community meeting document
+  states that weekly minutes are posted to the list, and the kubevirt/kubevirt
+  pull request template asks authors to consider announcing changes there.
 
-##### Comment
+  The list is presented as a bare link with no description of its purpose,
+  expected traffic, or whether it is the right place for user questions versus
+  development discussion. There is no separate user-oriented list, and the guide
+  does not say so. The Contributing page does not mention the mailing list at
+  all.
 
-The KubeVirt user guide provides a solid foundation of communication links for
-both users and contributors. The home page's "Getting help" section and the
-Contributing page together surface the Slack channel, the kubevirt-dev mailing
-list, the GitHub organization and its key repositories, and a pointer to the
-wider community page. As a result, readers have clear starting points to reach
-the project and its maintainers.
+#### Comment
 
-The most significant gap is project meetings. The user guide does not document
-meeting cadence, times, or how to join; it only links to the community page for
-"meetups and events." Because those details live entirely on the external
-community page, a reader who stays within the user guide cannot learn when
-community meetings happen or how to attend. Adding a short "Community meetings"
-subsection that names the cadence and includes the public calendar link would
-close this gap and keep the information where contributors are already reading.
+KubeVirt's communication channels are well established and thoroughly documented
+at the community level. Two Slack channels, a Google Group, a GitHub
+organization, a public community calendar, a weekly Zoom meeting with recorded
+sessions on YouTube, and posted minutes are all in place, and the
+kubevirt/community repository describes the meeting mechanics in more detail
+than most CNCF projects. The kubevirt.io Community page gathers the channels,
+the calendar, and the Slack invitation link on one page, and the home page
+footer repeats the primary links.
 
-Discoverability of the channels that are present could also be stronger. The
-Slack, mailing list, and issue links appear only in a brief list near the bottom
-of the landing page, and the Contributing page's community links are spread
-across several sections. Consolidating these into a single, clearly labeled
-"Community and communication" section—covering Slack, the forum, the mailing
-list, meetings, and social accounts—would make them easier to find. Giving each
-channel a one-line description of its purpose would also help newcomers choose
-where to ask a question versus where to follow announcements.
+The gap is in how the user guide surfaces these channels. A user who hits a
+problem while following a page has no path to help except to return to the
+Welcome page, where "Getting help" offers three bare URLs with no guidance on
+which channel suits which question. The guide does not mention the
+`#kubevirt-dev` channel, the community meeting, the calendar, or that meeting
+minutes are mailed to kubevirt-dev, and the mkdocs-material header and footer
+carry no repository or social icons because `repo_url` and `extra.social` are
+not set. Meeting details live only in the community repository; the websites
+present a calendar embed and a one-line invitation without stating the day,
+time, or how to join. SIG charters do not record meeting cadence, so SIG-level
+participation depends on scanning the shared calendar.
 
-Overall, the essential channels are documented and correctly linked, but
-meetings are absent from the guide itself and the presentation is uneven. Small,
-well-placed additions would move this area from adequate to strong.
+Strengths:
 
-Rating: 3 - Meets standards
+- Two purpose-specific Slack channels, a mailing list, a public calendar, and a
+  weekly recorded meeting are all active and linked from kubevirt.io.
+- `community_meeting.md` documents Zoom details, time, hosts, notes, recordings,
+  and minutes distribution in depth.
+- The Community page links the Kubernetes Slack invitation page so newcomers can
+  get an account.
+- Every user guide page has edit and view-source actions pointing at the
+  repository.
+- The Contributing page links every relevant repository and issue list.
 
-#### Beginner friendly issue backlog
+Weaknesses:
+
+- The user guide's only help section is on the Welcome page and consists of bare
+  URLs without guidance on which channel to use.
+- No repository, Slack, or mailing list icons in the guide's header or footer.
+- The community meeting, calendar, and `#kubevirt-dev` channel are not mentioned
+  in the user guide.
+- Meeting day, time, and join instructions appear only in the community
+  repository, not on kubevirt.io.
+- SIG charters do not list meeting times or channels.
+
+Rating: 4 - Meets or exceeds standards
+
+### Beginner friendly issue backlog
 
 We evaluate on the following:
 
 - Are docs issues well-triaged?
 
-  Documentation issues are only partially triaged. At the time of review the
-  user-guide repository had four open issues, and three of them carried no
-  labels at all; only one was categorized (with `kind/enhancement`). The
-  repository does provide a complete triage label taxonomy (`kind/*`,
-  `triage/accepted`, `triage/needs-information`, `sig/documentation`, and
-  others), and closed issues show that labels such as `kind/bug` and
-  `kind/enhancement` were applied over time. However, `triage/accepted` is
-  rarely used, and the currently open backlog is largely uncategorized, so
-  triage is inconsistent in practice.
+  Partially. The kubevirt/user-guide repository has a full Prow label set
+  inherited from the KubeVirt organization: `kind/*`, `sig/*` (including
+  `sig/documentation`), `triage/accepted`, `triage/needs-information`,
+  `triage/duplicate`, and `lifecycle/*`. Org-level issue templates
+  (`bug_report.md`, `docs_report.md`, `feature_request.md`) prompt reporters for
+  structured information, and issues opened through them arrive with a
+  consistent shape.
+
+  The labels are applied inconsistently. Of the four issues open today, two
+  carry a `kind/*` label and two carry no label at all; none has a `triage/*` or
+  `sig/*` label and none is assigned. The two unlabeled issues are a proposal
+  for Simplified Chinese documentation and a report that the Material theme is
+  reaching end of life, both of which have been open for months without a
+  maintainer response recorded in labels. Twelve issues were opened in the past
+  year, so the volume is small enough that complete triage is achievable.
 
 - Is there a clearly marked way for new contributors to make code or
-  documentation contributions (i.e. a “good first issue” label)?
+  documentation contributions (i.e. a "good first issue" label)?
 
-  Yes, a mechanism exists and is documented, but it is currently underused. The
-  user-guide repository has a `good-first-issue` label that has been applied to
-  24 issues historically, and the contributing page explicitly tells newcomers
-  to "look for any labeled 'good-first-issue', which are triaged to help new
-  contributors." Two caveats reduce its effectiveness. First, there are
-  currently zero open `good-first-issue` items in both the user-guide and the
-  core kubevirt/kubevirt repositories, so a new contributor arriving today finds
-  an empty beginner backlog. Second, the repository has two near-duplicate
-  labels — the hyphenated `good-first-issue` that the team actually uses and the
-  standard spaced `good first issue` that is unused — which is inconsistent and
-  prevents GitHub's native "Contribute" tab from surfacing these issues.
+  Yes in form, no in substance. The repository defines both `good-first-issue`
+  and `good first issue` labels and a `help wanted` label, and the Contributing
+  page in the user guide tells newcomers to look for `good-first-issue` in the
+  user-guide, kubevirt.github.io, and community repositories. The Contributing
+  page also links a New Contributor session recording.
+
+  There are currently zero open `good-first-issue` items in kubevirt/user-guide.
+  In kubevirt/kubevirt, nine `good-first-issue` items are open and none is
+  labeled `kind/documentation`, and no open kubevirt/kubevirt issue carries
+  `kind/documentation` at all. A newcomer who follows the Contributing page's
+  advice finds an empty list. Over the past year ten `good-first-issue` items
+  were closed in kubevirt/user-guide, including a well-scoped batch of eight
+  "Update ... Documentation to Reflect Feature Lifecycle Changes" issues (#918
+  through #925) filed in September 2025; all ten were closed by the stale bot
+  with the `lifecycle/rotten` label rather than by a pull request.
 
 - Are issues well-documented (i.e., more than just a title)?
 
-  Yes. Issues generally contain substantive descriptions rather than bare
-  titles. Bug reports follow a template with **Description**, **What you
-  expected**, and **URL** sections, and enhancement requests use the
-  feature-request template. The open issues ranged from roughly 400 to nearly
-  1,900 characters of body text; for example, the Simplified Chinese
-  documentation proposal includes detailed context about the contributing team
-  and scope. This indicates issues are typically actionable and provide enough
-  information to begin work.
+  Yes. All four open issues have bodies over 300 characters. The enhancement
+  issue #948 uses the feature request template, describes the problem (no clear
+  structure for newcomers), and proposes persona-based getting-started paths.
+  The closed `good-first-issue` batch was exemplary: each issue (for example
+  #918) had a summary, a background section citing the specific
+  kubevirt/kubevirt pull requests and versions that changed feature status, a
+  list of affected files, and acceptance criteria, at roughly 1,800 characters.
+
+  Issue quality is therefore not the constraint. The well-documented beginner
+  issues expired unworked, which points to discoverability and follow-through
+  rather than to how issues are written.
 
 - Are issues maintained for staleness?
 
-  Yes, staleness is actively — and aggressively — managed by the shared KubeVirt
-  Prow automation. Issues progress through `lifecycle/stale` and
-  `lifecycle/rotten` and are then auto-closed, with `lifecycle/frozen` available
-  to exempt long-lived items. Many closed user-guide issues carry the
-  `lifecycle/rotten` label, and the core kubevirt/kubevirt repository currently
-  shows roughly 31 stale, 32 rotten, and 30 frozen open issues. The main risk is
-  that valid but unattended issues (including enhancements) are closed purely
-  for inactivity rather than being triaged or preserved, so the backlog stays
-  small partly through automated closure.
+  Yes, mechanically. The KubeVirt Prow instance applies `lifecycle/stale` after
+  inactivity, then `lifecycle/rotten`, then auto-closes, and `lifecycle/frozen`
+  is available to exempt an issue. Of 21 issues closed in the past year, 15 (71
+  percent) were closed by this automation rather than by a fix. No open issue is
+  older than about ten months and none has gone six months without an update, so
+  the backlog does not accumulate.
 
-##### Comment
+  The same automation removed every beginner-friendly issue in the repository.
+  The eight feature-lifecycle documentation issues were valid when filed and, as
+  far as the closing comments show, were still valid when the bot closed them
+  five months later; nobody applied `lifecycle/frozen` or `help wanted` to keep
+  them alive. Staleness handling is tuned for a code repository with active
+  triage and, without a human in the loop, it erases the entry points the
+  Contributing page advertises.
 
-The KubeVirt user guide has the building blocks of a healthy beginner-friendly
-issue backlog, but the pieces are not consistently applied. A dedicated
-`good-first-issue` label exists and has been used on two dozen issues over time,
-and the contributing page clearly tells newcomers to look for it. Issues are
-generally well written: bug reports and feature requests follow templates with
-description, expectation, and URL fields, so most issues give a contributor
-enough context to start work rather than just a title. Staleness is handled
-automatically through the shared Prow lifecycle bot, which moves inactive issues
-through `lifecycle/stale` and `lifecycle/rotten` before closing them.
+#### Comment
 
-The main gap is that the beginner backlog is effectively empty and the currently
-open issues are under-triaged. At the time of review there were no open
-`good-first-issue` items in either the user-guide or the core repository, so a
-new contributor who follows the documentation's advice finds nothing to pick up.
-Of the small number of open documentation issues, most carried no labels at all
-— no `kind/*`, no `sig/documentation`, and no `triage/accepted` — which means
-the backlog is not being actively categorized even though the label taxonomy is
-available.
+The KubeVirt user guide has the infrastructure for a beginner-friendly backlog
+but not the backlog itself. The repository inherits the KubeVirt organization's
+Prow labels, issue templates, and lifecycle automation; the labels a newcomer
+needs (`good-first-issue`, `help wanted`, `sig/documentation`,
+`triage/accepted`) all exist; and the Contributing page points newcomers at
+`good-first-issue` in this and two sibling repositories. When maintainers have
+written beginner issues, they have written them well: the September 2025 batch
+of eight feature-lifecycle documentation issues each carried background,
+affected files, and acceptance criteria.
 
-A specific, fixable inconsistency is the presence of two near-duplicate labels:
-the hyphenated `good-first-issue` that the team actually applies and the
-standard spaced `good first issue` that sits unused. GitHub's native
-"Contribute" experience and the good-first-issues discovery tooling key off the
-standard spaced label, so the project's real beginner issues are invisible to
-those channels. Consolidating on the standard label (or aliasing consistently)
-would immediately widen discovery.
+The problem is follow-through. All ten `good-first-issue` items closed in the
+past year, including that entire batch, were auto-closed by the stale bot
+without a fix, and today the label has zero open items here and zero
+documentation-related items in kubevirt/kubevirt. A newcomer who follows the
+Contributing page's instructions finds nothing to do. Triage labels are applied
+to only half of the small open backlog, and no issue is assigned or marked
+`triage/accepted`, so the lifecycle automation runs without a human deciding
+which issues should survive it. The net effect is a clean but empty backlog,
+which is the wrong outcome for a project that explicitly invites first-time
+contributors to start with documentation.
 
-Finally, the aggressive auto-close behavior deserves attention. Because inactive
-issues — including valid enhancements — are closed as `lifecycle/rotten` rather
-than triaged or frozen, the backlog stays small in part by discarding work
-rather than curating it. A light triage pass that accepts, labels, and where
-appropriate freezes beginner-suitable issues would turn the existing automation
-and labels into a genuinely inviting on-ramp for new contributors.
+Strengths:
 
-Rating: 3 - Meets standards
+- Full Prow label taxonomy, org-level issue templates, and automated lifecycle
+  management are in place.
+- Open issues are substantive, with structured bodies and clear problem
+  statements.
+- The retired `good-first-issue` batch (#918 to #925) is a model for how to
+  write scoped, self-contained documentation tasks.
+- Issue volume (twelve per year) is small enough to triage completely.
+- The Contributing page tells newcomers which label to look for and in which
+  repositories.
 
-#### New contributor getting started content
+Weaknesses:
+
+- Zero open `good-first-issue` items in kubevirt/user-guide and zero
+  documentation-labeled beginner issues in kubevirt/kubevirt.
+- Every beginner issue closed in the past year was auto-closed as rotten rather
+  than fixed.
+- Half of open issues are unlabeled; none carries `triage/*`, `sig/*`, or an
+  assignee.
+- No process exempts valid, unworked beginner issues from the stale bot.
+- A proposal for Simplified Chinese documentation and a theme end-of-life report
+  have no recorded triage decision.
+
+Rating: 2 - Needs improvement
+
+### New contributor getting started content
 
 Open source is complex and projects have many processes to manage that. Are
 processes easy to understand and written down so that new contributors can jump
@@ -1409,151 +1328,201 @@ in easily? We evaluate on the following:
 
 - Do you have a community repository or section on your website?
 
-  Yes, both exist. KubeVirt maintains a dedicated `kubevirt/community`
-  repository that holds governance, the membership policy and checklist, a
-  maintainers list, per-SIG and working-group directories, community meeting
-  information, and a code of conduct. The project website also has a community
-  section at https://kubevirt.io/community/, and the user guide's contributing
-  page links to it directly. New contributors therefore have a clear,
-  discoverable home for community structure and processes.
+  Yes, both. The kubevirt/community repository holds the governance document,
+  membership policy and checklist, maintainers and alumni lists, code of
+  conduct, AI contribution policy, community meeting mechanics, a SIG list with
+  per-SIG charters, working groups, a help-wanted label guide adapted from
+  Kubernetes, and directories for events, design proposals, and conference
+  proposals. The kubevirt.io website has a Community page with the shared
+  calendar, GitHub, Slack, mailing list, and YouTube links, and a Contributing
+  tab in the user guide's top navigation.
+
+  The two are loosely connected. The kubevirt/community
+  `contributors/contributing.md` is a one-line pointer to the user guide's
+  Contributing page, and the user guide's Contributing page links back to the
+  membership policy, governance, code of conduct, and AI policy in
+  kubevirt/community. However, the Contributing page does not link the community
+  repository's SIG list, help-wanted guide, community meeting document, or
+  MAINTAINERS file, so a newcomer sees only part of what the community
+  repository offers.
 
 - Is there a document specifically for new contributors/your first contribution?
 
-  Yes. The user guide's
-  [Contributing](https://kubevirt.io/user-guide/contributing/) page is the
-  canonical getting-started document, and the community repository's own
-  contributor file simply redirects to it, which avoids duplication. The page
-  includes a "Prerequisites" section, a "Your first contribution" section that
-  points newcomers to `good-first-issue` labeled work and to low-barrier
-  documentation and community repositories, separate guidance for code
-  contributors, a list of important community resources (code of conduct,
-  membership policy, governance), and a link to a New Contributor session
-  recording. This is a well-structured first-contribution path rather than a
-  bare pointer to the issue tracker.
+  Yes. The user guide's Contributing page is written for first-time contributors
+  and is the canonical entry point that both the root CONTRIBUTING.md and
+  kubevirt/community point to. It has a Prerequisites section (CNCF open source
+  primer, Git basics, the organization's repositories, quick start labs), a
+  "Your first contribution" section that lists documentation and community
+  repositories as low-barrier starting points and code repositories for Go
+  developers, an "Other ways to get started" section (review a pull request,
+  watch the New Contributor session recording, open an issue), and links to the
+  community's core documents.
+
+  The document stops before the mechanics. It tells readers to look for
+  `good-first-issue` but the linked repositories currently have no such open
+  issues, and it does not describe how to claim an issue, the fork-branch-PR
+  flow with DCO sign-off, what Prow labels and `/lgtm` and `/approve` mean, or
+  how long review takes. Those mechanics are split between the repository README
+  (build, spell check, link check, sign-off) for documentation and
+  kubevirt/kubevirt's CONTRIBUTING.md and `docs/getting-started.md` for code.
+  The kubevirt/kubevirt CONTRIBUTING.md is the more complete document, covering
+  workflow, testing, draft pull requests, DCO, review, and membership, but it is
+  written for code contributors and is not surfaced in the user guide beyond one
+  link.
 
 - Do new users know where to get help?
 
-  Yes, though the help information is somewhat scattered and minimal in places.
-  The user guide's landing page has a "Getting help" section listing the issue
-  tracker, the `kubevirt-dev` mailing list, and the `#virtualization` Slack
-  channel. The contributing page additionally points to the community page and
-  the project's social channels, and the community repository README lists both
-  the `#virtualization` and `#kubevirt-dev` Slack channels. The main weaknesses
-  are that the user guide's "Getting help" section is only three bullets placed
-  at the bottom of the index page, it does not link the community page, and it
-  omits the `#kubevirt-dev` Slack channel, so the help entry points are not
-  fully consistent across sources.
+  Partially. The Welcome page's "Getting help" section lists the GitHub issue
+  tracker, the kubevirt-dev mailing list, and the `#virtualization` Slack
+  channel. The Contributing page invites readers to raise a bug if something is
+  missing, points to the Community page, and links the New Contributor session
+  recording. The kubevirt/community help-wanted guide states that
+  `good first issue` items come with a commitment from members to provide extra
+  assistance.
 
-##### Comment
+  Help is not framed for contributors specifically. Nothing tells a new
+  contributor which Slack channel to ask in when stuck on a documentation pull
+  request (`#kubevirt-dev` is not named in the guide), who the documentation
+  approvers are, whether there is a mentor or buddy program, or that the weekly
+  community meeting welcomes newcomer introductions. The help links are bare
+  URLs on the Welcome page and are not repeated on the Contributing page or in
+  CONTRIBUTING.md.
 
-KubeVirt provides strong new contributor getting started content. The user
-guide's Contributing page serves as a single, well-organized entry point that
-covers prerequisites, a clear "Your first contribution" section, separate tracks
-for documentation and code contributors, and links to essential community
-resources such as the code of conduct, membership policy, and governance.
-Importantly, the community repository's own contributor file redirects to this
-page rather than duplicating it, so there is one canonical source of truth. This
-structure reflects a deliberate onboarding path rather than a bare pointer to
-the issue tracker.
+#### Comment
 
-The project also gives newcomers a real community home. The `kubevirt/community`
-repository documents SIGs and working groups, community meetings, membership
-progression, and maintainers, and the website exposes a companion community
-section that the contributing page links to directly. Combined with a linked New
-Contributor session recording, a first-time contributor has both written and
-video onboarding material and a clear picture of how the community is organized.
+KubeVirt has a genuine new-contributor document and a mature community
+repository behind it. The user guide's Contributing page is written for someone
+making their first open source contribution: it sets expectations, points to
+low-barrier repositories, offers non-code ways to start, and links the
+governance, membership, code of conduct, and AI contribution policies. The
+kubevirt/community repository supplies the depth, including a SIG list, a
+membership checklist, a help-wanted label guide, and a detailed community
+meeting document, and both sides point at each other as the canonical entry.
 
-The main opportunity for improvement is the "Getting help" experience, which is
-thinner and less consistent than the rest of the onboarding content. In the user
-guide it is a three-bullet section at the bottom of the landing page that lists
-the issue tracker, mailing list, and the `#virtualization` Slack channel, but it
-omits the community page and the `#kubevirt-dev` Slack channel that appear in
-other sources. Consolidating these entry points and surfacing them more
-prominently would remove ambiguity about where to ask questions.
+The weakness is the hand-off from motivation to action. The Contributing page
+ends where a newcomer needs the most guidance: how to pick and claim an issue,
+how to fork, sign off, and open a pull request, what the Prow labels mean, and
+who will review. Those mechanics exist but are scattered across the repository
+README, kubevirt/kubevirt CONTRIBUTING.md, and kubevirt/kubevirt
+`docs/getting-started.md`, none of which is presented as the next step. The page
+also directs newcomers to `good-first-issue` lists that are currently empty, and
+does not name a channel, person, or meeting where a stuck contributor can ask
+for help. The community repository's most useful contributor resources (SIG
+list, help-wanted guide, meeting document, MAINTAINERS) are not linked from the
+guide at all.
 
-A second, smaller gap connects to the beginner issue backlog: the contributing
-page tells newcomers to look for `good-first-issue` items, but that backlog is
-currently empty, so a motivated first-timer following the documentation can
-reach a dead end. Keeping a small pool of curated beginner issues would let the
-otherwise excellent onboarding content deliver on its promise.
+Strengths:
 
-Rating: 4 - Meets or exceeds standards
+- A dedicated, welcoming Contributing page that is the canonical entry point
+  from both CONTRIBUTING.md and kubevirt/community.
+- Explicit low-barrier starting points (documentation, website, community
+  repositories) and non-code ways to contribute.
+- A New Contributor session recording on YouTube.
+- A comprehensive kubevirt/community repository with governance, membership,
+  SIG, and meeting documentation.
+- Community page and Welcome page surface the primary help channels.
 
-#### Project governance documentation
+Weaknesses:
+
+- The Contributing page omits the contribution mechanics (claiming an issue,
+  fork and PR flow, DCO, Prow labels, review expectations).
+- Newcomers are sent to `good-first-issue` lists that are empty.
+- No contributor-specific help guidance: which Slack channel to ask in, who
+  reviews documentation, whether mentoring is available.
+- The SIG list, help-wanted guide, community meeting document, and MAINTAINERS
+  file in kubevirt/community are not linked from the guide.
+- Build and test instructions for the guide live only in the repository README,
+  not on the Contributing page.
+
+Rating: 3 - Meets standards
+
+### Project governance documentation
 
 One of the CNCF’s core project values is open governance. We evaluate on the
 following:
 
 - Is project governance clearly documented?
 
-Yes. Project governance is clearly and comprehensively documented, and the user
-guide points contributors to it. The community repository contains a dedicated
-`GOVERNANCE.md` that covers the membership policy, maintainer responsibilities
-and selection, meetings, CNCF resources, the code of conduct, off-boarding and
-removing maintainers, voting, SIGs, subprojects, working groups, and roles and
-organization management. It is complemented by a `MAINTAINERS.md` that lists
-current maintainers with their areas of responsibility and employers, tracks
-emeritus maintainers, and is kept in sync with the CNCF project-maintainers
-list. A `membership_policy.md` document defines a full contributor ladder — from
-new contributor through org member, reviewer, approver, SIG chair, subproject
-lead, and working-group chair — with explicit requirements, responsibilities,
-privileges, and an inactivity policy. An autogenerated `sig-list.md` (built from
-`sigs.yaml`) enumerates the SIGs, working groups, chairs, contacts, and meeting
-schedules.
+  Yes. Governance lives in the kubevirt/community repository and is complete and
+  specific. `GOVERNANCE.md` (about 1,350 words) defines the maintainer role and
+  its responsibilities, the criteria and process for selecting maintainers (one
+  year of participation, demonstrated leadership, nomination by pull request
+  against `MAINTAINERS.md`, simple-majority vote), maintainer meetings, use of
+  CNCF resources, the code of conduct, off-boarding and mentorship, retiring and
+  removing maintainers, voting rules (lazy consensus by default, simple majority
+  for most matters, two-thirds to remove a maintainer or amend the governance),
+  and the structure of Special Interest Groups, subprojects, and working groups.
+  `MAINTAINERS.md` lists eight current maintainers with employer and area of
+  responsibility, a table of emeritus maintainers with retirement dates, and a
+  note that the list must stay in sync with the CNCF project maintainers list.
 
-From the user guide's own perspective, the contributing page surfaces the
-governance material by linking to the project governance document, the
-membership policy, the code of conduct, and the AI contribution policy under its
-"Important community resources" section. The main limitation is discoverability
-rather than content: governance is only reachable through that one list on the
-contributing page, and the user guide has no dedicated governance or community
-landing page in its own navigation. The governance documentation itself,
-however, is thorough, versioned, and aligned with CNCF expectations.
+  The surrounding documents are equally thorough. `membership_policy.md` defines
+  a contributor ladder from new contributor through org member, reviewer,
+  approver, SIG chair, subproject lead, and working group chair, with
+  requirements and privileges for each level and an inactivity policy that
+  states how inactivity is measured. `membership_checklist.md`,
+  `code-of-conduct.md`, `ai-contribution-policy.md`, and `ALUMNI.md` complete
+  the set. SIGs and working groups are declared in `sigs.yaml`, from which
+  `sig-list.md` is generated, and each SIG has a charter with scope, roles, and,
+  in at least some cases, meeting mechanics. A `CNCF/` directory records the
+  incubation application and technical review.
 
-##### Comment
+  Discoverability from the user-facing sites is limited. The user guide's
+  Contributing page links `GOVERNANCE.md` under "Important community resources"
+  with the one-line description "Project Maintainer responsibilities", and links
+  the membership policy and code of conduct alongside it. The kubevirt.io
+  Community page does not link the governance document, the maintainers list, or
+  the SIG list, and neither site summarizes how decisions are made or who the
+  maintainers are. A user or prospective adopter evaluating the project's
+  governance must know to open the community repository.
 
-KubeVirt's project governance documentation is a clear strength. The
-`kubevirt/community` repository provides a dedicated `GOVERNANCE.md` that
-addresses the full range of governance concerns: the membership policy,
-maintainer responsibilities and selection, meetings, voting, off-boarding and
-removal of maintainers, code of conduct, and the organization of SIGs,
-subprojects, and working groups. This is backed by a `MAINTAINERS.md` that names
-current maintainers and their areas of responsibility, records emeritus
-maintainers, and is explicitly kept in sync with the CNCF project-maintainers
-list. Together these documents give contributors an unambiguous picture of who
-leads the project and how decisions are made.
+#### Comment
 
-The contributor ladder is especially well defined. The membership policy lays
-out each role — from new contributor through org member, reviewer, approver, SIG
-chair, subproject lead, and working-group chair — with concrete requirements,
-responsibilities, privileges, and an inactivity policy that explains how roles
-are maintained or lapse. The autogenerated SIG list, produced from a
-machine-readable `sigs.yaml`, keeps the list of groups, chairs, contacts, and
-meeting times consistent and current. This structure reflects mature,
-CNCF-aligned governance rather than a token document.
+KubeVirt's governance documentation is clear, specific, and maintained.
+`GOVERNANCE.md` answers the questions an evaluator asks first: who the
+maintainers are, how they are chosen and removed, how votes work and what
+thresholds apply, and how SIGs and working groups relate to the maintainers. The
+companion documents give the contributor ladder concrete requirements at each
+level and an explicit inactivity policy, the maintainers list records employers
+and areas of responsibility with an emeritus table, and SIG charters are
+generated from a single source of truth. This is the level of governance
+documentation expected of a CNCF incubating project and is a strength the
+project can point to.
 
-The primary opportunity for improvement is discoverability from within the user
-guide itself. Governance is reachable only through a single "Important community
-resources" list on the contributing page; the user guide's own navigation has no
-dedicated community or governance entry point. A reader browsing the
-documentation site would not easily find how the project is governed without
-first landing on the contributing page.
+The only shortfall is presentation. Governance is documented in the community
+repository but not summarized or prominently linked from kubevirt.io or the user
+guide; the Contributing page links `GOVERNANCE.md` with a one-line label among
+other resources, and the Community page does not mention governance,
+maintainers, or SIGs at all. Prospective adopters and contributors evaluating
+the project from the website have to know the community repository exists to
+find this material.
 
-Because the analysis is scoped to the user guide, a light improvement would be
-to surface governance more prominently — for example, a short "How KubeVirt is
-governed" pointer or a community landing page that links to `GOVERNANCE.md`, the
-maintainers list, and the membership ladder. The underlying governance content
-is comprehensive and current; the gap is purely one of navigation from the
-documentation site.
+Strengths:
+
+- `GOVERNANCE.md` covers maintainer selection, removal, voting thresholds,
+  meetings, SIGs, subprojects, and working groups with concrete rules.
+- `MAINTAINERS.md` lists current maintainers with employer and responsibilities
+  plus an emeritus table, and is tied to the CNCF maintainers list.
+- `membership_policy.md` defines a full contributor ladder with requirements,
+  privileges, and a measurable inactivity policy.
+- SIGs and working groups are declared in `sigs.yaml` and the SIG list is
+  generated, so it cannot drift from the source.
+- Code of conduct, AI contribution policy, and CNCF incubation records are
+  co-located.
+
+Weaknesses:
+
+- The kubevirt.io Community page does not link governance, maintainers, or the
+  SIG list.
+- The user guide's Contributing page links `GOVERNANCE.md` with a one-line label
+  and no summary.
+- Neither site names the maintainers or explains how decisions are made.
 
 Rating: 4 - Meets or exceeds standards
 
-### Recommendations
+## Contributor documentation - Recommendations
 
-> AUTHOR NOTE: Write general recommendations based on the comments from the
-> previous section.
-
-#### Communication methods documented
+### Communication methods documented
 
 - Add a dedicated "Community and communication" section to the user guide that
   consolidates Slack, the forum, the kubevirt-dev mailing list, community
@@ -1579,7 +1548,7 @@ Rating: 4 - Meets or exceeds standards
   accounts) are either mirrored or clearly linked from the guide, ensuring
   readers who stay in the user guide are not missing key channels.
 
-#### Beginner friendly issue backlog
+### Beginner friendly issue backlog
 
 - Consolidate the duplicate labels by standardizing on the GitHub-native
   `good first issue` label (spaced) and retiring or aliasing the hyphenated
@@ -1610,56 +1579,60 @@ Rating: 4 - Meets or exceeds standards
   documentation-issue triage during a SIG or community meeting) to keep
   labeling, acceptance, and staleness decisions consistent over time.
 
-#### New contributor getting started content
+### New contributor getting started content
 
-- Consolidate and strengthen the "Getting help" section on the user guide
-  landing page so it lists all primary channels in one place: the
-  `#virtualization` and `#kubevirt-dev` Slack channels, the `kubevirt-dev`
-  mailing list, the community page, and the issue tracker.
-- Make the "Getting help" information easier to find by linking to it from the
-  contributing page and considering a more prominent placement than the bottom
-  of the index page.
-- Keep a small, curated pool of open `good-first-issue` items so that newcomers
-  who follow the "Your first contribution" guidance always have actionable work,
-  rather than reaching an empty backlog.
-- Add a direct, filtered link from the contributing page to the current
-  `good-first-issue` list (for example, a saved label query) so first-timers
-  reach real issues in one click.
-- Ensure help and community entry points are consistent across the user guide,
-  the contributing page, and the `kubevirt/community` README, since they
-  currently list slightly different channels.
-- Consider adding a brief "how to ask a good question" note or
-  expected-response-time guidance near the help channels so new contributors
-  know what to include and where questions are best directed.
-- Continue using the community repository's redirect-to-canonical approach for
-  contributor docs, and periodically verify that all "get started" links across
-  repositories still resolve to the single canonical contributing page.
-- Optionally surface the New Contributor session recording and the community
-  meeting schedule closer to the "Your first contribution" section so newcomers
-  can quickly find live, synchronous ways to get onboarded.
+- Add a "Making your first documentation change" section to the Contributing
+  page that walks through the mechanics end to end: find or file an issue,
+  comment to claim it, fork and branch, edit under `docs/` and update
+  `.nav.yml`, run `make check_spelling` and `make check_links`, sign off with
+  `git commit -s`, open the pull request, and what to expect from Prow
+  (`ok-to-test`, `lgtm`, `approved`) and reviewers. Move the build and test
+  steps from the repository README here or link them prominently.
+- Add a "Where to ask for help" section to the Contributing page that names
+  `#kubevirt-dev` on Kubernetes Slack for contributor questions and
+  `#virtualization` for usage questions, links the Slack invitation page, states
+  that the weekly community meeting includes newcomer introductions with the
+  day, time, and Zoom link, and identifies the documentation approvers or a docs
+  contact.
+- Link the kubevirt/community resources that newcomers need directly from the
+  Contributing page: the SIG list (to find the right SIG for a topic), the
+  help-wanted guide (to understand the labels), the community meeting document,
+  and the MAINTAINERS file.
+- Replace the generic "look for good-first-issue" advice with a direct link to
+  the filtered issue list for each repository, and pair this with the beginner
+  issue backlog recommendations so the lists are populated when newcomers
+  arrive.
+- Add a "Contributing to the code" subsection that summarizes the
+  kubevirt/kubevirt path in three or four steps (read CONTRIBUTING.md, follow
+  `docs/getting-started.md` to build and run a local cluster, pick an issue,
+  open a draft PR) so code-minded newcomers see a clear next step rather than a
+  single link.
+- Ask the community whether a lightweight mentoring or buddy arrangement exists
+  or could be offered for first-time contributors, and document it on the
+  Contributing page if so; the help-wanted guide already promises "extra
+  assistance" on `good first issue` items, so state how to request it.
+- Repeat the "Getting help" links from the Welcome page in CONTRIBUTING.md and
+  on the Contributing page so contributors do not have to navigate back to the
+  home page to find a channel.
 
-#### Project governance documentation
+### Project governance documentation
 
-- Improve discoverability from the documentation site by adding a short "How
-  KubeVirt is governed" pointer or a dedicated community/governance landing page
-  that links to `GOVERNANCE.md`, the maintainers list, and the membership
-  ladder, rather than relying solely on the contributing page's resource list.
-- Surface the governance links in the user guide navigation (for example, under
-  a community or contributing section) so readers can reach them without first
-  knowing to open the contributing page.
-- Add a brief, plain-language summary of the governance model and the
-  contributor ladder in the user guide, with a clear link out to the
-  authoritative documents in the community repository, so newcomers get an
-  overview without reading the full policy.
-- Continue keeping `MAINTAINERS.md` synchronized with the CNCF
-  project-maintainers list, and note the last-reviewed date on the maintainers
-  and governance documents so readers can gauge currency.
-- Ensure the SIG list and its meeting details remain generated from `sigs.yaml`,
-  and link the SIG list from the user guide so contributors can find the right
-  group and meeting to join.
-- Cross-link related governance artifacts (code of conduct, membership policy,
-  AI contribution policy, and voting process) from a single place so
-  contributors can navigate the full set without hunting across repositories.
+- Add a "Governance" section to the kubevirt.io Community page that states in
+  two or three sentences how KubeVirt is governed (CNCF incubating project,
+  maintainer group, SIGs and working groups, lazy consensus with maintainer
+  votes) and links `GOVERNANCE.md`, `MAINTAINERS.md`, `membership_policy.md`,
+  and `sig-list.md`.
+- Expand the "Important community resources" list on the user guide's
+  Contributing page so each governance link has a one-sentence description of
+  what the reader will find, and add the maintainers list and SIG list to it.
+- Add a short "How the project is run" paragraph to the Contributing page, above
+  the resource list, that names the maintainer group, explains that work is
+  organized in SIGs, and states that decisions default to lazy consensus, so a
+  newcomer understands the structure before following the links.
+- Ask the maintainers to confirm that every SIG charter includes a "Meeting
+  Mechanics" section like SIG Storage's, and that `sigs.yaml` records each SIG's
+  meeting cadence and Slack channel, so the generated SIG list can serve as the
+  single place to find how to participate in each group.
 
 ## Website and infrastructure
 
@@ -1667,87 +1640,76 @@ KubeVirt is an **incubating** project of CNCF. This means that the project
 should be developing professional-quality documentation alongside the project
 code.
 
-| Criterion                             | Rating (1-5)                   |
-| ------------------------------------- | ------------------------------ |
-| Usability, accessibility, and design  | 4 - Meets or exceeds standards |
-| Branding and design                   | 4 - Meets or exceeds standards |
-| Case studies/social proof             | 3 - Meets standards            |
-| SEO, Analytics, and site-local search | 2 - Needs improvement          |
-| Maintenance planning                  | 4 - Meets or exceeds standards |
+| Criterion                                   | Rating (1-5)                   |
+| ------------------------------------------- | ------------------------------ |
+| Single-source for all files                 | 2 - Needs improvement          |
+| Meets min website req. (for maturity level) | 3 - Meets standards            |
+| Usability, accessibility, and design        | 3 - Meets standards            |
+| Branding and design                         | 4 - Meets or exceeds standards |
+| Case studies/social proof                   | 3 - Meets standards            |
+| SEO, Analytics, and site-local search       | 2 - Needs improvement          |
+| Maintenance planning                        | 3 - Meets standards            |
 
-Other metrics TBD:
+Other Metrics:
 
-| Criterion                                   | [Rating (1-5)] |
-| ------------------------------------------- | -------------- |
-| Single-source for all files                 | [rating (1-5)] |
-| Meets min website req. (for maturity level) | [rating (1-5)] |
-| A11y plan & implementation                  | [rating (1-5)] |
-| Mobile-first plan & impl.                   | [rating (1-5)] |
-| HTTPS access & HTTP redirect                | [rating (1-5)] |
-| Google Analytics 4 for production only      | [rating (1-5)] |
-| Indexing allowed for production server only | [rating (1-5)] |
-| Intra-site / local search                   | [rating (1-5)] |
-| Account custodians are documented           | [rating (1-5)] |
+| Criterion                                   | Rating (1-5)                   |
+| ------------------------------------------- | ------------------------------ |
+| A11y plan & implementation                  | 3 - Meets standards            |
+| Mobile-first plan & implementation          | 3 - Meets standards            |
+| HTTPS access & HTTP redirect                | 4 - Meets or exceeds standards |
+| Google Analytics 4 for production only      | 1 - Not present                |
+| Indexing allowed for production server only | 3 - Meets standards            |
+| Intra-site / local search                   | 4 - Meets or exceeds standards |
+| Account custodians are documented           | 1 - Not present                |
 
-### Comments
+The KubeVirt web presence rests on a sound foundation. The user guide runs on
+MkDocs Material, which supplies responsive layout, keyboard, screen-readers,
+full-text search, dark mode, and sitemaps with little project effort, and a Prow
+pipeline republishes both sites to GitHub Pages over HTTPS within a minute or
+two of merge. Branding is applied once at the theme level and stays consistent
+across roughly one hundred pages, the main website footer is a model of CNCF
+compliance for an incubating project, and the project has real adoption evidence
+in its adopters list, CNCF case studies, Summit recordings, and blog. Most of
+what a reader needs is present; the shortfalls are in measurement, connection,
+and stewardship rather than in the platform.
 
-KubeVirt's website and infrastructure are on a strong footing overall, rating
-"meets or exceeds standards" in three of the five criteria. The Material for
-MkDocs foundation delivers a responsive, mobile-friendly site with clean
-typography, semantic landmarks, descriptive ARIA labels, a "Skip to content"
-link, and complete image alt text, so usability and accessibility are strong at
-the structural level. The brand is clear and consistently applied, with the teal
-palette and logo defined at the theme level rather than per author. Maintenance
-is dependable and not dependent on a single person: the repository uses the
-Kubernetes-style OWNERS model, draws on roughly 49 distinct authors over the
-last year, builds quickly through Netlify previews and Prow CI, and serves
-securely over HTTPS. The recommended improvements are mostly targeted fixes
-rather than structural changes.
+The most consequential gap is that the user guide is invisible to the project.
+It carries no analytics at all, so maintainers cannot see which pages are read,
+which searches fail, or which inbound links break, and the main site's Adobe
+Analytics tag runs on previews as well as production. The same blind spot
+appears in governance: nobody is documented as custodian of the analytics,
+Netlify, Search Console, DNS, or GitHub Pages accounts, the community
+`sig/documentation` entry has no chairs or members, and commit history shows
+both repositories leaning on one active documentation maintainer. Instrumenting
+the guide and writing down who owns the infrastructure are low-effort changes
+that would unblock every other improvement in this section.
 
-The highest-impact gap—and the section's lowest rating—is the complete absence
-of analytics. Neither the user guide nor the main site includes any analytics
-tags, so there is no visibility into traffic, popular pages, search terms, or
-broken inbound links, and 404 reports cannot be generated to guide maintenance.
-This absence is consistent with the project's privacy posture, which is a
-legitimate trade-off, but if the project wants data to drive documentation
-improvements, adopting a privacy-respecting option (GA4 or an alternative),
-enabling it only on the production deploy, and documenting the account
-custodians would close an important blind spot. Two smaller SEO fixes accompany
-it: make the preview `noindex` behavior an explicit project setting rather than
-relying on the Netlify default, and correct the double slash in the `robots.txt`
-sitemap URL.
+The second recurring theme, and the one that drives the two lowest ratings, is
+that KubeVirt's web properties do not act as one. Pages under `kubevirt.io` are
+built from three repositories with no submodule linkage, user-facing content
+also sits in the `docs/` directories of the core and CDI repositories, and no
+README explains which content belongs where. The guide and `kubevirt.io` use
+different static-site generators, logo variants, typefaces, and header
+treatments; neither site's search covers the other; and the guide's header,
+footer, and landing page contain no link to adopters, case studies, talks, the
+blog, or `kubevirt.io` itself. The guide's footer also omits the copyright, CNCF
+affiliation, and trademark links the main site carries, so a documentation
+reader sees no visible connection to CNCF. A shared header and footer, a
+documented content boundary, cross-links from the guide's landing page, and a
+`robots.txt` that lists both sitemaps would close most of this gap.
 
-A cross-cutting accessibility theme surfaces in both the usability and branding
-analyses: color contrast on the brand teal. The primary teal (`#0db2b6` in
-`docs/stylesheets/extra.css`) yields only about 2.6:1 against white header
-text—below the WCAG AA thresholds of 4.5:1 for normal text and 3:1 for large
-text—and body links darkened with `filter: brightness(80%)` reach only about
-3.96:1. Because this styling is defined once at the theme level, darkening the
-primary teal (or the text on it) and re-checking links in both the light and
-dark schemes is a small, high-value change that affects color-impaired and
-low-vision readers most. Adding an automated contrast and accessibility check to
-the build would keep the fix from regressing.
+Finally, a handful of small defects affect every page and are each a one-line
+fix: white-on-teal header text at roughly 2.6:1 contrast fails WCAG AA,
+`robots.txt` references a malformed sitemap URL, `netlify.toml` contains a dead
+`sed` step and unpinned dependencies, the main site's copyright line lacks the ©
+symbol, and production responses lack an HSTS header. Content-side accessibility
+issues (an ASCII-art architecture diagram with no text alternative, `$`-prefixed
+code blocks, and 500-plus-line pages) belong with the content-maintainability
+work rather than infrastructure. The branding implementation, the automated
+publish pipeline, and the main website footer are strong enough to cite as
+examples for other projects.
 
-Two further themes concern connecting the guide to the wider project and
-hardening the stack. The strong adoption and community content—an active blog,
-curated talk playlists, and an extensive adopter logo wall—lives on
-`kubevirt.io` and is not linked from the user guide at all, so readers have no
-easy path to this social proof; the guide would also benefit from a few
-narrative case studies or testimonials that explain how and why organizations
-use KubeVirt. This mirrors a broader cross-property gap, since the MkDocs guide
-and the separate main site share a logo and color family but not an identical
-look and feel. Documenting a small set of shared brand values and adding
-targeted links (for example, a "Community" or "Adopters" entry) would align the
-two properties and surface existing content. On the infrastructure side, the
-build installs MkDocs and its plugins without pinned versions in `netlify.toml`
-and the `Makefile`, which risks non-reproducible builds; pinning versions and
-periodically reviewing the overhead of maintaining two separate stacks would
-sustain the section's already solid maintenance posture.
-
-The following sections contain brief assessments of each element of the Website
-and documentation infrastructure rubric.
-
-#### Single-source requirement
+### Single-source requirement
 
 Source files for _all website pages_ should reside in a single repo. Among other
 problems, keeping source files in two places:
@@ -1757,18 +1719,105 @@ problems, keeping source files in two places:
 - increases the likelihood of errors
 - makes it more complicated to generate the documentation from source files
 
-Ideally, all website files should be in the **website repo** itself.
-Alternatively, files should be brought into the website repo via [git
+Ideally, all website files should be in the website repo itself. Alternatively,
+files should be brought into the website repo via [git
 submodules][git-submodules].
 
 If a project chooses to keep source files in multiple repos, they need a clearly
-documented strategy for managing mirrored files and new contributions.
+documented strategy for managing mirrored files and new contributions. We
+evaluate on the following:
 
-#### Minimal website requirements
+- Does the project have a single source for its documentation? If not, is there
+  a reason?
+
+  No. Pages served under the `kubevirt.io` domain come from at least three
+  repositories, none of which pulls the others in as a Git submodule. The main
+  website (`kubevirt.io`, including the blog, labs, adopters, and community
+  pages) is a Jekyll site built from `kubevirt/kubevirt.github.io`. The user
+  guide (`kubevirt.io/user-guide`) is an MkDocs site built from
+  `kubevirt/user-guide`. The API reference (`kubevirt.github.io/api-reference`)
+  is generated into `kubevirt/api-reference` from the code in
+  `kubevirt/kubevirt`. Each repository is published independently by its own
+  Prow post submit job to its own `gh-pages` branch, and the website's
+  `pages/docs.md` is a one-line stub that simply links to the user guide.
+
+  User-facing documentation is also spread across code repositories. The `docs/`
+  directory of `kubevirt/kubevirt` contains about sixty files, including
+  `architecture.md`, `cloud-init.md`, and `getting-started.md`, several of which
+  cover topics the user guide also covers, and the user guide links out to
+  `kubevirt/kubevirt/docs/getting-started.md` in three places. Containerized
+  Data Importer documentation lives in the `doc/` directory of
+  `kubevirt/containerized-data-importer` (about forty files), and the user guide
+  links to it from six pages. Contributor and governance documentation lives in
+  `kubevirt/community`. A reader therefore encounters KubeVirt documentation on
+  GitHub in four repositories in addition to the two rendered websites.
+
+  There is a practical reason for the main split, but it is not written down.
+  The website and the user guide use different static-site generators (Jekyll
+  and MkDocs), have different maintainers listed in their `OWNERS` files, and
+  target different audiences (marketing and community versus operators and
+  users), so keeping them in separate repositories avoids coupling their
+  toolchains. Within the user guide itself, sourcing is clean: all content is
+  Markdown under `docs/`, navigation is declared in `.nav.yml` files, and
+  redirects are declared in `mkdocs.yml`. Neither repository's README or
+  contributing guide explains the division of content between the website, the
+  user guide, and the code repositories' `docs/` directories, so contributors
+  have to infer where a new page belongs.
+
+#### Comment
+
+KubeVirt does not meet the single-source requirement as the CNCF criteria define
+it. The pages a visitor sees under `kubevirt.io` are built from three separate
+repositories with three separate publish pipelines, and user-facing
+documentation is additionally scattered across the `docs/` directories of the
+core and CDI code repositories. The split between the website and the user guide
+is defensible, since the two use different generators and serve different
+audiences, but that rationale is undocumented, and the overlap between
+`kubevirt/kubevirt/docs` and the user guide is not a design decision so much as
+an accumulation. Contributors have no written guidance on which repository a new
+page belongs in, and readers can land on developer-oriented Markdown in the core
+repository that duplicates or contradicts the user guide.
+
+The user guide itself is a well-behaved single source: one `docs/` tree,
+explicit navigation files, and a redirect map for moved pages. That makes it the
+natural home for consolidating user-facing content that currently lives
+elsewhere, and the existing cross-links from the guide to
+`kubevirt/kubevirt/docs` and to the CDI repository identify exactly which
+content is a candidate to move.
+
+Strengths:
+
+- The user guide keeps all of its content in one `docs/` tree with declarative
+  navigation and redirects.
+- Each repository has one clear publish path, so there is no duplicate
+  deployment of the same content.
+- The website's docs page defers to the user guide rather than hosting a
+  parallel copy.
+
+Weaknesses:
+
+- Website, user guide, and API reference are three repositories with no
+  submodule or other mechanism tying them together.
+- The `kubevirt/kubevirt/docs` directory holds about sixty files that overlap
+  with user guide topics, and the guide links into it for getting-started
+  content.
+- CDI documentation lives in the CDI repository, and the guide links to it from
+  six pages.
+- No README or contributing guide explains which content belongs in which
+  repository, or why the split exists.
+
+Rating: 2 - Needs improvement
+
+### Website requirements
 
 Listed here are the minimal website requirements for projects based on their
-[maturity level][maturity-level], either incubating or graduated. (These are the
-only two levels for which a tech docs analysis can be requested.)
+[maturity level][maturity-level], either incubating or graduated. These are the
+only two levels for which a tech docs analysis can be requested. We evaluate on
+the following:
+
+- Are most of the applicable CNCF Website
+  Guidelines(https://deploy-preview-358--cncf-techdocs.netlify.app/docs/website-guidelines-checklist/)
+  satisfied?
 
 <!-- markdownlint-disable line-length -->
 
@@ -1782,101 +1831,155 @@ only two levels for which a tech docs analysis can be requested.)
 
 <!-- markdownlint-enable line-length -->
 
-[git-submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
-[maturity-level]:
-  https://github.com/cncf/toc/tree/main/process#ii-stages---definitions--expectations
-[cncf-servicedesk]: https://servicedesk.cncf.io
+#### Comment
 
-#### Usability, accessibility and devices
+### Usability, accessibility and devices
 
 Most CNCF websites are accessed from mobile and other non-desktop devices at
 least 10-20% of the time. Planning for this early in your website's design will
-be much less effort than retrofitting a desktop-first design.
+be much less effort than retrofitting a desktop-first design. We evaluate on the
+following:
 
 - Is the website usable from mobile?
 
-  Yes. The live pages include a responsive viewport meta tag
-  (`width=device-width,initial-scale=1`), and the Material for MkDocs theme is
-  mobile-first and responsive, so the layout adapts to small screens.
+  Yes. The user guide uses mkdocs-material, which is responsive by default, and
+  every page carries a `width=device-width, initial-scale=1` viewport meta tag.
+  On narrow screens the header collapses to a hamburger drawer that contains the
+  section navigation, the page's table of contents, and the search entry point,
+  and the footer offers previous and next page links. A light and dark color
+  scheme toggle is available.
+
+  Two content patterns reduce mobile usability. The site's `extra.css` sets
+  `.md-typeset table:not([class])` to `display: table; width: max-content`,
+  which forces wide tables such as the Arm64 feature-gate and device status
+  pages to their natural width. Whether they remain horizontally scrollable
+  depends on Material's JavaScript table wrapper; this needs verification on a
+  device. Separately, 531 non-table lines in the source exceed 140 characters,
+  most of them single-line commands and YAML in code blocks, which require
+  horizontal scrolling on phones. The 3,000-line Release Notes page is a single
+  document and is slow to load and scroll on mobile.
 
 - Are doc pages readable?
 
-  Yes. Pages use the theme's clean Roboto typography, clear heading hierarchy,
-  an in-page table of contents, admonitions, and syntax-highlighted code blocks,
-  all of which support comfortable reading on the documentation site.
+  Yes, in the main. Material's typography, line length, and spacing are used
+  unmodified apart from a slightly larger, teal-colored section label in the
+  sidebar on wide screens and a light border on inline code. Pages use a single
+  `h1` and a sensible heading hierarchy (`h2` through `h5` on Live Migration),
+  admonitions are used for notes and warnings on newer pages, and footnotes and
+  permalinks are enabled.
+
+  Readability varies with page age. Older pages such as Installation, Lifecycle,
+  and Disks and Volumes present commands as indented blocks with `$` prompts and
+  mix command and output in one block, which is harder to scan than the fenced,
+  language-tagged blocks on newer pages. The Architecture page conveys its
+  central "stack" diagram as ASCII art in a preformatted block, and several long
+  pages (Live Migration at 500 lines, Disks and Volumes at over 1,300 lines,
+  Interfaces and Networks at about 700 lines) have no in-page summary or
+  grouping beyond the table of contents.
 
 - Are all / most website features accessible from mobile -- such as the top-nav,
   site search and in-page table of contents?
 
-  Yes. The primary navigation (rendered as tabs on desktop) collapses into a
-  mobile drawer, site search is present (`md-search`), and the in-page table of
-  contents is available. All are exposed with descriptive ARIA labels (for
-  example, "Header," "Navigation," "Search," "Table of contents," and "Tabs"),
-  so the key features remain reachable on mobile.
+  Yes. Material moves the top-level tabs into the drawer on mobile, the search
+  icon opens a full-screen search overlay, and the in-page table of contents
+  appears inside the drawer under the current page. The Welcome, Architecture,
+  Quickstarts, Release Notes, and Contributing pages hide the navigation sidebar
+  via front matter (`hide: navigation`), so on those pages the drawer shows only
+  the table of contents; the section list on the Welcome page is prose rather
+  than links, so a mobile reader must open the drawer to move into a section.
 
 - Are color contrasts significant enough for color-impaired readers?
 
-  Partially, and this is the area's weakest point. The brand teal used as the
-  primary color (`--md-primary-fg-color: #0db2b6`, set in
-  `docs/stylesheets/extra.css`) provides only about a 2.6:1 contrast ratio with
-  the white header text, which is below the WCAG AA threshold of 4.5:1 for
-  normal text and even below the 3:1 threshold for large text. Body links are
-  darkened with `filter: brightness(80%)`, which improves them to roughly 3.96:1
-  but still falls short of the 4.5:1 AA requirement for normal text. Contrast
-  therefore needs improvement for color-impaired readers.
+  Mostly, with one clear failure. The site overrides Material's teal palette
+  with a custom primary color, `#0db2b6`. White text on that color, which is how
+  the header bar, tabs, and site title render, has a contrast ratio of about
+  2.6:1, below the WCAG AA minimum of 4.5:1 for normal text and 3:1 for large
+  text. Body links use the primary color darkened to 80 percent brightness
+  (about `#0a8e92`), giving roughly 3.96:1 on white, which passes for large text
+  but not for normal body text. The sidebar section labels (`#00797f`, 5.2:1)
+  and the accent color (`#006166`, 7.2:1) pass.
+
+  The site does not rely on color alone. Active tabs are underlined as well as
+  colored, links are distinguished by color and hover underline, and admonitions
+  carry icons and titles in addition to colored borders. The dark scheme uses
+  the same primary color, so the header contrast issue persists in dark mode
+  while link contrast improves slightly (about 4.06:1 on the slate background).
 
 - Are most website features usable using a keyboard only?
 
-  Yes. The page includes a "Skip to content" link (`md-skip`), and the Material
-  theme provides full keyboard navigation and search keyboard shortcuts, so the
-  main features can be operated without a mouse.
+  Yes. Material provides a "Skip to content" link as the first focusable
+  element, the search field is reachable by Tab and by the `/` or `s` shortcut,
+  search results are navigable with arrow keys, and the navigation drawer, table
+  of contents, tabs, color toggle, and previous and next links are standard
+  focusable controls. The rendered page contains 47 `aria-label` attributes on
+  controls. The site adds no custom JavaScript that would trap or hide focus.
+  Code blocks have no copy button, so there is nothing to reach; enabling one
+  would add a keyboard-accessible control.
 
 - Does text-to-speech offer listeners a good experience?
 
-  Largely yes. The document declares its language (`<html lang="en">`), uses
-  semantic landmarks and ARIA labels, provides a skip link, and every image in
-  the documentation carries non-empty alt text (25 markdown images, none with
-  empty alt, and no raw `<img>` tags lacking `alt`). These give screen readers
-  and text-to-speech tools a solid foundation, though the ongoing quality of alt
-  text and heading order depends on authors.
+  Partially. Pages declare `lang="en"`, use real headings for structure, and
+  label controls with ARIA attributes, so a screen reader can announce structure
+  and navigate by heading. The two images on the Windows Virtio Drivers page
+  have descriptive alt text ("Choose driver", "Install driver", and so on).
 
-##### Comment
+  Content patterns work against listeners. The Architecture page's ASCII stack
+  diagram will be read as a stream of plus signs, pipes, and tildes with no
+  textual equivalent. Indented code blocks with `$` prompts are announced as
+  "dollar" before each command. Long YAML manifests and `kubectl` output tables
+  are read line by line with no summary of what they show. The logo image's alt
+  text is "logo" rather than "KubeVirt". Wide status tables (for example the
+  Arm64 feature-gate table with a status column per gate) are readable but
+  tedious without a caption or summary row.
 
-The KubeVirt user guide is highly usable and, for the most part, accessible,
-thanks to its Material for MkDocs foundation. The site is responsive and works
-well on mobile: it sets a proper viewport, collapses the top navigation into a
-mobile drawer, and keeps site search and the in-page table of contents reachable
-on small screens. Pages are readable, with clean typography, clear heading
-structure, and syntax-highlighted code, so readers can move through technical
-content comfortably on any device.
+#### Comment
 
-Accessibility support is strong at the structural level. The document declares
-its language, exposes semantic landmarks and descriptive ARIA labels (Header,
-Navigation, Search, Table of contents, Tabs), and provides a "Skip to content"
-link, all of which help keyboard and screen-reader users. Keyboard-only
-operation is well supported through the theme's navigation and search shortcuts.
-Text-to-speech users are also well served: every image in the documentation
-carries non-empty alt text, and there are no raw image tags missing an `alt`
-attribute.
+The KubeVirt user guide inherits a solid usability and accessibility baseline
+from mkdocs-material. The site is responsive, the navigation, search, and table
+of contents all work from a mobile drawer, keyboard users get a skip link,
+search shortcuts, and standard focusable controls, and pages declare a language
+and use a proper heading hierarchy. The project has customized the theme lightly
+and, apart from color, has not undermined these defaults. Dark mode is available
+and previous and next links help linear reading.
 
-The clear weak point is color contrast. The brand teal used as the primary color
-(`#0db2b6` in `docs/stylesheets/extra.css`) yields only about 2.6:1 against the
-white header text, which fails the WCAG AA requirement of 4.5:1 for normal text
-and even the 3:1 threshold for large text. Body links, darkened with
-`filter: brightness(80%)`, reach roughly 3.96:1 but still fall short of 4.5:1.
-This affects color-impaired and low-vision readers most, and it is the single
-most impactful fix in this area.
+The one clear defect is color contrast. The custom teal primary color produces
+white-on-teal header and tab text at roughly 2.6:1 and body links at roughly
+4:1, both below WCAG AA for normal text. This affects every page and is a
+one-line CSS change to fix. The remaining issues are in content rather than the
+platform: the Architecture page's central diagram is ASCII art with no textual
+equivalent, older pages use `$`-prefixed indented code blocks that read poorly
+on screen readers and scroll horizontally on phones, several pages exceed 500
+lines without internal grouping, and wide status tables and long command lines
+depend on horizontal scrolling on small screens. The `width: max-content` table
+override in `extra.css` should be verified on a real device to confirm tables
+still scroll rather than overflow the viewport.
 
-Addressing contrast would be straightforward and high value: darken the primary
-teal (or the text placed on it) until header text and links meet WCAG AA, and
-verify the result in both the light and dark schemes. To sustain accessibility
-over time, maintainers could add an automated contrast and accessibility check
-to the build and keep encouraging descriptive alt text and correct heading order
-in new pages.
+Strengths:
 
-Rating: 4 - Meets or exceeds standards
+- Responsive mkdocs-material theme with viewport meta, mobile drawer navigation,
+  full-screen search, and in-drawer table of contents.
+- Skip-to-content link, search keyboard shortcuts, and ARIA-labeled controls out
+  of the box.
+- `lang="en"`, single `h1`, and consistent heading hierarchy on pages.
+- Light and dark schemes with a toggle; active tabs underlined as well as
+  colored.
+- Descriptive alt text on the Windows driver screenshots.
 
-#### Branding and design
+Weaknesses:
+
+- Header and tab text on the custom teal primary color fails WCAG AA (about
+  2.6:1); body links are borderline (about 4:1).
+- The Architecture stack diagram is ASCII art with no text alternative.
+- Older pages use `$`-prefixed indented code blocks mixed with output.
+- Very long pages (Disks and Volumes, Interfaces and Networks, Live Migration,
+  Release Notes) with no internal grouping.
+- Wide tables and 500-plus long code lines require horizontal scrolling on
+  mobile; the `max-content` table override needs device verification.
+- Logo alt text is "logo" rather than the project name; no code copy button.
+
+Rating: 3 - Meets standards
+
+### Branding and design
 
 CNCF seeks to support enterprise-ready open source software. A key aspect of
 this is branding and marketing. We evaluate on the following:
@@ -1884,75 +1987,108 @@ this is branding and marketing. We evaluate on the following:
 - Is there an easily recognizable brand for the project (logo + color scheme)
   clearly identifiable?
 
-  Yes. The KubeVirt logo, a teal heptagon enclosing a stylized "V," is displayed
-  in the site header and configured through
-  `theme.logo: assets/KubeVirt_icon.png`, with matching favicons
-  (`assets/favicon.ico` and `assets/favicon32x32.png`) in `mkdocs.yml`. The
-  color scheme reinforces the logo: the Material theme uses a teal palette, and
-  `docs/stylesheets/extra.css` pins the exact brand colors
-  (`--md-primary-fg-color: #0db2b6` and `--md-accent-fg-color: #006166`).
-  Together the logo and teal palette make the project brand clearly identifiable
-  on every page.
+  Yes. The KubeVirt user guide displays the project's teal heptagon logo
+  (`docs/assets/KubeVirt_icon.png`) in the site header and uses it for the
+  favicon (`favicon32x32.png`). The `mkdocs.yml` theme configuration selects the
+  Material `teal` palette for both the light and dark color schemes, and
+  `docs/stylesheets/extra.css` pins the primary color to `#0db2b6` and the
+  accent color to `#006166`. Navigation section labels in the sidebar use a
+  third brand tone, `#00797f`.
+
+  The colors come from the same family the main `kubevirt.io` website defines in
+  `_sass/_colors.scss` as `$kv-color--green-300` through `$kv-color--green-700`
+  (for example, `#00797f` and `#006166`). The logo mark itself is distinctive
+  and is the only mark used in the guide's chrome, so a reader landing on any
+  page can identify the site as KubeVirt immediately.
 
 - Is the brand used across the website consistently?
 
-  Within the user guide, yes. The teal palette is applied globally through the
-  Material theme and `extra.css`, so the primary and accent colors are
-  consistent across all pages and are defined for both the light (`default`) and
-  dark (`slate`) schemes. The logo appears in the header site-wide, and section
-  labels in the navigation are given a coordinated teal tone (`#00797f`). One
-  caveat is that the user guide is a MkDocs Material site, while the main
-  `kubevirt.io` website is a separate property with its own styling, so the two
-  share the logo and general color family but do not share an identical look and
-  feel.
+  Yes, within the user guide. Logo, favicon, and palette are set once at the
+  theme level, so every page renders the same header, colors, and active-tab
+  underline without any per-page effort from authors. The dark scheme reuses the
+  same teal primary and accent values, so switching modes keeps the brand
+  intact.
+
+  Consistency across the project's two web properties is partial. The main
+  `kubevirt.io` site is a Jekyll and Bootstrap site that uses the horizontal
+  wordmark `KubeVirt_logo_color.svg`, the Open Sans typeface, and a fully
+  documented SCSS color scale, while the user guide uses the square icon-only
+  mark, Roboto, and three hand-copied hex values. The two sites share the color
+  family and logo mark but differ in logo variant, typography, header layout,
+  and footer, so the transition between them is noticeable. The user guide's
+  `mkdocs.yml` defines no `extra.social` links or `copyright` footer, and the
+  `docs/assets` directory still contains legacy assets from a previous site
+  generator (`asciibinder-logo-horizontal.png`, `asciibinder_web_logo.svg`,
+  `book_pages_bg.jpg`) that are not referenced by any page.
 
 - Is the website's typography clean and well-suited for reading?
 
-  Yes. The guide does not override the theme fonts, so it inherits the Material
-  theme's default typeface (Roboto for body text and Roboto Mono for code),
-  which is a clean, legible sans-serif well-suited to on-screen reading.
-  Headings, body copy, tables, and code blocks are styled consistently by the
-  theme, code uses monospaced type with syntax highlighting, and tables are set
-  to full width (`min-width: 100%`) for readability. The custom
-  `filter: brightness(80%)` applied to links slightly darkens link text, which
-  is a minor contrast consideration but does not materially harm readability.
+  Yes. The guide does not override the Material theme fonts, so it inherits
+  Roboto for body text and Roboto Mono for code, loaded from Google Fonts.
+  Headings, body copy, admonitions, tables, and syntax-highlighted code blocks
+  all use these two faces at Material's default sizes and line heights, which
+  are tuned for long-form technical reading. Inline code receives a light `1px`
+  border from `extra.css`, which helps distinguish identifiers from prose.
 
-##### Comment
+  Two custom rules affect readability.
+  `.md-nav a, .md-typeset a { filter: brightness(80%); }` darkens all link text,
+  including links inside the dark scheme, and its effect on contrast has not
+  been verified. `.md-typeset table:not([class]) { width: max-content; }` lets
+  wide tables extend past the content column and rely on horizontal scrolling,
+  which is useful for the many API-field tables but can crowd narrow view ports.
+  Typography differs from the main site, which uses Open Sans at a 16px base.
 
-The KubeVirt user guide presents a clear and recognizable brand. The project's
-teal heptagon logo appears in the site header, and the Material theme is
-configured with a teal palette that is anchored to the exact brand colors in
-`docs/stylesheets/extra.css` (`#0db2b6` primary and `#006166` accent). Because
-these colors are defined at the theme level, the brand identity carries across
-every page rather than depending on individual authors, which is the right
-approach for a documentation site.
+#### Comment
 
-Brand usage is consistent within the guide. The palette is defined for both the
-light and dark color schemes, the logo and favicons are set globally, and
-navigation section labels use a coordinated teal tone. The main point of
-friction is cross-property consistency: the user guide is a MkDocs Material
-site, while the primary `kubevirt.io` website is a separate property with its
-own styling. The two share the logo and color family but not an identical look
-and feel, so a reader moving between them will notice the shift. Documenting a
-small set of shared brand values (hex colors, logo files, and font choices)
-would help keep the properties aligned over time.
+The KubeVirt user guide has a clear, recognizable identity. The teal heptagon
+mark, the teal Material palette pinned to the project's own hex values, and the
+coordinated sidebar label color together make every page unmistakably KubeVirt.
+Because the branding is configured once in `mkdocs.yml` and
+`docs/stylesheets/extra.css` rather than in individual pages, it stays
+consistent across the roughly one hundred pages of the guide and across the
+light and dark schemes without any effort from content authors. This is the
+right model for a documentation site and is worth pointing to as an example.
 
-Typography is clean and well-suited for reading. By not overriding the theme
-fonts, the guide inherits Material's default Roboto and Roboto Mono, which are
-legible on screen and applied consistently to headings, body text, tables, and
-syntax-highlighted code. One minor design choice worth revisiting is the
-`filter: brightness(80%)` rule applied to links, which darkens link text and
-could reduce contrast in some contexts; verifying it against accessibility
-contrast targets would remove any doubt.
+The main gap is that KubeVirt's brand is expressed in two different ways on its
+two web properties. The main `kubevirt.io` site carries a documented SCSS color
+scale, the horizontal wordmark, and Open Sans; the user guide carries three
+copied hex values, the square icon, and Roboto. The colors are from the same
+family, so nothing looks wrong, but there is no single source of truth for the
+brand, and the guide's header and footer give the reader no visual or
+navigational cue that it belongs to the larger site. Unused assets from a
+previous site generator also remain in the repository.
 
-Overall, the branding and design are in good shape: the brand is identifiable,
-applied consistently within the guide, and paired with readable typography. The
-main opportunities are cross-site brand alignment and a quick contrast check of
-the customized link styling.
+Typography is clean and well-suited to reading long technical pages, with a
+sensible pairing of proportional and monospaced faces and good default spacing.
+The only design choices worth a second look are the small custom CSS rules that
+darken all links and let tables grow to their natural width, since both trade a
+little readability for a stylistic or layout effect.
+
+Strengths:
+
+- Distinctive logo mark and brand colors applied at the theme level, so branding
+  is uniform on every page.
+- Light and dark schemes share the same brand palette.
+- Default Material typography (Roboto and Roboto Mono) is legible and
+  consistently applied to prose, tables, and code.
+- Brand colors match the color family the main website defines, so the two
+  properties feel related.
+
+Weaknesses:
+
+- The user guide and `kubevirt.io` use different logo variants, typefaces, and
+  header and footer treatments, with no shared brand definition to keep them
+  aligned.
+- The guide's header and footer contain no link back to `kubevirt.io` or to the
+  project's community channels.
+- The `filter: brightness(80%)` link rule and the `max-content` table rule have
+  not been checked for contrast and small-viewport behavior.
+- Legacy logos and a background image remain in `docs/assets` without being
+  used.
 
 Rating: 4 - Meets or exceeds standards
 
-#### Case studies/social proof
+### Case studies/social proof
 
 One of the best ways to advertise an open source project is to show other
 organizations using it. We evaluate on the following:
@@ -1960,77 +2096,119 @@ organizations using it. We evaluate on the following:
 - Are there case studies available for the project and are they documented on
   the website?
 
-  There are case studies available for KubeVirt, but they are not documented on
-  the project website. The kubevirt.io navigation includes Blogs, Videos,
-  Gallery, Docs, Labs, and Community, but it has no dedicated case studies
-  section.
+  Partially. Two CNCF-published end-user case studies feature KubeVirt: NTT
+  Docomo Business and Swisscom, both at `cncf.io/case-studies`. Neither the
+  `kubevirt.io` website nor the user guide links to them, so a visitor to either
+  property has no way to discover them. The `kubevirt.io` landing page and the
+  `ADOPTERS.md` file in the `kubevirt/kubevirt` repository also invite
+  contributors to submit "blog posts, case studies, or labs", and the user
+  guide's `contributing.md` repeats that invitation, but the website has no
+  case-study section or category and no blog post is tagged or titled as a case
+  study.
 
-  Case studies live on external sites instead, such as the CNCF Swisscom case
-  study and third-party write-ups like Puzzle ITC's continuous integration
-  story. Because these are not linked from or hosted on kubevirt.io, a visitor
-  cannot find them from the project website.
+  The closest thing to project-hosted case studies is the `ADOPTERS.md` table,
+  which lists roughly 44 organizations across three types (End-user,
+  Integration, Vendor) with a "Since" year and a one- to three-sentence
+  "Use-Case" column. Several entries, such as Cloudflare, CoreWeave, NVIDIA, SK
+  Telecom, and S3NS, describe concrete production uses. This text is only in the
+  GitHub repository; the website reads the same organizations from
+  `_data/adopters.yml` but renders only logos and links, dropping the use-case
+  descriptions.
 
 - Are there user testimonials available?
 
-  Not evident. The website lists adopting organizations by logo, but there are
-  no quoted testimonials from users describing their experience or outcomes. The
-  user guide does not include or reference testimonials.
+  No, not in the form of attributed quotes on the website. The "Use-Case"
+  statements in `ADOPTERS.md` are written by the adopters in the first person
+  ("We use KubeVirt as part of our ...") and function as informal testimonials,
+  but they are not surfaced on `kubevirt.io` or in the user guide. The website's
+  Interviews video playlist contains community and contributor interviews rather
+  than customer testimonials.
 
 - Is there an active project blog?
 
-  Yes. The `kubevirt.io` site maintains an active blog with regular posts;
-  recent entries are dated 2026 (for example, "Beta Features Enabled by Default
-  in KubeVirt v1.9" and "Announcing the release of KubeVirt v1.8"), covering
-  releases, features, and technical topics. The blog lives on the main site; the
-  user guide links to release notes but does not link directly to the blog.
+  Yes, at `kubevirt.io/blogs`, with about 106 posts plus 24 "This Week in
+  KubeVirt" digests and a set of release announcements. Cadence has slowed
+  markedly: 24 to 25 posts per year in 2018 and 2019, 20 in 2020, 6 to 8 per
+  year from 2021 to 2023, 2 in 2024, 6 in 2025, and 3 so far in 2026 (most
+  recently September 2026). Recent posts are substantive (the v1.8 release, beta
+  features on by default in v1.9, a security audit announcement, cross-cluster
+  live migration networking). Categorization is thin: 92 posts are in the `news`
+  category, 12 in `uncategorized`, and tags are used inconsistently, so there is
+  no way to filter for adoption or user-story content.
 
 - Are there community talks for the project and are they present on the website?
 
-  Yes. The `kubevirt.io/videos/` page organizes community talks into curated
-  YouTube playlists, including Talks, Demos, Interviews, and the annual KubeVirt
-  Summit, alongside recorded community meetings. This content is well organized
-  on the main site, but the user guide does not surface or link to it.
+  Yes. The `kubevirt.io/videos` section has pages for Talks, Demos, Interviews,
+  KubeVirt Summit, and Weekly Meetings, each embedding a curated YouTube
+  playlist. The Summit page links per-year playlists for five past editions and
+  advertises the sixth annual KubeVirt Summit in October 2The following
+  recommendations address the SEO Analytics and Site Search of the KubeVirt user
+  guide.026 with its CfP dates. The Talks page also points to the community
+  Events wiki for upcoming CfPs and conference sessions. The user guide's
+  `contributing.md` links only to the New Contributor session recording; nothing
+  in the user guide points to the talks, demos, or Summit content.
 
 - Is there a logo wall of users/participating organizations?
 
-  Yes. The website homepage features a prominent logo wall grouped into End
-  Users (such as Arm, Aussie Broadband, Cloudflare, CoreWeave, and NVIDIA),
-  Vendors (such as Deckhouse, Microsoft, Oracle, Red Hat, and SUSE), and
-  Integrations. The user guide does not display or link to this logo wall.
+  Yes. The `kubevirt.io` landing page renders three logo walls ("End Users",
+  "Vendors", and "Integrations") from `_data/adopters.yml`, which is generated
+  by `adopters.py` and kept in sync with `ADOPTERS.md` through a documented
+  two-step PR process. Each logo links to the organization's site and shows the
+  name in a tooltip. The wall shows who uses KubeVirt but not how or why,
+  because the use-case text is not carried over. The user guide does not display
+  or link to the logo wall.
 
-##### Comment
+#### Comment
 
-KubeVirt has a strong base of community and adoption content, though it lives on
-the main `kubevirt.io` website rather than in the user guide. The website
-maintains an active blog with recent posts dated 2026, organizes community talks
-into curated YouTube playlists (Talks, Demos, Interviews, and the annual
-KubeVirt Summit), and presents an extensive logo wall of adopting organizations
-grouped into End Users, Vendors, and Integrations. These are clear signals of a
-healthy, active project and provide good social proof for prospective users.
+KubeVirt has more adoption evidence than its websites show. The project
+maintains a curated adopters list with first-person use-case statements from
+well-known production users, publishes talks, demos, interviews, and five years
+of Summit recordings, keeps a blog that still produces substantive release and
+feature posts, and is featured in two CNCF-published end-user case studies. The
+logo wall and video section on `kubevirt.io` are well organized and clearly
+signal an active, widely adopted project.
 
-The main gaps are dedicated case studies and user testimonials. The adopter logo
-walls show who uses KubeVirt but do not explain how or why, and there are no
-quoted testimonials describing real-world outcomes. Narrative case studies, even
-a small number, would help prospective adopters understand practical use cases,
-migration paths, and the benefits organizations have realized. These carry
-particular weight for an infrastructure project where adoption decisions are
-significant.
+The weakness is that the most persuasive material is disconnected from where
+prospective users look. The CNCF case studies are not linked from either
+property, the adopter use-case statements live only in a GitHub Markdown table
+while the website shows bare logos, and no blog category or page collects user
+stories. The result is that the project appears to have a logo wall and a blog
+but no case studies or testimonials, when in fact it has the raw material for
+both. Blog cadence has also fallen from about two posts a month to a handful a
+year, and the flat `news` category makes the archive hard to browse by theme.
 
-From the user guide's perspective, the more immediate issue is discoverability.
-The guide is technical documentation and does not link to the blog, community
-talks, or adopter logo wall at all. A reader who lands in the user guide has no
-easy path to this adoption and community content, even though it exists one site
-over. Adding a few targeted links, for example from the landing page or a
-"Community" or "Adopters" entry, would connect readers to material that builds
-confidence in the project.
+From the user guide's side, the gap is discoverability. The guide is where
+evaluators end up when they want to know whether KubeVirt fits their
+environment, yet its landing page and navigation contain no link to adopters,
+case studies, talks, or the blog. Only `contributing.md` mentions the website's
+community content, and it frames it as a place to contribute rather than a place
+to learn.
 
-Overall, the project scores well on blog, talks, and a logo wall, but lacks true
-case studies and testimonials, and the user guide does not surface the adoption
-content that already exists. Closing those gaps would round out this area.
+Strengths:
+
+- Curated adopters list with a "Since" year and first-person use-case text for
+  roughly 44 organizations, including major production users.
+- Three-category logo wall on the landing page, kept in sync with `ADOPTERS.md`
+  through a documented process.
+- Video section with separate Talks, Demos, Interviews, Summit, and Weekly
+  Meetings playlists, plus an annual Summit with a public CfP.
+- Blog posts remain technically substantive when published.
+
+Weaknesses:
+
+- Two CNCF case studies featuring KubeVirt are not linked from `kubevirt.io` or
+  the user guide.
+- Adopter use-case statements are dropped when the adopters list is rendered as
+  a logo wall.
+- No attributed testimonials, case-study page, or blog category for user
+  stories.
+- Blog cadence has declined sharply since 2020 and categorization is nearly
+  flat.
+- The user guide does not link to adopters, case studies, talks, or the blog.
 
 Rating: 3 - Meets standards
 
-#### SEO, Analytics and site-local search
+### SEO, Analytics and site-local search
 
 SEO helps users find your project and it's documentation, and analytics helps
 you monitor site traffic and diagnose issues like page 404s. Intra-site search,
@@ -2039,93 +2217,121 @@ evaluate on the following:
 
 - Is analytics enabled for the production server?
 
-  No. The user guide's `mkdocs.yml` has no `extra.analytics` configuration, and
-  the live production pages contain no analytics tags (no Google Analytics,
-  Google Tag Manager, or measurement ID). The main `kubevirt.io` homepage
-  likewise shows no analytics tags. This appears consistent with the project's
-  privacy stance, but it means no usage analytics are collected.
+  Partially. The main website (kubevirt.io, built from the kubevirt.github.io
+  repository) loads Adobe Analytics through a Red Hat–hosted tag script
+  (`//www.redhat.com/ma/dpal.js`) in `_includes/head.html`, so page views on the
+  main site are collected. The user guide (kubevirt.io/user-guide, built from
+  this repository with MkDocs) has no analytics of any kind: `mkdocs.yml`
+  contains no `extra.analytics` block, and the rendered pages load only the
+  Material theme bundle. The main site also carries a `google-site-verification`
+  meta tag, indicating that Google Search Console is set up for the domain.
 
 - Is analytics disabled for all other deploys?
 
-  Not applicable in practice. Because no analytics is configured anywhere, it is
-  inherently absent from pull-request previews and non-default branch builds as
-  well. The intended "production-only analytics" pattern cannot be assessed
-  since there is no analytics to scope.
+  No for the main site; not applicable for the user guide. The Adobe Analytics
+  script is included unconditionally in the main site's `head.html`, with no
+  check on the Jekyll environment or the Netlify deploy context, so it also runs
+  on Netlify deploy previews and local builds. The user guide has no analytics
+  in any deploy, including the Netlify production alias
+  (`kubevirt-user-guide.netlify.app`) and pull-request previews.
 
 - If project is using Google Analytics, has it migrated to GA4?
 
-  Not applicable. The project does not use Google Analytics on the user guide,
-  so there is no Universal Analytics or GA4 property in use to migrate.
+  Not applicable. The project uses Adobe Analytics rather than Google Analytics,
+  so there is no Universal Analytics property to migrate. No `G-` or `UA-`
+  measurement ID appears in either repository or in the rendered pages.
 
 - Can Page-not-found (404) reports easily be generated from site analytics?
 
-  No. Material for MkDocs generates a `404.html` page, but without any analytics
-  in place there is no mechanism to report on 404 hits or generate not-found
-  reports from site analytics.
+  Not for the user guide, because it has no analytics; broken inbound links to
+  the user guide are invisible. Both sites do serve proper 404 responses (the
+  user guide returns HTTP 404 with the Material theme's not-found page, and the
+  main site has a custom `404.html`), so a 404 report would be possible if
+  page-level analytics were collecting the URL. For the main site, whether a 404
+  report is available depends on the Adobe Analytics workspace that Red Hat
+  administers, and nothing in the repositories documents how to obtain one.
 
 - Is site indexing supported for the production server, while disabled for
   website previews and builds for non-default branches?
 
-  Partially. Production indexing is supported: a site-wide `robots.txt` is
-  served (returning 200) with a `Sitemap` directive and no `Disallow` rules,
-  MkDocs generates a `sitemap.xml`, and pages carry no `noindex` meta tag.
-  Pull-request previews are built on Netlify, whose deploy-preview and
-  branch-deploy subdomains are served with a `noindex` `X-Robots-Tag` by
-  Netlify's default behavior; however, this preview-noindex behavior is not
-  explicitly configured in `netlify.toml`, so it relies on the platform default
-  rather than an intentional project setting. One minor SEO defect is that the
-  `robots.txt` Sitemap URL contains a double slash
-  (`https://kubevirt.io//sitemap.xml`).
+  Indexing is supported in production. The main site generates a sitemap with
+  `jekyll-sitemap`, and MkDocs generates
+  `https://kubevirt.io/user-guide/sitemap.xml`, which resolves with HTTP 200.
+  Each user-guide page sets a canonical link to
+  `https://kubevirt.io/user-guide/...` because `site_url` is set in
+  `mkdocs.yml`, and the canonical is preserved on the Netlify alias, which
+  steers search engines to the production URL. The `robots.txt` at kubevirt.io
+  contains only a Sitemap directive (with a stray double slash,
+  `https://kubevirt.io//sitemap.xml`) and does not reference the user guide
+  sitemap. Neither repository sets a `noindex` meta tag or `X-Robots-Tag` header
+  for previews; the project relies on Netlify's default behavior of marking
+  deploy-preview URLs as `noindex`. The `netlify.toml` in this repository still
+  runs a `sed` command that rewrites `site_url: https://kubevirt.io/docs`, a
+  value that no longer exists in `mkdocs.yml`, so that step is a no-op.
 
 - Is local intra-site search available from the website?
 
-  Yes. The MkDocs `search` plugin is enabled in `mkdocs.yml` (with a customized
-  separator), and the Material theme provides the search box and results UI,
-  giving readers client-side, intra-site search across the user guide.
+  Yes for the user guide, and only partially for the main site. The user guide
+  enables the MkDocs Material `search` plugin with a custom token separator, and
+  the search box appears in the header on every page. The main site has a
+  `search.html` page backed by lunr.js, but its index is built only from
+  `site.posts`, so it covers blog posts and not the main site's other pages.
+  Neither search covers the other site; a user-guide search does not surface
+  blog or main-site content, and the main-site search does not surface
+  user-guide pages.
 
 - Are the current custodian(s) of the analytics accounts (such as Google CSE)
   documented?
 
-  No. No analytics or search-account custodians are documented in the
-  repository. Since no analytics account currently exists there is nothing to
-  attribute, but there is also no documented owner should analytics be
-  introduced.
+  No. Neither repository documents who administers the Adobe Analytics property,
+  the Netlify sites (`kubevirt-user-guide` and the main site), or the Google
+  Search Console verification. The `OWNERS` and `OWNERS_ALIASES` files list code
+  approvers and reviewers only, and the README mentions the Netlify Open Source
+  plan without naming an account owner. Because the analytics script is served
+  from redhat.com, access to the data appears to be held by Red Hat staff rather
+  than by the project, and that dependency is not recorded anywhere.
 
-##### Comment
+#### Comment
 
-The KubeVirt user guide handles site search and basic SEO well but has no
-analytics at all. Local intra-site search is enabled through the MkDocs `search`
-plugin and surfaced by the Material theme, giving readers fast client-side
-search across the documentation. For discoverability, the production site is
-indexable: a site-wide `robots.txt` is served with a `Sitemap` directive and no
-blocking rules, MkDocs generates a `sitemap.xml`, and pages carry no `noindex`
-tag. Pull-request previews are built on Netlify, whose preview subdomains are
-`noindex` by default, which keeps previews out of search results.
+The KubeVirt web presence splits across two sites with very different analytics
+postures. The main site collects data through a Red Hat–administered Adobe
+Analytics tag, while the user guide, which is the documentation users spend most
+of their time in, collects nothing. As a result the project has no visibility
+into which documentation pages are read, which searches fail, or which inbound
+links break. The main site's tag is also loaded on every deploy, so preview
+traffic is mixed into production numbers.
 
-The clear gap is analytics. Neither the user guide nor the main site includes
-any analytics tags, so there is no visibility into traffic, popular pages,
-search terms, or broken links. In particular, 404 reports cannot be generated
-from analytics, which makes it harder to find and fix broken inbound links over
-time. This absence appears consistent with the project's privacy posture, and
-that is a legitimate trade-off; but if the project wants data to guide
-documentation improvements, a privacy-respecting analytics option would fill an
-important blind spot.
+Search-engine fundamentals are in reasonable shape. Both sites produce sitemaps,
+the user guide emits correct canonical URLs even on its Netlify alias, and
+Google Search Console is verified for the domain. Local search works well in the
+user guide thanks to the MkDocs Material plugin, though the main site's lunr
+search indexes only blog posts and neither site can search the other. The
+biggest governance gap is that nobody is named as custodian of the analytics,
+Netlify, or Search Console accounts, and the project's dependence on a
+vendor-hosted analytics account is undocumented.
 
-If analytics is introduced, a few practices are worth adopting up front. Use a
-GA4 property (or a privacy-friendly alternative), enable it only on the
-production deploy while leaving previews and non-default branches untracked, and
-document the account custodians so ownership is clear as maintainers change.
-Configuring these through the theme rather than per page keeps the setup
-consistent.
+Strengths:
 
-Two smaller items round out the SEO picture: make the preview `noindex` behavior
-an explicit project setting rather than relying on the Netlify default, and fix
-the double slash in the `robots.txt` Sitemap URL
-(`https://kubevirt.io//sitemap.xml`).
+- Full-text local search in the user guide, with a tuned separator for technical
+  tokens.
+- Sitemaps for both sites and correct canonical links on user-guide pages.
+- Google Search Console verification on the production domain.
+- Proper HTTP 404 responses and custom not-found pages on both sites.
+
+Weaknesses:
+
+- No analytics on the user guide, so page-level usage and 404 data for
+  documentation are unavailable.
+- Main-site analytics run on previews and local builds as well as production.
+- Main-site search indexes blog posts only, and there is no cross-site search.
+- The `robots.txt` on kubevirt.io references a malformed sitemap URL and omits
+  the user-guide sitemap.
+- Custodians of the analytics, Netlify, and Search Console accounts are not
+  documented.
 
 Rating: 2 - Needs improvement
 
-#### Maintenance planning
+### Maintenance planning
 
 Website maintenance is an important part of project success, especially when
 project maintainers aren’t web developers. We evaluate on the following:
@@ -2134,212 +2340,355 @@ project maintainers aren’t web developers. We evaluate on the following:
   Docsy theme) or commonly used by CNCF projects?
 
   Yes. The user guide is built with MkDocs and the Material for MkDocs theme,
-  along with the `awesome-nav`, `redirects`, and `html-proofer` plugins (see
-  `mkdocs.yml`, `Makefile`, and `netlify.toml`). While this is not the Hugo and
-  Docsy stack named in the question, MkDocs Material is a mature, actively
-  maintained, and widely adopted documentation tool used across many CNCF and
-  Kubernetes-ecosystem projects, so the tooling is well supported. Note that the
-  main `kubevirt.io` website is a separate Jekyll site, so the project maintains
-  two different stacks.
+  plus the `mkdocs-awesome-nav` and `mkdocs-redirects` plugins. All four are
+  actively maintained, widely used open-source projects, and MkDocs Material in
+  particular is common among CNCF and Kubernetes-ecosystem projects. The main
+  website (kubevirt.io) is a Jekyll site with a hand-built Bootstrap 4 layout
+  and a dozen Jekyll plugins; Jekyll is mature and well supported but is less
+  common among CNCF projects than Hugo or Docusaurus, and the custom theme means
+  design changes fall entirely on the project. The two sites use different
+  static-site generators, so maintainers need to know both toolchains.
 
 - Is there active cultivating website maintainers from within the community?
 
-  Yes. The repository has an `OWNERS` file that defines reviewers and approvers
-  roles (via aliases) and lists emeritus approvers, and the project uses the
-  Kubernetes-style OWNERS model for delegating maintenance. Git history shows
-  sustained activity, with roughly 49 distinct authors contributing in the last
-  12 months and a steady stream of merged pull requests, indicating an active
-  and growing maintainer and contributor base.
+  Only informally. Both repositories have `OWNERS` files with active reviewer
+  and approver lists, and the main website's `OWNERS` file records emeritus
+  approvers with dates, which shows the roster is periodically pruned. The
+  website README explicitly invites UI/UX developers to pick up `kind/website`
+  issues, and the user guide README says contributions are welcome. However,
+  there is no documented path from contributor to website maintainer, and the
+  community `sig-list.md` shows a `sig/documentation` label with no chairs or
+  members. Commit history over the past year shows one person as the top human
+  committer in both repositories, with most other contributions coming from
+  feature authors documenting their own work or from Dependabot.
 
 - Are site build times reasonable?
 
-  Yes. MkDocs produces a static site of this size quickly, typically well under
-  a minute, and the build is a straightforward `mkdocs build`. Netlify builds
-  preview deployments for pull requests and the project's Prow-based CI builds
-  the site as well, so build times are reasonable for both previews and
-  production.
+  Yes. Both sites are built by a Prow post submit job that runs `make build` and
+  pushes the output to a `gh-pages` branch served by GitHub Pages. Comparing
+  commit timestamps on `main` with the corresponding post submit site update
+  commits on `gh-pages` shows the user guide is republished within about 40
+  seconds of a merge and the main website within about 90 seconds. Pull-request
+  previews for the user guide build on Netlify from a pinned `netlify.toml`
+  command that installs MkDocs with `pip` on every build. The `netlify.toml`
+  still contains a `sed` step that targets an obsolete `site_url` value and does
+  nothing, which is harmless but suggests the file has not been reviewed
+  recently.
 
 - Do site maintainers have adequate permissions?
 
-  Yes. Permissions are managed through the Kubernetes-style OWNERS model, where
-  designated approvers can approve and merge changes and reviewers can review.
-  The `OWNERS` file separates reviewers and approvers and records emeritus
-  approvers, giving maintainers the access they need while keeping the roles
-  documented.
+  Partly documented. Merging is governed by Prow and the `OWNERS` files, so
+  approvers can land content changes without additional access. Deployment is
+  fully automated through the `kubevirt-bot` account, which pushes to
+  `gh-pages`, so no maintainer needs push rights to the published branch. Access
+  to the supporting services is not documented: nothing in either repository
+  states who can administer the Netlify site (`kubevirt-user-guide`), the GitHub
+  Pages and custom-domain settings, DNS for kubevirt.io, or the Prow job
+  definitions in `kubevirt/project-infra`. Whether current approvers hold those
+  permissions cannot be determined from the repositories.
 
 - Is the website accessible via HTTPS?
 
-  Yes. Requesting `https://kubevirt.io/user-guide/` returns HTTP 200 over HTTPS.
+  Yes. Both `https://kubevirt.io/` and `https://kubevirt.io/user-guide/` are
+  served over HTTPS by GitHub Pages with a valid certificate for the custom
+  domain. The Netlify preview alias `https://kubevirt-user-guide.netlify.app/`
+  is also served over HTTPS.
 
 - Does HTTP access, if any, redirect to HTTPS?
 
-  Yes. Requesting `http://kubevirt.io/user-guide/` returns a 301 redirect to the
-  HTTPS URL, and the apex `http://kubevirt.io/` likewise 301-redirects to HTTPS.
+  Yes. Requests to `http://kubevirt.io/`, `http://www.kubevirt.io/`, and
+  `http://kubevirt.io/user-guide/` all return `301 Moved Permanently` to the
+  HTTPS equivalent (with `www` also collapsing to the bare domain), and the
+  Netlify alias redirects HTTP to HTTPS as well. The production responses do not
+  include a `Strict-Transport-Security` header, so browsers rely on the redirect
+  rather than HSTS to enforce HTTPS on repeat visits.
 
-##### Comment
+#### Comment
 
-The KubeVirt user guide is on a solid maintenance footing. It is built with
-MkDocs and the Material for MkDocs theme, supplemented by the `awesome-nav`,
-`redirects`, and `html-proofer` plugins. Although this differs from the Hugo and
-Docsy stack, MkDocs Material is a mature and widely adopted documentation
-toolchain used across the CNCF and Kubernetes ecosystems, so maintainers can
-rely on strong community support and a steady stream of upstream updates.
+The KubeVirt documentation infrastructure is low-maintenance by design and
+largely automated. The user guide runs on MkDocs Material, one of the most
+widely adopted documentation stacks in the cloud-native ecosystem, and both
+sites are published to GitHub Pages by a Prow job within a minute or two of
+merge. HTTPS is enforced everywhere, Netlify provides pull-request previews, and
+Dependabot keeps the Jekyll site's dependencies current. For a project of
+KubeVirt's size, the tooling choices are sensible and the deploy pipeline is
+fast and hands-off.
 
-Maintenance responsibility is clearly structured and actively exercised. The
-repository uses the Kubernetes-style OWNERS model, defining reviewers and
-approvers roles and recording emeritus approvers, which gives maintainers
-appropriate permissions to review and merge changes. The commit history reflects
-a healthy, cultivated community, with roughly 49 distinct authors in the last
-twelve months and a continuous flow of merged pull requests, so the guide is not
-dependent on a single maintainer.
+The risk lies in people rather than tooling. The two sites use different
+generators, so a maintainer must know both Jekyll and MkDocs, and the main
+site's hand-built Bootstrap theme has no upstream to inherit fixes from. Commit
+history shows the documentation effort leaning on a single active maintainer,
+the community's `sig/documentation` label has no chairs or members, and neither
+repository describes how someone grows into a website maintainer role or who
+holds the keys to Netlify, DNS, GitHub Pages settings, and the Prow job
+definitions. If that maintainer stepped away, the project would have working
+automation but no documented map of who can change it.
 
-The build and hosting setup is dependable. MkDocs builds this static site
-quickly, Netlify produces per-pull-request previews, and the project's
-Prow-based CI builds the site as well. The site is served securely: HTTPS
-returns a 200 response, and HTTP requests are 301-redirected to HTTPS for both
-the user guide path and the apex domain. These are exactly the properties one
-wants for low-friction, secure maintenance.
+Strengths:
 
-The main opportunities are around build reproducibility and stack consolidation.
-The build installs MkDocs and its plugins without pinned versions (in
-`netlify.toml` and the `Makefile`), which risks non-reproducible builds or
-breakage when an upstream package changes; pinning versions would harden this.
-Maintaining two separate stacks (MkDocs for the user guide and Jekyll for the
-main site) also adds ongoing overhead worth periodically reviewing.
+- MkDocs Material for the user guide is well supported and common among CNCF
+  projects.
+- Fully automated publish pipeline: merge to `main` triggers a Prow job that
+  pushes to `gh-pages` in roughly 40 to 90 seconds.
+- HTTPS everywhere, with HTTP and `www` redirecting to the canonical HTTPS
+  domain.
+- `OWNERS` files are maintained, including dated emeritus entries on the website
+  repository.
+- Netlify pull-request previews and a periodic Prow link checker catch problems
+  before and after publish.
 
-Rating: 4 - Meets or exceeds standards
+Weaknesses:
 
-### Recommendations
+- Two different static-site generators and a custom Jekyll theme double the
+  maintenance surface.
+- No documented path for cultivating website maintainers; the
+  `sig/documentation` entry in the community SIG list is empty.
+- Heavy reliance on one active documentation maintainer across both
+  repositories.
+- Administrative access to Netlify, DNS, GitHub Pages, and Prow job definitions
+  is undocumented.
+- No `Strict-Transport-Security` header on production responses.
 
-> AUTHOR NOTE: Write general recommendations based on the comments from the
-> previous section.
+Rating: 3 - Meets standards
 
-#### Single-source requirement
+## Website & Infrastructure - Recommendations
 
-#### Minimal website requirements
+### Single-source requirement
 
-#### Usability, accessibility and devices
+- Document the content boundary. Add a short "Where documentation lives" section
+  to the README of `kubevirt/user-guide`, `kubevirt/kubevirt.github.io`, and
+  `kubevirt/kubevirt` stating that user and operator documentation belongs in
+  the user guide, marketing, blog, and community content belongs on the website,
+  and `kubevirt/kubevirt/docs` is for design and developer notes only. Link to
+  it from `docs/contributing.md` in the user guide.
+- Audit `kubevirt/kubevirt/docs` for user-facing content. Start with the files
+  the user guide already links to (`getting-started.md`, `architecture.md`,
+  `cloud-init.md`), move the user-facing portions into the guide, and replace
+  the originals with a one-line pointer so search results and old links still
+  resolve.
+- Do the same triage for the CDI `doc/` directory: move the pages the user guide
+  links to from six storage pages into the guide's `storage/` section, or add a
+  clear "CDI reference documentation" page in the guide that explains why the
+  rest remains in the CDI repository.
+- Decide whether the website and user guide should share a repository, and
+  record the decision. If they stay separate, note the reason (different
+  generators, maintainers, and audiences) in both READMEs. If the project later
+  converges the two toolchains, as suggested in the maintenance-planning
+  recommendations, move the website pages into the user-guide repository or
+  bring the guide into the website repository as a Git submodule.
+- Give the API reference a visible home in the user guide by adding a navigation
+  entry or landing page that links to `kubevirt.github.io/api-reference`, so
+  readers do not need to know it is published from a separate repository.
 
-- Increase color contrast for the brand teal primary color (`#0db2b6` in
-  `docs/stylesheets/extra.css`) so that white header text meets the WCAG AA
-  contrast ratio of at least 4.5:1 for normal text, either by darkening the teal
-  or by adjusting the text color placed on it.
-- Adjust the body link color (currently the primary color darkened with
-  `filter: brightness(80%)`) so that links reach at least 4.5:1 contrast against
-  the page background, rather than the roughly 3.96:1 they achieve today.
-- Verify all contrast changes in both the light (`default`) and dark (`slate`)
-  schemes, checking header text, links, navigation section labels, and code
-  blocks.
-- Add a-ln automated accessibility and contrast check to the site build (for
-  example, a Lighthouse or axe-based check) so contrast regressions are caught
-  before publishing.
-- Continue requiring descriptive, non-empty alt text on all images and maintain
-  correct heading order in new pages, so screen-reader and text-to-speech users
-  keep getting a good experience.
-- Preserve the existing strengths, keeping the responsive viewport, mobile
-  drawer navigation, site search, in-page table of contents, skip-to-content
-  link, and ARIA labels intact as the theme is upgraded.
+### Website requirements
 
-#### Branding and design
+- Bring the user guide footer into compliance. Set
+  `copyright: "Copyright © KubeVirt a Series of LF Projects, LLC"` in
+  `mkdocs.yml`, and add an `overrides/partials/copyright.html` (or a
+  `footer.html` override) that appends "We are a Cloud Native Computing
+  Foundation incubating project", the CNCF logo linked to `cncf.io`, and a link
+  to `https://lfprojects.org/policies/` for trademark and terms. Match the
+  wording and links used in the main website footer so the two properties read
+  as one.
+- Add the © symbol to the main website copyright line in `_includes/footer.html`
+  so it reads "Copyright © KubeVirt a Series of LF Projects, LLC".
+- Point vendor logos at KubeVirt-specific pages. For each entry in `ADOPTERS.md`
+  whose link is a corporate homepage, ask the vendor for a URL that mentions
+  KubeVirt support or their KubeVirt-based product, and update the link; drop
+  the logo from the Vendors section if none exists.
+- Add a root `CODE_OF_CONDUCT.md` to both `kubevirt/user-guide` and
+  `kubevirt/kubevirt.github.io` that links to the `kubevirt/community` code of
+  conduct, so the file is present where the checklist expects it rather than
+  only inherited from the organization default.
+- Add a `CONTRIBUTING.md` to `kubevirt/kubevirt.github.io` that points to the
+  existing contributing content in its README and to the user guide's
+  contributing page.
+- Update the maturity statement in both footers when the project's CNCF status
+  changes, and add a note in each repository's README naming the file to edit so
+  the statement does not go stale.
 
-- Document a small set of shared brand values in the repository, such as the
-  brand hex colors (`#0db2b6` and `#006166`), the logo and favicon files, and
-  the chosen fonts, so the branding is defined in one place rather than implied
-  by the theme configuration.
-- Align the user guide's look and feel more closely with the main `kubevirt.io`
-  website by agreeing on a shared logo, color family, and typography across both
-  properties, so readers experience a consistent brand as they move between the
-  sites.
-- Verify the customized link styling (`filter: brightness(80%)` in
-  `docs/stylesheets/extra.css`) against accessibility contrast targets in both
-  the light and dark schemes, and adjust or remove the filter if it reduces
-  contrast below recommended levels.
-- Keep relying on the Material theme's default Roboto and Roboto Mono
-  typography, and if a custom font is ever introduced, apply it through the
-  theme configuration so it remains consistent across all pages.
-- Confirm the teal palette renders correctly in the dark (`slate`) scheme,
-  checking that logo, links, code blocks, and navigation labels retain
-  sufficient contrast and remain on-brand.
-- Continue defining brand colors through theme-level variables in `extra.css`
-  rather than per-page styling, so the brand stays consistent as new pages are
-  added.
+### Usability, accessibility and devices
 
-#### Case studies/social proof
+- Fix the header and link contrast in `docs/stylesheets/extra.css`. Darken
+  `--md-primary-fg-color` to a teal that gives at least 4.5:1 against white (for
+  example `#007a7e` or darker), or keep the brand teal for decorative elements
+  only and set the header and tab text to a dark foreground. Check links against
+  the same 4.5:1 target and remove the `filter: brightness(80%)` hack in favor
+  of an explicit color. Verify both light and dark schemes with a contrast
+  checker.
+- Replace the ASCII stack diagram on the Architecture page with an image that
+  has descriptive alt text or, better, a Mermaid diagram (enable
+  `pymdownx.superfences` custom fences for `mermaid` in `mkdocs.yml`)
+  accompanied by a one-paragraph prose description of the layers, so screen
+  reader users and mobile readers get the same information.
+- Convert `$`-prefixed indented code blocks to fenced blocks with a language tag
+  and no prompt, and separate output into its own block. Start with the pages on
+  the new-user path (Installation, Lifecycle, `virtctl`) and the longest
+  reference pages (Disks and Volumes, Export API). This helps screen readers,
+  copy-paste, and mobile scrolling at once.
+- Enable `content.code.copy` in `theme.features` so long commands can be copied
+  without horizontal scrolling, and break commands over 100 characters across
+  lines with `\` continuations in the source.
+- Verify on a phone that tables on the Arm64 feature-gate and device status
+  pages scroll horizontally rather than overflowing the page; if they overflow,
+  remove the `display: table; width: max-content` override from `extra.css` or
+  scope it to specific tables with `attr_list` classes.
+- Split or restructure pages over about 500 lines. Candidates are Disks and
+  Volumes (split by volume type), Interfaces and Networks (split binding methods
+  from network attachment), and Live Migration (move migration strategies and
+  network configuration to sub-pages). Split Release Notes into one page per
+  minor release or paginate it, and set the Release Notes tab to open the newest
+  release.
+- Set the logo alt text to "KubeVirt" by adding `extra.homepage` or a custom
+  `partials/logo.html` override, and add a short caption or introductory
+  sentence above each wide status table stating what the table shows.
+- Add an accessibility check to the Makefile and Prow pre submit, for example
+  running `pa11y-ci` or Lighthouse against the built site for a sample of pages,
+  so contrast regressions are caught in pull requests.
 
-- Publish a small set of narrative case studies on the project website that
-  describe how specific organizations adopted KubeVirt, the problems they
-  solved, and the outcomes they achieved, going beyond the existing adopter logo
-  walls.
-- Gather and display user testimonials, for example short quotes from adopting
-  organizations, to complement the logo walls with real-world perspectives on
-  the project's value.
-- Link the user guide to the project's adoption and community content so readers
-  can discover it, for example by adding references to the blog, the community
-  talks and videos page, and the adopters logo wall from the user guide landing
-  page.
-- Add a "Community" or "Adopters" entry to the user guide that points to the
-  case studies, testimonials, and logo wall once they exist, giving
-  documentation readers a clear path to social proof.
-- Continue maintaining the active blog and the curated talk playlists (Talks,
-  Demos, Interviews, and KubeVirt Summit), and consider surfacing the most
-  relevant posts or talks from within related documentation pages.
-- Where a case study or talk illustrates a documented feature, cross-link it
-  from the corresponding user guide page so readers can see the feature applied
-  in practice.
+### Branding and design
 
-#### SEO, Analytics and site-local search
+- Publish a short brand reference, either in the `kubevirt.github.io` repository
+  or in the `community` repository, that lists the canonical logo files (icon
+  and horizontal wordmark), the hex values of the `$kv-color--green-*` scale,
+  and the approved typefaces. Have `docs/stylesheets/extra.css` in the user
+  guide cite that reference in a comment so the two sites stay aligned when the
+  palette changes.
+- Align the user guide's brand tokens with the main site's scale. Replace the ad
+  hoc `#0db2b6` primary with a value from the documented scale (for example,
+  `$kv-color--green-300`, `#00aab2`), or add `#0db2b6` to the scale so both
+  properties draw from the same list.
+- Add an `extra.social` block and a `copyright` line to `mkdocs.yml` so the
+  Material footer shows the project's GitHub, Slack, and `kubevirt.io` links.
+  This gives readers a visual and navigational link between the guide and the
+  main site at almost no cost.
+- Consider using the horizontal `KubeVirt_logo_color.svg` wordmark in the
+  guide's header, or add the wordmark to the main site's header alongside the
+  icon, so both properties present the same logo variant.
+- Check the `filter: brightness(80%)` link rule against WCAG AA contrast in both
+  the light and dark schemes. If it fails, replace the filter with explicit
+  `--md-typeset-a-color` values per scheme so the link color is deliberate
+  rather than derived.
+- Review the `.md-typeset table:not([class]) { width: max-content; }` rule on a
+  narrow viewport. If wide tables push past the content column, scope the rule
+  to a class applied only to tables that need it, or wrap those tables so they
+  scroll within the column.
+- Remove the unused legacy assets `asciibinder-logo-horizontal.png`,
+  `asciibinder_web_logo.svg`, and `book_pages_bg.jpg` from `docs/assets` so the
+  repository contains only current brand assets.
+- Remove the unsupported top-level `site_favicon` key from `mkdocs.yml`; MkDocs
+  ignores it and the active favicon is already set under `theme.favicon`.
 
-- Decide whether to adopt analytics for the documentation, and if so, choose
-  either a GA4 property or a privacy-respecting alternative that aligns with the
-  project's privacy policy, so maintainers gain visibility into traffic and
-  popular content.
-- If analytics is adopted, enable it only on the production deploy and keep it
-  disabled for pull-request previews and non-default branch builds, configuring
-  it through the Material theme's analytics integration rather than per page.
-- If analytics is adopted, ensure Page-not-found (404) reporting is available so
-  broken inbound links can be identified and fixed over time.
-- Document the custodians of any analytics or search accounts (for example, who
-  owns the analytics property) in the repository, so ownership remains clear as
-  maintainers change.
-- Make the preview `noindex` behavior an explicit project setting (for example,
-  an `X-Robots-Tag` header for Netlify preview and branch deploys) rather than
-  relying solely on the Netlify default, so indexing rules are intentional and
-  documented.
-- Fix the double slash in the `robots.txt` Sitemap URL
-  (`https://kubevirt.io//sitemap.xml`) so it points to a single canonical
-  sitemap location.
-- Keep the MkDocs `search` plugin enabled and continue to benefit from the
-  Material theme's intra-site search, periodically reviewing the search
-  separator configuration as content grows.
+### Case studies/social proof
 
-#### Maintenance planning
+- Link the two existing CNCF case studies (NTT Docomo Business and Swisscom)
+  from `kubevirt.io`, for example in a "Case Studies" block beneath the End
+  Users logo wall on the landing page. This is a quick win: the content already
+  exists and is published by CNCF.
+- Extend `adopters.py` and `_data/adopters.yml` to carry the "Use-Case" text
+  from `ADOPTERS.md`, and show it on the website as a tooltip or an expandable
+  card on each logo. This turns the logo wall into a set of short, attributed
+  testimonials at no authoring cost.
+- Create a `/adopters/` or `/case-studies/` page on `kubevirt.io` that renders
+  the full adopters table (type, name, since, use case) and links to the CNCF
+  case studies, so evaluators have a single place for adoption evidence. Add it
+  to `_data/site_nav_pages.yml`.
+- Invite two or three adopters with strong use-case statements (for example
+  Cloudflare, CoreWeave, or SK Telecom) to expand them into short blog posts or
+  Summit talks, and tag those posts with a `case-study` or `user-story` category
+  so they can be listed together.
+- Add a blog category or tag scheme beyond `news` and `uncategorized`, and
+  backfill recent posts, so the blog index can filter by release, feature,
+  community, and user story.
+- Set a modest publishing target for the blog, such as one post per KubeVirt
+  minor release plus one community or adopter post per quarter, and track it in
+  the community repository so cadence does not depend on a single author.
+- In the user guide, add a short "Community and adoption" block to
+  `docs/index.md` that links to the `kubevirt.io` blog, videos, Summit, adopters
+  or case-studies page, and Slack. Optionally add a top-level "Community" entry
+  to `docs/.nav.yml` that opens the `kubevirt.io/community` page.
+- In `docs/contributing.md`, in addition to inviting readers to submit case
+  studies, link to the existing adopters list and case studies so contributors
+  can see the format they are being asked to follow.
 
-- Pin the versions of MkDocs and its plugins (`mkdocs`, `mkdocs-material`,
-  `mkdocs-awesome-nav`, `mkdocs-redirects`, and `mkdocs-html-proofer-plugin`) in
-  the build definitions, for example via a `requirements.txt`, so that Netlify
-  and Prow builds are reproducible and resistant to breaking upstream changes.
-- Keep the pinned dependency versions current through a regular update cadence,
-  ideally automated (for example with Dependabot or Renovate), so the guide
-  continues to benefit from the actively maintained MkDocs Material toolchain.
-- Continue cultivating maintainers through the OWNERS model, and periodically
-  review the reviewers and approvers lists to confirm they reflect currently
-  active contributors and that coverage is not concentrated in too few people.
-- Preserve the existing HTTPS posture, keeping the site accessible over HTTPS
-  and retaining the HTTP-to-HTTPS redirects for both the user guide path and the
-  apex domain.
-- Periodically review the overhead of maintaining two separate stacks (MkDocs
-  for the user guide and Jekyll for the main `kubevirt.io` site), and consider
-  whether consolidation or closer alignment would reduce long-term maintenance
-  effort.
-- Document the local and CI build process (build commands, dependencies, and
-  preview workflow) in a contributor-facing location so new maintainers can
-  reproduce and troubleshoot builds easily.
+### SEO, Analytics and site-local search
 
-#### Other
+- Enable analytics on the user guide. Add an `extra.analytics` block to
+  `mkdocs.yml` (Material supports Google Analytics 4 natively, or use a custom
+  `overrides/main.html` partial to load the same Adobe Analytics tag the main
+  site uses) so documentation page views, search terms, and 404 hits are
+  captured.
+- Gate analytics to production only. In the main site, wrap the `dpal.js`
+  include in `_includes/head.html` with a check on
+  `jekyll.environment == "production"` and set `JEKYLL_ENV=production` only in
+  the Netlify production context. In the user guide, inject the analytics
+  snippet only when the Netlify `CONTEXT` variable equals `production`, for
+  example by templating it in the `netlify.toml` build command.
+- Add an explicit `noindex` for non-production deploys rather than relying on
+  Netlify defaults. Emit `X-Robots-Tag: noindex` from a `_headers` file or a
+  `[context.deploy-preview]` / `[context.branch-deploy]` section in each
+  repository's `netlify.toml`.
+- Fix `robots.txt` on kubevirt.io: correct the sitemap URL to
+  `https://kubevirt.io/sitemap.xml` and add a second `Sitemap:` line for
+  `https://kubevirt.io/user-guide/sitemap.xml`.
+- Remove the obsolete `sed` line in this repository's `netlify.toml` that
+  rewrites `site_url: https://kubevirt.io/docs`, since `mkdocs.yml` already sets
+  `site_url` to `https://kubevirt.io/user-guide` and the command no longer has
+  any effect.
+- Extend the main site's lunr index in `_layouts/search.html` to include
+  `site.pages` in addition to `site.posts` so that non-blog pages are
+  searchable, and add a link from the main site's search page to the user guide
+  search (or vice versa) so users can find documentation from either entry
+  point.
+- Document analytics custodianship. Add a short "Site infrastructure" section to
+  the README of each repository (or to the SIG Docs or community repository)
+  that names the owners or aliases responsible for the Adobe Analytics property,
+  the Netlify sites, and Google Search Console, and describes how a maintainer
+  requests access or a 404 report.
+- Once analytics are in place, set up a recurring 404 report (for example, a
+  saved report filtered on the not-found page title) and use it to add missing
+  entries to the `redirects` plugin map in `mkdocs.yml`.
 
-#### References and notes
+### Maintenance planning
 
-##### Rating values
+- Document infrastructure ownership. Add a "Site infrastructure" section to the
+  README of both `kubevirt/user-guide` and `kubevirt/kubevirt.github.io` (or a
+  page in `kubevirt/community`) that lists who administers the Netlify site,
+  GitHub Pages and custom-domain settings, DNS for kubevirt.io, and the Prow job
+  definitions in `kubevirt/project-infra`, and how a maintainer requests access.
+- Give documentation a formal home. Populate the `sig/documentation` entry in
+  the community `sig-list.md` with chairs, a meeting cadence or async channel,
+  and a charter that includes both the user guide and the website, so newcomers
+  know where to volunteer and maintainers have a succession path.
+- Publish a maintainer ladder. In the website and user-guide READMEs, describe
+  how a contributor becomes a reviewer and then an approver (for example, a
+  number of merged docs PRs and a nomination), mirroring the process in
+  `kubevirt/community` for code SIGs.
+- Reduce bus-factor risk by recruiting at least one additional regular website
+  reviewer for each repository, using the existing `kind/website` and
+  `kind/documentation` labels and a `good-first-issue` pass to seed starter
+  tasks.
+- Plan to converge the two toolchains. Evaluate moving the main site to MkDocs
+  Material or another Hugo/Docusaurus-style generator with a supported theme so
+  a single skill set covers both sites, and track the decision in an issue even
+  if the migration is deferred.
+- Clean up `netlify.toml` in the user-guide repository: remove the obsolete
+  `sed` line that targets `site_url: https://kubevirt.io/docs`, and pin the
+  MkDocs package versions (or use a `requirements.txt`) so preview builds are
+  reproducible and match the Prow image.
+- Add a `Strict-Transport-Security` header. GitHub Pages does not let you set
+  response headers directly, so either enable HSTS through the DNS/CDN provider
+  in front of kubevirt.io or, if none exists, record the limitation in the
+  infrastructure section so it is a known gap.
+- Periodically review `OWNERS_ALIASES` in the user-guide repository and add
+  dated emeritus entries as the website repository already does, so the approver
+  list reflects who is actually active.
+
+## Related information
+
+### References and notes
+
+### Rating values
 
 The numeric rating values used in this document are as follows
 
@@ -2348,11 +2697,3 @@ The numeric rating values used in this document are as follows
 3. Meets standards
 4. Meets or exceeds standards
 5. Exemplary
-
-<!-- [criteria]: ../criteria.md
-[implementation]: ./implementation.md
-[issues list]: ./issues-list.md
-[project-website]: ?fixme-target-dne=_PROJECT-WEBSITE_
-[Rating (1-5)]: #rating-values
-[rfc-spec]: https://www.rfc-editor.org/rfc/rfc2119
-[website guidelines]: ../../website-guidelines-checklist.md -->
