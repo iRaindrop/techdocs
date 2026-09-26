@@ -687,7 +687,7 @@ Weaknesses:
 
 Rating: 4 - Meets or exceeds standards
 
-## Recommendations
+## Project documentation recommendations
 
 ### Information architecture
 
@@ -1316,7 +1316,7 @@ Weaknesses:
 
 Rating: 4 - Meets or exceeds standards
 
-## Recommendations
+## Contributor documentation recommendations
 
 ### Communication methods documented
 
@@ -2180,7 +2180,7 @@ Weaknesses:
 
 Rating: 3 - Meets standards
 
-## Recommendations
+## Website & infrastructure recommendations
 
 ### Single-source requirement
 
