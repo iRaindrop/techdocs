@@ -1720,8 +1720,7 @@ problems, keeping source files in two places:
 - makes it more complicated to generate the documentation from source files
 
 Ideally, all website files should be in the website repo itself. Alternatively,
-files should be brought into the website repo via [git
-submodules][git-submodules].
+files should be brought into the website repo through git submodules.
 
 If a project chooses to keep source files in multiple repos, they need a clearly
 documented strategy for managing mirrored files and new contributions. We
@@ -1811,9 +1810,8 @@ Rating: 2 - Needs improvement
 ### Website requirements
 
 Listed here are the minimal website requirements for projects based on their
-[maturity level][maturity-level], either incubating or graduated. These are the
-only two levels for which a tech docs analysis can be requested. We evaluate on
-the following:
+maturity level, either incubating or graduated. These are the only two levels
+for which a tech docs analysis can be requested. We evaluate on the following:
 
 - Are most of the applicable CNCF Website
   Guidelines(https://deploy-preview-358--cncf-techdocs.netlify.app/docs/website-guidelines-checklist/)
@@ -1821,13 +1819,13 @@ the following:
 
 <!-- markdownlint-disable line-length -->
 
-| Criterion                     | Incubating Requirement                                  | Graduated Requirement                     |
-| ----------------------------- | ------------------------------------------------------- | ----------------------------------------- |
-| [Website guidelines]          | All guidelines satisfied                                | All guidelines satisfied                  |
-| **Docs analysis** (this)      | Requested through CNCF [service desk][cncf-servicedesk] | All follow-up actions addressed           |
-| **Project doc**: stakeholders | Roles identified and doc needs documented               | All stakeholder need identified           |
-| **Project doc**: hosting      | Hosted directly                                         | Hosted directly                           |
-| **Project doc**: user docs    | Comprehensive, addressing most stakeholder needs        | Fully addresses needs of key stakeholders |
+| Criterion                     | Incubating Requirement                           | Graduated Requirement                     |
+| ----------------------------- | ------------------------------------------------ | ----------------------------------------- |
+| [Website guidelines]          | All guidelines satisfied                         | All guidelines satisfied                  |
+| **Docs analysis** (this)      | Requested through CNCF service desk              | All follow-up actions addressed           |
+| **Project doc**: stakeholders | Roles identified and doc needs documented        | All stakeholder need identified           |
+| **Project doc**: hosting      | Hosted directly                                  | Hosted directly                           |
+| **Project doc**: user docs    | Comprehensive, addressing most stakeholder needs | Fully addresses needs of key stakeholders |
 
 <!-- markdownlint-enable line-length -->
 
