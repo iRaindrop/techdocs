@@ -313,40 +313,6 @@ documentation. We evaluate on the following:
   pages exist outside the navigation. Release Notes, a 3,000-line page, sits in
   the main navigation between Storage and Contributing.
 
-#### Comment
-
-The KubeVirt user guide has a sound top-level information architecture. Content
-is grouped by audience and layer (Cluster Administration, User Workloads,
-Compute, Network, Storage, Virtualization Debugging), ordering is controlled
-deliberately through `.nav.yml` files, and the redirects map shows the project
-maintained old URLs when it reorganized. Most feature pages follow a consistent
-pattern of a short concept, a feature-state banner where relevant, and runnable
-manifests or `virtctl` commands. Deprecated mechanisms are labeled and point to
-their replacements. Compared with the Prometheus documentation, which the CNCF
-criteria cite as a good example, the KubeVirt guide has comparable feature
-coverage but lacks Prometheus's clear "Getting started" spine and its
-consolidated reference material.
-
-The main weakness is that the guide is a well-organized encyclopedia rather than
-a guided path. A new user must assemble the happy path from Installation, the
-`virtctl` install page, Creating VirtualMachines, Lifecycle, and Accessing
-Virtual Machines, and the guide points to external Killercoda and kubevirt.io
-labs to fill that gap. The oldest foundational pages (Basic Use, Lifecycle)
-still present VirtualMachineInstance as the primary object, which is out of step
-with the VirtualMachine-centric approach used everywhere else. Reference
-material for `virtctl` and for feature gates is not consolidated, and there is
-no user-facing troubleshooting or FAQ page, so the escalation path jumps
-straight from feature pages to Slack and GitHub issues.
-
-Currency is uneven. New v1.9 features are documented where a page exists
-(VirtualMachine Templates, Plugins), but the Plugins page is not in the
-navigation, several v1.9 APIs and feature gates appear only in release notes,
-and Installation still carries legacy OKD Service Catalog and k3OS content.
-Section-internal organization is the other systemic issue: Compute and Storage
-are long flat lists named after APIs rather than user goals, and the User
-Workloads "Workloads" sub-group mixes current, legacy, and deprecated mechanisms
-without signaling which one a reader wants.
-
 Strengths:
 
 - Audience- and layer-based top-level sections with explicit, intentional page
@@ -438,38 +404,31 @@ specifically for them. We evaluate on the following:
   `virtctl create vm` invocations, `kubectl` lifecycle commands, and YAML
   manifests. These are formatted for direct copy-paste.
 
-#### Comment
+Strengths:
 
-The KubeVirt user guide gives new users a solid technical starting point, but
-its on-ramp is fragmented across several differently named locations. New-user
-material is split between a top-level "Quickstarts" entry, an "Installation"
-page buried as the first item under "Cluster Administration," and "Try it out"
-and "KubeVirt Labs" sections on the homepage. Because none of these is labeled
-"Getting Started" or "First Steps," newcomers must piece the path together
-themselves. Consolidating these entry points under a single, clearly named
-"Getting Started" section—ideally as its own top-level navigation item—would
-match the convention new users expect and provide one obvious front door. The
-Falco getting-started guide (https://falco.org/docs/getting-started/) is a good
-model for this unified structure.
+- Installation gives a correct, short operator-based procedure with expected
+  output and a software-emulation fallback.
+- The Welcome page links to live Killercoda scenarios, quickstarts for minikube,
+  kind, and cloud providers, and four hands-on labs.
+- Arm64 platform status is documented in a dedicated sub-section.
+- Recently revised pages provide clean, pasteable manifests and `virtctl`
+  pipelines.
+- Requirements are stated up front, including `--allow-privileged=true` and
+  hardware virtualization validation.
 
-The installation documentation itself is strong: it lists prerequisites,
-provides ordered and copy-pasteable operator and CR commands, shows how to
-verify a healthy deployment, and covers multiple platforms (Kubernetes, OKD,
-k3OS) and architectures (x86_64 and Arm64). The main weakness is that the guide
-leans heavily on external links—Killercoda, the minikube/kind/cloud quickstarts,
-and the kubevirt.io labs—rather than an in-guide walkthrough that carries a
-reader from a fresh cluster to a running virtual machine. Bringing at least one
-complete, end-to-end "deploy KubeVirt and launch your first VM" tutorial into
-the guide would reduce reliance on off-site content and give users a
-self-contained first success.
+Weaknesses:
 
-The most actionable single improvement is to close the gap between installation
-and first use. The installation page currently ends with optional topics
-(network plugins, node placement) and offers no explicit "Next steps" pointer
-toward the first-VM tasks in "User Workloads" (such as `basic_use.md` and
-`creating_vms.md`). Adding a clear "Next steps" call-to-action at the end of
-installation, linking directly to creating and accessing a first virtual
-machine, would give new users an unbroken path from setup to a working workload.
+- No page labeled "Getting started" and no single in-guide path from install to
+  first running VM.
+- Installation mixes the core procedure with AppArmor, kernel compatibility,
+  OKD, k3OS, developer builds, and node placement, and ends without a next step.
+- `virtctl` install covers only Linux amd64 via `wget`; macOS, Windows, and
+  arm64 binaries and `PATH` setup are not mentioned.
+- Basic Use and Lifecycle reference `vmi.yaml` without providing it and do not
+  link onward.
+- Older pages use `$`-prefixed indented code blocks interleaved with output, and
+  the copy button is not enabled.
+- The Quickstarts page has no introduction, prerequisites, or outcome statement.
 
 Rating: 3 - Meets standards
 
@@ -529,33 +488,6 @@ evaluate on the following:
   flow against `main` only. Release notes are maintained by a script
   (`update_changelog.sh`) that regenerates the page from kubevirt/kubevirt tags,
   but that process is also undocumented outside the script itself.
-
-#### Comment
-
-The KubeVirt user guide is maintainable as a single-version, single-language
-site. Its toolchain is simple and well suited to a documentation-only
-repository: plain Markdown under `docs/`, mkdocs-material with built-in search,
-explicit `.nav.yml` ordering, centralized redirects, and a Makefile that runs
-spelling and link checks in a container. The redirects map shows the maintainers
-preserved URLs through a major reorganization, which is the kind of discipline
-that keeps a site maintainable over time.
-
-The gap is that the project has outgrown the single-version model without
-documenting the alternative. KubeVirt ships minor releases with feature-gate
-graduations and API changes, and the repository already has per-release
-branches, yet the published site tracks only `main`, offers no version selector,
-and no document explains what the release branches are for or how contributors
-should use them. Users of an older KubeVirt cannot tell which features on a page
-apply to them except where an individual author added an "as of vX.Y" banner.
-Compared with the Kubernetes documentation that the CNCF criteria cite as a good
-example, which publishes each supported minor version with a selector and
-documents its branching and localization processes, KubeVirt's approach is
-informal and depends on maintainer memory.
-
-Localization is absent but not blocked. There is no demand documented, no
-framework configured, and no language directory, so this is a low priority; the
-main cost of the current layout is that adding a first translation later would
-require moving every file.
 
 Strengths:
 
@@ -661,31 +593,6 @@ the following:
   process. Ownership is inferable from Git history and OWNERS files but is not
   documented.
 
-#### Comment
-
-KubeVirt's strongest asset in this area is that documentation is wired into the
-engineering process rather than left to chance. The kubevirt/kubevirt pull
-request checklist asks every author whether a user-guide update is needed, and
-the VEP process requires SIGs to confirm the docs PR is merged before release.
-Recent history shows this works: feature developers routinely land the user
-guide page for their VEP in the same release cycle, and the release notes are
-regenerated on each release. Reviews and approvals are automated through Prow
-OWNERS files with a curated approver list. Compared with the Thanos "How to
-contribute to docs" page and the NATS MAINTAINERS file that the CNCF criteria
-cite as good examples, KubeVirt has stronger release-process coupling but weaker
-documentation of the process itself.
-
-The weakness is that the process is implicit. A new contributor reading README
-and CONTRIBUTING learns how to build the site and sign a commit but not who will
-review, how approval works, how long to expect, what a good page looks like, or
-when a change needs a redirect or a cherry-pick to a release branch. Ownership
-is real but undocumented: no MAINTAINERS file, no named docs lead or SIG, and no
-statement of who runs the Netlify deployment or the release-notes script. The
-per-SIG aliases in `OWNERS_ALIASES` are defined but never used to route reviews,
-so a storage or network expert is not automatically assigned to pages in their
-area. Twelve open pull requests, the oldest six months old, suggest review
-capacity depends on a small group of core maintainers who also carry the code.
-
 Strengths:
 
 - The kubevirt/kubevirt PR template and the VEP release checklist both require a
@@ -759,27 +666,6 @@ evaluate on the following:
   gendered pronouns, no "guys", and no other ableist or exclusionary terms in
   prose. The repository's spelling check does not include an inclusive-language
   or minimizing-language rule, so nothing prevents new occurrences.
-
-#### Comment
-
-The KubeVirt user guide is in good shape on inclusive naming. KubeVirt's own API
-objects, components, CLI, and feature gates avoid all Inclusive Naming
-Initiative tier-1 terms, the project's default branch is `main`, and the guide
-already uses "allowlist" where the older term might have appeared. The remaining
-occurrences of "master" are in URLs and third-party content, and the only one
-under the project's control, the 14 links to the API reference at the legacy
-`/master/` path, is a mechanical fix now that the API reference publishes under
-`/main/` and per-version paths. Field names such as `Abort Requested` are part
-of the KubeVirt API and are a question for the API maintainers rather than the
-documentation.
-
-The one systemic concern is minimizing language. Words such as "simply",
-"simple", "easy", "easily", and "just" appear over a hundred times across 40
-percent of pages. This language tells a reader who is struggling with a step
-that the step should have been easy, and in almost every case it can be deleted
-with no loss of meaning. Because the repository's spelling check has no rule for
-these words, the pattern will continue in new pages unless a style rule or lint
-check is added.
 
 Strengths:
 
@@ -1151,29 +1037,6 @@ to reach you. We evaluate on the following:
   does not say so. The Contributing page does not mention the mailing list at
   all.
 
-#### Comment
-
-KubeVirt's communication channels are well established and thoroughly documented
-at the community level. Two Slack channels, a Google Group, a GitHub
-organization, a public community calendar, a weekly Zoom meeting with recorded
-sessions on YouTube, and posted minutes are all in place, and the
-kubevirt/community repository describes the meeting mechanics in more detail
-than most CNCF projects. The kubevirt.io Community page gathers the channels,
-the calendar, and the Slack invitation link on one page, and the home page
-footer repeats the primary links.
-
-The gap is in how the user guide surfaces these channels. A user who hits a
-problem while following a page has no path to help except to return to the
-Welcome page, where "Getting help" offers three bare URLs with no guidance on
-which channel suits which question. The guide does not mention the
-`#kubevirt-dev` channel, the community meeting, the calendar, or that meeting
-minutes are mailed to kubevirt-dev, and the mkdocs-material header and footer
-carry no repository or social icons because `repo_url` and `extra.social` are
-not set. Meeting details live only in the community repository; the websites
-present a calendar embed and a one-line invitation without stating the day,
-time, or how to join. SIG charters do not record meeting cadence, so SIG-level
-participation depends on scanning the shared calendar.
-
 Strengths:
 
 - Two purpose-specific Slack channels, a mailing list, a public calendar, and a
@@ -1271,29 +1134,6 @@ We evaluate on the following:
   triage and, without a human in the loop, it erases the entry points the
   Contributing page advertises.
 
-#### Comment
-
-The KubeVirt user guide has the infrastructure for a beginner-friendly backlog
-but not the backlog itself. The repository inherits the KubeVirt organization's
-Prow labels, issue templates, and lifecycle automation; the labels a newcomer
-needs (`good-first-issue`, `help wanted`, `sig/documentation`,
-`triage/accepted`) all exist; and the Contributing page points newcomers at
-`good-first-issue` in this and two sibling repositories. When maintainers have
-written beginner issues, they have written them well: the September 2025 batch
-of eight feature-lifecycle documentation issues each carried background,
-affected files, and acceptance criteria.
-
-The problem is follow-through. All ten `good-first-issue` items closed in the
-past year, including that entire batch, were auto-closed by the stale bot
-without a fix, and today the label has zero open items here and zero
-documentation-related items in kubevirt/kubevirt. A newcomer who follows the
-Contributing page's instructions finds nothing to do. Triage labels are applied
-to only half of the small open backlog, and no issue is assigned or marked
-`triage/accepted`, so the lifecycle automation runs without a human deciding
-which issues should survive it. The net effect is a clean but empty backlog,
-which is the wrong outcome for a project that explicitly invites first-time
-contributors to start with documentation.
-
 Strengths:
 
 - Full Prow label taxonomy, org-level issue templates, and automated lifecycle
@@ -1388,29 +1228,6 @@ in easily? We evaluate on the following:
   URLs on the Welcome page and are not repeated on the Contributing page or in
   CONTRIBUTING.md.
 
-#### Comment
-
-KubeVirt has a genuine new-contributor document and a mature community
-repository behind it. The user guide's Contributing page is written for someone
-making their first open source contribution: it sets expectations, points to
-low-barrier repositories, offers non-code ways to start, and links the
-governance, membership, code of conduct, and AI contribution policies. The
-kubevirt/community repository supplies the depth, including a SIG list, a
-membership checklist, a help-wanted label guide, and a detailed community
-meeting document, and both sides point at each other as the canonical entry.
-
-The weakness is the hand-off from motivation to action. The Contributing page
-ends where a newcomer needs the most guidance: how to pick and claim an issue,
-how to fork, sign off, and open a pull request, what the Prow labels mean, and
-who will review. Those mechanics exist but are scattered across the repository
-README, kubevirt/kubevirt CONTRIBUTING.md, and kubevirt/kubevirt
-`docs/getting-started.md`, none of which is presented as the next step. The page
-also directs newcomers to `good-first-issue` lists that are currently empty, and
-does not name a channel, person, or meeting where a stuck contributor can ask
-for help. The community repository's most useful contributor resources (SIG
-list, help-wanted guide, meeting document, MAINTAINERS) are not linked from the
-guide at all.
-
 Strengths:
 
 - A dedicated, welcoming Contributing page that is the canonical entry point
@@ -1475,27 +1292,6 @@ following:
   the SIG list, and neither site summarizes how decisions are made or who the
   maintainers are. A user or prospective adopter evaluating the project's
   governance must know to open the community repository.
-
-#### Comment
-
-KubeVirt's governance documentation is clear, specific, and maintained.
-`GOVERNANCE.md` answers the questions an evaluator asks first: who the
-maintainers are, how they are chosen and removed, how votes work and what
-thresholds apply, and how SIGs and working groups relate to the maintainers. The
-companion documents give the contributor ladder concrete requirements at each
-level and an explicit inactivity policy, the maintainers list records employers
-and areas of responsibility with an emeritus table, and SIG charters are
-generated from a single source of truth. This is the level of governance
-documentation expected of a CNCF incubating project and is a strength the
-project can point to.
-
-The only shortfall is presentation. Governance is documented in the community
-repository but not summarized or prominently linked from kubevirt.io or the user
-guide; the Contributing page links `GOVERNANCE.md` with a one-line label among
-other resources, and the Community page does not mention governance,
-maintainers, or SIGs at all. Prospective adopters and contributors evaluating
-the project from the website have to know the community repository exists to
-find this material.
 
 Strengths:
 
@@ -1763,27 +1559,6 @@ evaluate on the following:
   user guide, and the code repositories' `docs/` directories, so contributors
   have to infer where a new page belongs.
 
-#### Comment
-
-KubeVirt does not meet the single-source requirement as the CNCF criteria define
-it. The pages a visitor sees under `kubevirt.io` are built from three separate
-repositories with three separate publish pipelines, and user-facing
-documentation is additionally scattered across the `docs/` directories of the
-core and CDI code repositories. The split between the website and the user guide
-is defensible, since the two use different generators and serve different
-audiences, but that rationale is undocumented, and the overlap between
-`kubevirt/kubevirt/docs` and the user guide is not a design decision so much as
-an accumulation. Contributors have no written guidance on which repository a new
-page belongs in, and readers can land on developer-oriented Markdown in the core
-repository that duplicates or contradicts the user guide.
-
-The user guide itself is a well-behaved single source: one `docs/` tree,
-explicit navigation files, and a redirect map for moved pages. That makes it the
-natural home for consolidating user-facing content that currently lives
-elsewhere, and the existing cross-links from the guide to
-`kubevirt/kubevirt/docs` and to the CDI repository identify exactly which
-content is a candidate to move.
-
 Strengths:
 
 - The user guide keeps all of its content in one `docs/` tree with declarative
@@ -1813,15 +1588,11 @@ Listed here are the minimal website requirements for projects based on their
 maturity level, either incubating or graduated. These are the only two levels
 for which a tech docs analysis can be requested. We evaluate on the following:
 
-- Are most of the applicable CNCF Website
-  Guidelines(https://deploy-preview-358--cncf-techdocs.netlify.app/docs/website-guidelines-checklist/)
-  satisfied?
-
 <!-- markdownlint-disable line-length -->
 
 | Criterion                     | Incubating Requirement                           | Graduated Requirement                     |
 | ----------------------------- | ------------------------------------------------ | ----------------------------------------- |
-| [Website guidelines]          | All guidelines satisfied                         | All guidelines satisfied                  |
+| **Website guidelines**        | All guidelines satisfied                         | All guidelines satisfied                  |
 | **Docs analysis** (this)      | Requested through CNCF service desk              | All follow-up actions addressed           |
 | **Project doc**: stakeholders | Roles identified and doc needs documented        | All stakeholder need identified           |
 | **Project doc**: hosting      | Hosted directly                                  | Hosted directly                           |
@@ -1829,7 +1600,81 @@ for which a tech docs analysis can be requested. We evaluate on the following:
 
 <!-- markdownlint-enable line-length -->
 
-#### Comment
+- Are most of the applicable CNCF Website Guidelines satisfied? See
+  https://github.com/cncf/techdocs/blob/main/docs/website-guidelines-checklist.md
+
+  Yes for the main website, and only partly for the user guide. KubeVirt is a
+  CNCF incubating project, so the "developing" standard applies. Taking the
+  checklist items in order:
+  1. Open source repository. Both sites are hosted in the `kubevirt` GitHub
+     organization alongside the main project: the website in
+     `kubevirt/kubevirt.github.io` and the user guide in `kubevirt/user-guide`.
+     Both repositories run the DCO check on every pull request (it appears as a
+     required `dco` status alongside `tide` and the Netlify preview), and the
+     user guide README explains how to sign commits.
+
+  2. Origin company. The homepage does not refer to Red Hat as the originator;
+     Red Hat appears only as one logo among the alphabetized End Users and
+     Vendors lists.
+
+  3. Enterprise support leads. There are no lead-capture links or forms on
+     either site; the only forms are the search boxes and the user guide's
+     color-scheme toggle. The homepage has a Vendors section of eighteen logos,
+     sorted alphabetically, populated from `ADOPTERS.md` through a documented
+     process, which serves as the vetting step.
+
+  4. Vendor links. Several vendor logos link to pages that describe the vendor's
+     KubeVirt offering (Kubermatic, Platform9, Spectro Cloud, KubeSphere), but
+     others link to the vendor's generic corporate homepage (Microsoft, Oracle,
+     SUSE, Red Hat, NCR Voyix, TrueFullstaq), which does not mention KubeVirt
+     support.
+
+  5. Copyright notice. The main website footer reads "Copyright KubeVirt a
+     Series of LF Projects, LLC", which is the wording the checklist specifies
+     for projects converted to the Series LLC model, though it omits the ©
+     symbol. The user guide footer contains only "Made with Material for MkDocs"
+     and no copyright notice; `mkdocs.yml` sets no `copyright` value.
+
+  6. CNCF branding. The main website footer states "We are a Cloud Native
+     Computing Foundation incubating project", which matches the project's
+     current maturity level, and displays the CNCF color logo linked to
+     `cncf.io`. The user guide has no CNCF statement or logo anywhere on the
+     page.
+
+  7. Footer trademark and policy links. The main website footer links to
+     `https://lfprojects.org/policies/` "for website terms of use, trademark
+     policy and other project policies", which satisfies the
+     trademark-guidelines requirement through a terms page. The user guide
+     footer has no trademark or policy link.
+
+  Community and license files. Both repositories have a `LICENSE` file. The user
+  guide has a `CONTRIBUTING.md`; the website repository has none, though its
+  README covers contributing in detail. Neither repository has a
+  `CODE_OF_CONDUCT.md` in its root; GitHub applies the organization-wide default
+  from the `kubevirt/.github` repository, so the code of conduct is visible on
+  the repository page but is not a file in the repository as the checklist asks.
+
+Strengths:
+
+- Both sites hosted in the `kubevirt` organization with DCO enforced on every
+  pull request.
+- Main website footer includes the correct maturity statement, Series LLC
+  copyright, CNCF logo, and LF Projects policies link.
+- No origin-company references or enterprise lead capture; vendor list is
+  alphabetized and sourced from `ADOPTERS.md`.
+- `LICENSE` present in both repositories and `CONTRIBUTING.md` in the user
+  guide.
+
+Weaknesses:
+
+- User guide footer has no copyright, CNCF branding, or trademark link.
+- Several vendor logos link to corporate homepages rather than KubeVirt support
+  pages.
+- No root `CODE_OF_CONDUCT.md` in either repository; no `CONTRIBUTING.md` in the
+  website repository.
+- Main website copyright line omits the © symbol.
+
+Rating: 3 - Meets standards
 
 ### Usability, accessibility and devices
 
@@ -1930,28 +1775,6 @@ following:
   Arm64 feature-gate table with a status column per gate) are readable but
   tedious without a caption or summary row.
 
-#### Comment
-
-The KubeVirt user guide inherits a solid usability and accessibility baseline
-from mkdocs-material. The site is responsive, the navigation, search, and table
-of contents all work from a mobile drawer, keyboard users get a skip link,
-search shortcuts, and standard focusable controls, and pages declare a language
-and use a proper heading hierarchy. The project has customized the theme lightly
-and, apart from color, has not undermined these defaults. Dark mode is available
-and previous and next links help linear reading.
-
-The one clear defect is color contrast. The custom teal primary color produces
-white-on-teal header and tab text at roughly 2.6:1 and body links at roughly
-4:1, both below WCAG AA for normal text. This affects every page and is a
-one-line CSS change to fix. The remaining issues are in content rather than the
-platform: the Architecture page's central diagram is ASCII art with no textual
-equivalent, older pages use `$`-prefixed indented code blocks that read poorly
-on screen readers and scroll horizontally on phones, several pages exceed 500
-lines without internal grouping, and wide status tables and long command lines
-depend on horizontal scrolling on small screens. The `width: max-content` table
-override in `extra.css` should be verified on a real device to confirm tables
-still scroll rather than overflow the viewport.
-
 Strengths:
 
 - Responsive mkdocs-material theme with viewport meta, mobile drawer navigation,
@@ -2035,32 +1858,6 @@ this is branding and marketing. We evaluate on the following:
   wide tables extend past the content column and rely on horizontal scrolling,
   which is useful for the many API-field tables but can crowd narrow view ports.
   Typography differs from the main site, which uses Open Sans at a 16px base.
-
-#### Comment
-
-The KubeVirt user guide has a clear, recognizable identity. The teal heptagon
-mark, the teal Material palette pinned to the project's own hex values, and the
-coordinated sidebar label color together make every page unmistakably KubeVirt.
-Because the branding is configured once in `mkdocs.yml` and
-`docs/stylesheets/extra.css` rather than in individual pages, it stays
-consistent across the roughly one hundred pages of the guide and across the
-light and dark schemes without any effort from content authors. This is the
-right model for a documentation site and is worth pointing to as an example.
-
-The main gap is that KubeVirt's brand is expressed in two different ways on its
-two web properties. The main `kubevirt.io` site carries a documented SCSS color
-scale, the horizontal wordmark, and Open Sans; the user guide carries three
-copied hex values, the square icon, and Roboto. The colors are from the same
-family, so nothing looks wrong, but there is no single source of truth for the
-brand, and the guide's header and footer give the reader no visual or
-navigational cue that it belongs to the larger site. Unused assets from a
-previous site generator also remain in the repository.
-
-Typography is clean and well-suited to reading long technical pages, with a
-sensible pairing of proportional and monospaced faces and good default spacing.
-The only design choices worth a second look are the small custom CSS rules that
-darken all links and let tables grow to their natural width, since both trade a
-little readability for a stylistic or layout effect.
 
 Strengths:
 
@@ -2155,32 +1952,6 @@ organizations using it. We evaluate on the following:
   name in a tooltip. The wall shows who uses KubeVirt but not how or why,
   because the use-case text is not carried over. The user guide does not display
   or link to the logo wall.
-
-#### Comment
-
-KubeVirt has more adoption evidence than its websites show. The project
-maintains a curated adopters list with first-person use-case statements from
-well-known production users, publishes talks, demos, interviews, and five years
-of Summit recordings, keeps a blog that still produces substantive release and
-feature posts, and is featured in two CNCF-published end-user case studies. The
-logo wall and video section on `kubevirt.io` are well organized and clearly
-signal an active, widely adopted project.
-
-The weakness is that the most persuasive material is disconnected from where
-prospective users look. The CNCF case studies are not linked from either
-property, the adopter use-case statements live only in a GitHub Markdown table
-while the website shows bare logos, and no blog category or page collects user
-stories. The result is that the project appears to have a logo wall and a blog
-but no case studies or testimonials, when in fact it has the raw material for
-both. Blog cadence has also fallen from about two posts a month to a handful a
-year, and the flat `news` category makes the archive hard to browse by theme.
-
-From the user guide's side, the gap is discoverability. The guide is where
-evaluators end up when they want to know whether KubeVirt fits their
-environment, yet its landing page and navigation contain no link to adopters,
-case studies, talks, or the blog. Only `contributing.md` mentions the website's
-community content, and it frames it as a place to contribute rather than a place
-to learn.
 
 Strengths:
 
@@ -2289,25 +2060,6 @@ evaluate on the following:
   from redhat.com, access to the data appears to be held by Red Hat staff rather
   than by the project, and that dependency is not recorded anywhere.
 
-#### Comment
-
-The KubeVirt web presence splits across two sites with very different analytics
-postures. The main site collects data through a Red Hat–administered Adobe
-Analytics tag, while the user guide, which is the documentation users spend most
-of their time in, collects nothing. As a result the project has no visibility
-into which documentation pages are read, which searches fail, or which inbound
-links break. The main site's tag is also loaded on every deploy, so preview
-traffic is mixed into production numbers.
-
-Search-engine fundamentals are in reasonable shape. Both sites produce sitemaps,
-the user guide emits correct canonical URLs even on its Netlify alias, and
-Google Search Console is verified for the domain. Local search works well in the
-user guide thanks to the MkDocs Material plugin, though the main site's lunr
-search indexes only blog posts and neither site can search the other. The
-biggest governance gap is that nobody is named as custodian of the analytics,
-Netlify, or Search Console accounts, and the project's dependence on a
-vendor-hosted analytics account is undocumented.
-
 Strengths:
 
 - Full-text local search in the user guide, with a tuned separator for technical
@@ -2400,27 +2152,6 @@ project maintainers aren’t web developers. We evaluate on the following:
   Netlify alias redirects HTTP to HTTPS as well. The production responses do not
   include a `Strict-Transport-Security` header, so browsers rely on the redirect
   rather than HSTS to enforce HTTPS on repeat visits.
-
-#### Comment
-
-The KubeVirt documentation infrastructure is low-maintenance by design and
-largely automated. The user guide runs on MkDocs Material, one of the most
-widely adopted documentation stacks in the cloud-native ecosystem, and both
-sites are published to GitHub Pages by a Prow job within a minute or two of
-merge. HTTPS is enforced everywhere, Netlify provides pull-request previews, and
-Dependabot keeps the Jekyll site's dependencies current. For a project of
-KubeVirt's size, the tooling choices are sensible and the deploy pipeline is
-fast and hands-off.
-
-The risk lies in people rather than tooling. The two sites use different
-generators, so a maintainer must know both Jekyll and MkDocs, and the main
-site's hand-built Bootstrap theme has no upstream to inherit fixes from. Commit
-history shows the documentation effort leaning on a single active maintainer,
-the community's `sig/documentation` label has no chairs or members, and neither
-repository describes how someone grows into a website maintainer role or who
-holds the keys to Netlify, DNS, GitHub Pages settings, and the Prow job
-definitions. If that maintainer stepped away, the project would have working
-automation but no documented map of who can change it.
 
 Strengths:
 
